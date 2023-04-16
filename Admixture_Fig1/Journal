@@ -10,8 +10,6 @@ cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/
 mkdir SACE421_Admixture1
 cd SACE421_Admixture1/
 
-
-
 cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SAPA127/admixture
 cp Remove_LD_from_VCF_SAPA127.sge ../..
 cd ../..
@@ -22,6 +20,28 @@ vim Remove_LD_from_VCF_SACE421.sge # Cambiar la línea #$ -e; #$ -o;
 
 
 mv Matrix!
+# tengo que hacer la matriz primero!
+#### 06_genotyping HACER MULTIVCF
+qlogin
+cd  /mnt/Timina/lmorales/Public/ymez/bin/scripts/06_genotyping
+module load python37/3.7.0
+python3.7 genotyping_and_filtering.py   -s /mnt/Timina/lmorales/Public/ymez/data/metadata/SampleSheet_SACE421_Admixture1.csv  -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_SACE.txt -m .1
+exit
+cd  /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/
+mv javelar_SH_getSNPmatrix.sh javelar_SH_getSNPmatrix_from_SACE_SACE421.sh
 
-qsub Remove_LD_from_VCF_SACE395.sge /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE395/Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic 500 100 .15
+## CAMBIAR el nombre del getmatrix!
+mv get_SACE_SNPmatrix_from_SACE.sge  get_SACE_SNPmatrix_from_SACE_SACE421.sge 
+vim javelar_SH_getSNPmatrix_from_SACE_SACE421.sh # cambié el nombre del sge que va a mandar correr
+vim  get_SACE_SNPmatrix_from_SACE_SACE421.sge # cambie output de .err y .out
+
+bash javelar_SH_getSNPmatrix_from_SACE_SACE421.sh # 18:57
+
+
+
+
+
+qsub Remove_LD_from_VCF_SACE421.sge /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE395/Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic 500 100 .15
+
+
 
