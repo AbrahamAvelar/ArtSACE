@@ -1,3 +1,27 @@
 Hacer el Admixture:
 Set_O    + Set_F  + Set_K  + Set_L  + Set_M (a SACE)
 217World + 171YMX + 29SAM1 + 10SAM2 + 16SAM3
+
+OpenRefine => Create new column Admixture1 based on column Nombre_Fastq by filling 469 rows with grel:if(or(cells['Set_O'].value == "1", cells['Set_F'].value == "1", cells['Set_K'].value == "1", cells['Set_L'].value == "1", cells['Set_M'].value == "1"), value, 0) 
+
+scp "D:/Dropbox/Posdoc/Articulo Estructura SACE/YMXdomesticated_SACEddd_PopGen/Tables/SampleSheet_SACE421_Admixture1.csv" javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/data/metadata
+
+cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/
+mkdir SACE421_Admixture1
+cd SACE421_Admixture1/
+
+
+
+cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SAPA127/admixture
+cp Remove_LD_from_VCF_SAPA127.sge ../..
+cd ../..
+mv Remove_LD_from_VCF_SAPA127.sge SACE421_Admixture1/
+mv Remove_LD_from_VCF_SAPA127.sge Remove_LD_from_VCF_SACE421.sge
+
+vim Remove_LD_from_VCF_SACE421.sge # Cambiar la línea #$ -e; #$ -o; 
+
+
+mv Matrix!
+
+qsub Remove_LD_from_VCF_SACE395.sge /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE395/Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic 500 100 .15
+
