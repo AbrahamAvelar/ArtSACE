@@ -38,10 +38,15 @@ vim  get_SACE_SNPmatrix_from_SACE_SACE421.sge # cambie output de .err y .out
 bash javelar_SH_getSNPmatrix_from_SACE_SACE421.sh # 18:57
 
 
+qsub Remove_LD_from_VCF_SACE421.sge /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/Matrix.vcf 500 100 .15
 
+qlogin
+cd /mnt/Timina/lmorales/Public/ymez/bin/scripts/10_admixture
+module load python37
+python3.7 SendAdmixtureSGEs.py --dirbed /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1 --bed Matrix_LDPrune_500_100_.15.bed --out /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/out --minS 1 --maxS 5 --minK 1 --maxK 30 --setname SACE421
+exit
 
-
-qsub Remove_LD_from_VCF_SACE421.sge /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE395/Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic 500 100 .15
-
+cd /mnt/Timina/lmorales/Public/ymez/bin/SGE/10_admixture
+bash javelar_admixture_K1-20_S1-5.sh
 
 
