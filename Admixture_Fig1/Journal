@@ -47,6 +47,10 @@ python3.7 SendAdmixtureSGEs.py --dirbed /mnt/Timina/lmorales/Public/ymez/tmp/06_
 exit
 
 cd /mnt/Timina/lmorales/Public/ymez/bin/SGE/10_admixture
-bash javelar_admixture_K1-20_S1-5.sh
+bash javelar_admixture_K1-30_S1-5_SACE421.sh
 
+###
+cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/out
+grep -h CV /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE395/admixture/out/log*.out|awk -F "=|:" '{print $2"\t"$3}' | sed 's/)//g'| sort -n #> Values_CV_SAPA127.txt
+vim VCF_Samples.csv # es para quitarle las primeras 7 líneas
 
