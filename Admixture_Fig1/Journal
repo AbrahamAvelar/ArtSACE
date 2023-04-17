@@ -51,6 +51,6 @@ bash javelar_admixture_K1-30_S1-5_SACE421.sh
 
 ###
 cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/out
-grep -h CV /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE395/admixture/out/log*.out|awk -F "=|:" '{print $2"\t"$3}' | sed 's/)//g'| sort -n #> Values_CV_SAPA127.txt
+grep -h CV /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/out/log*.out|awk -F "=|:" '{print $2"\t"$3}' | sed 's/)//g'| sort -n #> Values_CV_SACE421.txt
 vim VCF_Samples.csv # es para quitarle las primeras 7 líneas
 
