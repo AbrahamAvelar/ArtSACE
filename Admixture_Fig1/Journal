@@ -58,22 +58,23 @@ less Values_CV_SACE421.txt
 
 cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/out
 ### PONG
+rm Pong_mfile_SACE421.txt
 for seed in {1..2}; 
 do   
   for k in {10..12};   do     
     echo -e "K${k}s${seed}\t${k}\tMatrix_LDPrune_500_100_.15_S${seed}_K${k}.${k}.Q" >> Pong_mfile_SACE421.txt # Pong_mfile_k11-13_s1-10.txt   
   done; 
 done
+mv Pong_mfile_SACE421.txt Pong_mfile_SACE421_K10-K12.txt
 
 ### IND2POP
-cut -d',' -f7 /mnt/Timina/lmorales/Public/ymez/data/metadata/SampleSheet_SAPA146_WorldANDNatEnvMezcal.csv >> SAPA146_GeneticGroup_ind2pop.txt
-
+ cut -d',' -f7 /mnt/Timina/lmorales/Public/ymez/data/metadata/Ind2Pop_SACE421.csv >> SACE421_ind2pop.txt
 
 ### CORRER PONG
 qlogin
 cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SAPA146/admixture/out
-/usr/bin/pong -m Pong_mfile_SAPA146.txt -i SAPA146_GeneticGroup_ind2pop.txt -p 5000 # VERSIÓN SIMPLE
-/usr/bin/pong -m Pong_mfile_SAPA146.txt -i SAPA146_GeneticGroup.strname_ind2pop.txt -p 5000 -n  SAPA146_order.Region_Strain.csv ordenada
+/usr/bin/pong -m Pong_mfile_SACE421_K10-K12.txt -i SACE421_ind2pop.txt -p 5000 # VERSIÓN SIMPLE
+/usr/bin/pong -m Pong_mfile_SACE421_K10-K12.txt -i SACE421_ind2pop.txt -p 5000 -n  Order.Clades.csv # ordenada
 
 ## en otra terminal:  ssh -L 4999:compute-00-11:5000 javelar@dna.lavis.unam.mx -Y # 00-11 es el número del qlogin
 ## en el navegador   http://localhost:4999/
