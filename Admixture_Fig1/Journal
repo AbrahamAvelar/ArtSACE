@@ -50,9 +50,30 @@ exit
 cd /mnt/Timina/lmorales/Public/ymez/bin/SGE/10_admixture
 bash javelar_admixture_K1-30_S1-5_SACE421.sh
 
-###
+### Generar archivo CV
 cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/out
 grep -h CV /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/out/log*.out|awk -F "=|:" '{print $2"\t"$3}' | sed 's/)//g'| sort -n #> Values_CV_SACE421.txt
 less Values_CV_SACE421.txt
-vim VCF_Samples.csv # es para quitarle las primeras 7 líneas
 
+
+cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/out
+### PONG
+for seed in {1..2}; 
+do   
+  for k in {10..12};   do     
+    echo -e "K${k}s${seed}\t${k}\tMatrix_LDPrune_500_100_.15_S${seed}_K${k}.${k}.Q" >> Pong_mfile_SACE421.txt # Pong_mfile_k11-13_s1-10.txt   
+  done; 
+done
+
+### IND2POP
+cut -d',' -f7 /mnt/Timina/lmorales/Public/ymez/data/metadata/SampleSheet_SAPA146_WorldANDNatEnvMezcal.csv >> SAPA146_GeneticGroup_ind2pop.txt
+
+
+### CORRER PONG
+qlogin
+cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SAPA146/admixture/out
+/usr/bin/pong -m Pong_mfile_SAPA146.txt -i SAPA146_GeneticGroup_ind2pop.txt -p 5000 # VERSIÓN SIMPLE
+/usr/bin/pong -m Pong_mfile_SAPA146.txt -i SAPA146_GeneticGroup.strname_ind2pop.txt -p 5000 -n  SAPA146_order.Region_Strain.csv ordenada
+
+## en otra terminal:  ssh -L 4999:compute-00-11:5000 javelar@dna.lavis.unam.mx -Y # 00-11 es el número del qlogin
+## en el navegador   http://localhost:4999/
