@@ -42,9 +42,10 @@ qsub Remove_LD_from_VCF_SACE421.sge /mnt/Timina/lmorales/Public/ymez/tmp/06_geno
 
 qlogin
 cd /mnt/Timina/lmorales/Public/ymez/bin/scripts/10_admixture
-module load python37
+module load python37/3.7.0
 python3.7 SendAdmixtureSGEs.py --dirbed /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1 --bed Matrix_LDPrune_500_100_.15.bed --out /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/out --minS 1 --maxS 5 --minK 1 --maxK 30 --setname SACE421
 exit
+# python3.7 SendAdmixtureSGEs.py --dirbed /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1 --bed Matrix_LDPrune_500_100_.15.bed --out /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/out --minS 1 --maxS 5 --minK 31 --maxK 35 --setname SACE421
 
 cd /mnt/Timina/lmorales/Public/ymez/bin/SGE/10_admixture
 bash javelar_admixture_K1-30_S1-5_SACE421.sh
