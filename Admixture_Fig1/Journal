@@ -75,6 +75,8 @@ qlogin
 cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SAPA146/admixture/out
 /usr/bin/pong -m Pong_mfile_SACE421_K10-K12.txt -i SACE421_ind2pop.txt -p 5000 # VERSIÓN SIMPLE
 /usr/bin/pong -m Pong_mfile_SACE421_K10-K12.txt -i SACE421_ind2pop.txt -p 5000 -n  Order.Clades.csv # ordenada
+/usr/bin/pong -m Pong_mfile_SACE421_K10-K12.txt -i SACE421_ind2pop.txt -p 5000 -n  Order.Clades.csv --color_list colores_pong
+
 
 ## en otra terminal:  ssh -L 4999:compute-00-11:5000 javelar@dna.lavis.unam.mx -Y # 00-11 es el número del qlogin
 ## en el navegador   http://localhost:4999/
