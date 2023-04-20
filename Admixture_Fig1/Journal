@@ -83,6 +83,10 @@ cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SAPA146/admixture/ou
 
  Matrix_LDPrune_500_100_.15.bed
 #PCA 
+#Esto dice en el archivo de PCA.R sobre cómo lo hice la vez pasada.
+plink --bfile Matrix_LDPrune_500_10_0.35 --recode vcf --out MLDP_SACE304_500100.35
+plink  --vcf Matrix_LDPrune_500_10_0.35.vcf --pca --out PCA500100.35 --extract Matrix_500100.35.prune.in
+
 #con plink ### NO JALÓ
 # filter out SNPs and individuals based on minor allele frequency, missing genotype rate, and Hardy-Weinberg equilibrium, respectively. For example:
 plink --bfile Matrix_LDPrune_500_100_.15 --maf 0.01 --geno 0.05 --hwe 0.00001 --make-bed --out Matrix_LDPrune_500_100_.15_QC 
