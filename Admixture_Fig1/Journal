@@ -80,3 +80,17 @@ cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SAPA146/admixture/ou
 
 ## en otra terminal:  ssh -L 4999:compute-00-11:5000 javelar@dna.lavis.unam.mx -Y # 00-11 es el número del qlogin
 ## en el navegador   http://localhost:4999/
+
+ Matrix_LDPrune_500_100_.15.bed
+#PCA 
+#con plink ### NO JALÓ
+# filter out SNPs and individuals based on minor allele frequency, missing genotype rate, and Hardy-Weinberg equilibrium, respectively. For example:
+plink --bfile Matrix_LDPrune_500_100_.15 --maf 0.01 --geno 0.05 --hwe 0.00001 --make-bed --out Matrix_LDPrune_500_100_.15_QC 
+#Perform PCA 
+plink --bfile Matrix_LDPrune_500_100_.15_QC --pca --out Matrix_LDPrune_500_100_.15_PCA
+
+#con plink2
+module load plink2/2.00a2.3
+plink2 --bfile Matrix_LDPrune_500_100_.15 --pca 10
+
+
