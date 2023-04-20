@@ -57,6 +57,11 @@ less Values_CV_SACE421.txt
 
 
 cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/out
+$ scp -r javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/out/Values_CV_SACE421.txt  D:/Dropbox/Posdoc/Admixture/SACE421
+
+
+
+
 ### PONG
 rm Pong_mfile_SACE421.txt
 for seed in {1..2}; 
@@ -80,6 +85,10 @@ cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SAPA146/admixture/ou
 
 ## en otra terminal:  ssh -L 4999:compute-00-11:5000 javelar@dna.lavis.unam.mx -Y # 00-11 es el número del qlogin
 ## en el navegador   http://localhost:4999/
+
+
+
+
 
  Matrix_LDPrune_500_100_.15.bed
 #PCA 
