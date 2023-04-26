@@ -1,0 +1,21 @@
+
+/mnt/Timina/lmorales/Public/ymez/data/metadata/SampleSheet_SACE253_Admixture2.csv
+
+
+module load python37/3.7.0
+cd /mnt/Timina/lmorales/Public/ymez/bin/scripts/06_genotyping
+python3.7 genotyping_and_filtering.py   -s /mnt/Timina/lmorales/Public/ymez/data/metadata/SampleSheet_SACE253_Admixture2.csv  -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_SACE.txt -m .1
+exit
+
+mv javelar_SH_getSNPmatrix.sh javelar_SH_getSNPmatrix_from_SACE_SACE253.sh
+mv get_SACE_SNPmatrix_from_SACE.sge get_SACE_SNPmatrix_from_SACE_SACE253.sge
+
+vim javelar_SH_getSNPmatrix_from_SACE_SACE253.sh #Cambiar el sge a correr
+vim get_SACE_SNPmatrix_from_SACE.sge #cabié el outdir
+
+cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotypinig/trees/
+mkdir SACE253 
+
+cd  /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/
+bash javelar_SH_getSNPmatrix_from_SACE_SACE253.sh # 18:10
+
