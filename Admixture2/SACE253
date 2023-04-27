@@ -26,13 +26,13 @@ qsub Remove_LD_from_VCF_SACE253.sge /mnt/Timina/lmorales/Public/ymez/tmp/06_geno
 qlogin
 cd /mnt/Timina/lmorales/Public/ymez/bin/scripts/10_admixture
 module load python37/3.7.0
-python3.7 SendAdmixtureSGEs.py --dirbed /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE253_Admixture2 --bed Matrix_LDPrune_500_100_.15.bed --out /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE253_Admixture2/out --minS 1 --maxS 5 --minK 16 --maxK 25 --setname SACE253
+python3.7 SendAdmixtureSGEs.py --dirbed /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE253_Admixture2 --bed Matrix_LDPrune_500_100_.15.bed --out /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE253_Admixture2/out --minS 6 --maxS 10 --minK 1 --maxK 36 --setname SACE253
 exit
 
 cd /mnt/Timina/lmorales/Public/ymez/bin/SGE/10_admixture
 mv javelar_admixture_K1-15_S1-5.sh javelar_admixture_K1-15_S1-5_SACE253.sh
-mv javelar_admixture_K16-25_S1-5.sh javelar_admixture_K16-25_S1-5_SACE253.sh
-bash javelar_admixture_K16-25_S1-5_SACE253.sh
+mv javelar_admixture_K1-36_S6-10.sh javelar_admixture_K1-36_S6-10_SACE253.sh
+bash javelar_admixture_K1-36_S6-10_SACE253.sh
 
 ### Generar archivo CV
 cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE253_Admixture2
