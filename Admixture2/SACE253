@@ -41,3 +41,38 @@ less Values_CV_SACE421.txt
 
 scp -r javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE253_Admixture2/out/Values_CV_SACE253.txt  D:/Dropbox/Posdoc/Admixture/SACE253
 
+
+
+
+
+### PONG
+rm Pong_mfile_SACE253.txt
+for seed in {1..5}; 
+do   
+  for k in {10..20};   do     
+    echo -e "K${k}s${seed}\t${k}\tMatrix_LDPrune_500_100_.15_S${seed}_K${k}.${k}.Q" >> Pong_mfile_SACE253.txt # Pong_mfile_k11-13_s1-10.txt   
+  done; 
+done
+mv Pong_mfile_SACE253.txt Pong_mfile_SACE253_K10-k20.txt
+
+### IND2POP
+ cut -d',' -f7 Ind2Pop_SACE253.csv >> SACE253_ind2pop.txt
+
+### CORRER PONG
+qlogin
+cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE253_Admixture2
+/usr/bin/pong -m Pong_mfile_SACE253_K10-k20.txt -i SACE253_ind2pop.txt -p 5000 # VERSIÓN SIMPLE
+/usr/bin/pong -m Pong_mfile_SACE421_K10-K12.txt -i SACE421_ind2pop.txt -p 5000 -n  Order.Clades.csv # ordenada
+/usr/bin/pong -m Pong_mfile_SACE421_K25-K27.txt -i SACE421_ind2pop.txt -p 5000 -n  Order.Clades.csv --color_list colores_pong
+/usr/bin/pong -m Pong_mfile_SACE421_K25-K27.txt -i SACE421_ind2pop.txt -p 5000 -n  Order.Clades.csv --color_list colores_pong
+/usr/bin/pong -m Pong_mfile_SACE421_K25-K27.txt -i SACE421_ind2pop_2.txt -p 5000 -n  Order.Clades_2.csv --color_list colores_pong
+
+
+## en otra terminal:  ssh -L 4999:compute-00-11:5000 javelar@dna.lavis.unam.mx -Y # 00-11 es el número del qlogin
+## en el navegador   http://localhost:4999/
+
+
+
+
+
+
