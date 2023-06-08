@@ -150,15 +150,22 @@ qsub RaXML_Phylogenetic_Trees_SACE421_toSACE.sge
 # Repetir Admixture
 qsub Remove_LD_from_VCF_SACE421.sge /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/new_Admixture/Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic 50 5 .5 ## 500 100 .15
 # Yo quería usar la versión de new_Admixture!
-
+# /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/new_Admixture/
 qlogin
 cd /mnt/Timina/lmorales/Public/ymez/bin/scripts/10_admixture
-module load python37/3.7.0 python3.7 SendAdmixtureSGEs.py --dirbed /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/new_Admixture --bed Matrix_LDPrune_500_100_.15.bed --out /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/out --minS 1 --maxS 5 --minK 1 --maxK 30 --setname SACE421
+module load python37/3.7.0 
+python3.7 SendAdmixtureSGEs.py --dirbed /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/new_Admixture --bed Matrix_LDPrune_50_5_.5.bed --out /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/out --minS 1 --maxS 5 --minK 1 --maxK 35 --setname SACE421_2
 exit
-# python3.7 SendAdmixtureSGEs.py --dirbed /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1 --bed Matrix_LDPrune_500_100_.15.bed --out /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/out --minS 1 --maxS 5 --minK 31 --maxK 35 --setname SACE421
+
 
 cd /mnt/Timina/lmorales/Public/ymez/bin/SGE/10_admixture
-bash javelar_admixture_K1-30_S1-5_SACE421.sh
+mv javelar_admixture_K1-35_S1-5.sh javelar_admixture_K1-35_S1-5_SACE421_2.sh
+bash javelar_admixture_K1-35_S1-5_SACE421_2.sh
+
+
+cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/out
+grep -h CV /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/out/log*_50_5_*.out|awk -F "=|:" '{print $2"\t"$3}' | sed 's/)//g'| sort -n #> Values_CV_SACE421_2.txt
+less Values_CV_SACE421_2.txt
 
 
 
