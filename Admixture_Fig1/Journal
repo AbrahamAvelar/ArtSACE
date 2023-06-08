@@ -116,3 +116,52 @@ module load plink2/2.00a2.3
 plink2 --bfile Matrix_LDPrune_500_100_.15 --pca 10
 
 
+### Hacer árbol
+#Crear el sge
+cp RaXML_Phylogenetic_Trees_SAPA91_CONC.sge SACE421_Admixture1/
+mv RaXML_Phylogenetic_Trees_SAPA91_CONC.sge RaXML_Phylogenetic_Trees_SACE421_toSACE.sge
+
+#A la hora de hacer el vim, noté que la matriz con la que hice el admixture y con la que iba a mandar el árbol no está filtrada :(
+#Dir /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/
+#Archivo Usado Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_SACE421.vcf.gz
+
+scp -r javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE421.sge  D:/Dropbox/Posdoc/Admixture/SACE421
+scp -r D:/Dropbox/Posdoc/Admixture/SACE421/get_SACE_SNPmatrix_from_SACE_SACE421_LastSteps.sge javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/
+#generé el nuevo archivo, solo con los últimos tres pasos
+qsub get_SACE_SNPmatrix_from_SACE_SACE421_LastSteps.sge
+
+
+# Hacer el Phylip
+qlogin
+cd  /mnt/Timina/lmorales/Public/ymez/bin/scripts/06_genotyping
+module load python37/3.7.0
+python3.7 vcf2phylip.py -i  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic
+
+cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/
+
+# ahora sí, cambiar por el nombre correcto
+scp -r javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/RaXML_Phylogenetic_Trees_SACE421_toSACE.sge  D:/Dropbox/Posdoc/Admixture/SACE421
+qsub RaXML_Phylogenetic_Trees_SACE421_toSACE.sge
+ 
+ 
+
+
+
+# Repetir Admixture
+qsub Remove_LD_from_VCF_SACE421.sge /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/new_Admixture/Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic 50 5 .5 ## 500 100 .15
+# Yo quería usar la versión de new_Admixture!
+
+qlogin
+cd /mnt/Timina/lmorales/Public/ymez/bin/scripts/10_admixture
+module load python37/3.7.0 python3.7 SendAdmixtureSGEs.py --dirbed /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/new_Admixture --bed Matrix_LDPrune_500_100_.15.bed --out /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/out --minS 1 --maxS 5 --minK 1 --maxK 30 --setname SACE421
+exit
+# python3.7 SendAdmixtureSGEs.py --dirbed /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1 --bed Matrix_LDPrune_500_100_.15.bed --out /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/out --minS 1 --maxS 5 --minK 31 --maxK 35 --setname SACE421
+
+cd /mnt/Timina/lmorales/Public/ymez/bin/SGE/10_admixture
+bash javelar_admixture_K1-30_S1-5_SACE421.sh
+
+
+
+
+
+
