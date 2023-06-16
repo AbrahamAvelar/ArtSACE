@@ -168,7 +168,9 @@ grep -h CV /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admi
 less Values_CV_SACE421_2.txt
 
 
+$ scp javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/RAxML_bipar
+titionsBranchLabels.Matrix_SNPs_SAPA_from_CONC_gt_onlySNPs_filtered_missing_10_SACE421.tree Downloads/
 
-
+luego traducirlo a .nwk
 
 
