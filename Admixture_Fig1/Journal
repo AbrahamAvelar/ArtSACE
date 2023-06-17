@@ -175,4 +175,15 @@ luego traducirlo a .nwk
 
 #############
 Faltaron las 5 que son de origen panificación y commercial. +5
-Noté que casi no hay de Solid state fermentation.
+Noté que casi no hay de Solid state fermentation y pocas PWCW. Pero ya se había hecho el cierre y más vale ya tener un draft para ya.
+Aunque para la figura 1 mejor volví a las 469, que es lo que habíamos dicho que meteríamos aunque no nos gustó el NJ al que le agregamos las 1011
+Por eso mejor ya puse el genotyping de las 469, sin las de 1011.
+
+scp "D:/Dropbox/Posdoc/Articulo Estructura SACE/YMXdomesticated_SACE_PopGen/Tables/SampleSheet_SACE469/SampleSheet_SACE469_V3.csv" javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE469/
+
+qlogin
+cd /mnt/Timina/lmorales/Public/ymez/bin/scripts/06_genotyping
+python3.7 genotyping_and_filtering.py -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_SACE.txt -s /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE469/SampleSheet_SACE469_V3.csv  -m .1
+exit 
+cd /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping
+ bash javelar_SH_getSNPmatrix.sh
