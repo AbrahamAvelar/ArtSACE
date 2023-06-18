@@ -188,3 +188,8 @@ exit
 cd /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping
  bash javelar_SH_getSNPmatrix.sh
 # repetir: # Hacer el Phylip
+scp -r javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/RaXML_Phylogenetic_Trees_SACE421_toSACE.sge  "D:/Dropbox/Posdoc/Articulo Estructura SACE/YMXdomesticated_SACE_PopGen/Tables/SampleSheet_SACE469/"
+scp "D:/Dropbox/Posdoc/Articulo Estructura SACE/YMXdomesticated_SACE_PopGen/Tables/SampleSheet_SACE469/RaXML_Phylogenetic_Trees_SACE469_toSACE.sge"   javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE469/
+qsub RaXML_Phylogenetic_Trees_SACE469_toSACE.sge
+
+
