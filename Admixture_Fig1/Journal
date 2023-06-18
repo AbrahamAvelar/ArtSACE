@@ -187,3 +187,4 @@ python3.7 genotyping_and_filtering.py -r /mnt/Timina/lmorales/Public/ymez/data/m
 exit 
 cd /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping
  bash javelar_SH_getSNPmatrix.sh
+# repetir: # Hacer el Phylip
