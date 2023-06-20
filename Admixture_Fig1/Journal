@@ -193,3 +193,19 @@ scp "D:/Dropbox/Posdoc/Articulo Estructura SACE/YMXdomesticated_SACE_PopGen/Tabl
 qsub RaXML_Phylogenetic_Trees_SACE469_toSACE.sge
 
 
+
+# Repetir Admixture
+qsub Remove_LD_from_VCF_SACE469.sge /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE469/Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic 50 5 0.5
+mkdir Admixture
+mkdir Admixture/out
+
+qlogin
+cd /mnt/Timina/lmorales/Public/ymez/bin/scripts/10_admixture
+module load python37/3.7.0 
+python3.7 SendAdmixtureSGEs.py --dirbed /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE469/Admixture --bed Matrix_LDPrune_50_5_.5.bed --out /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE469/Admixture/out --minS 1 --maxS 3 --minK 1 --maxK 45 --setname SACE469
+exit
+cd /mnt/Timina/lmorales/Public/ymez/bin/SGE/10_admixture
+
+cd /mnt/Timina/lmorales/Public/ymez/bin/SGE/10_admixture
+mv javelar_admixture_K1-45_S1-3.sh javelar_admixture_K1-45_S1-3_SACE469.sh
+bash javelar_admixture_K1-45_S1-3_SACE469.sh
