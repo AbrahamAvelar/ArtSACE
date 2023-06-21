@@ -209,3 +209,21 @@ cd /mnt/Timina/lmorales/Public/ymez/bin/SGE/10_admixture
 cd /mnt/Timina/lmorales/Public/ymez/bin/SGE/10_admixture
 mv javelar_admixture_K1-45_S1-3.sh javelar_admixture_K1-45_S1-3_SACE469.sh
 bash javelar_admixture_K1-45_S1-3_SACE469.sh
+
+
+grep -h CV /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE469/Admixture/out/log*_50_5_*.out|awk -F "=|:" '{print $2"\t"$3}' | sed 's/)//g'| sort -n #> Values_CV_SACE421_2.txt
+
+rm Pong_mfile_SACE469.txt
+for seed in 1; 
+do   
+  for k in {1..5};   do     
+    echo -e "K${k}s${seed}\t${k}\tMatrix_LDPrune_50_5_0.5_S${seed}_K${k}.${k}.Q" >> Pong_mfile_SACE469.txt # Pong_mfile_k11-13_s1-10.txt   
+  done; 
+done
+mv Pong_mfile_SACE469.txt Pong_mfile_SACE469_K1-K5_S1.txt
+
+qlogin
+cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SAPA469/Admixture/out
+/usr/bin/pong -m out/Pong_mfile_SACE469_K1-K5_S1.txt -i ind2pop_SACE469.csv -p 5000 # VERSIÓN SIMPLE
+
+/usr/bin/pong -m Pong_mfile_SACE469_K1-K5_S1.txt -i ind2pop_SACE469.csv -p 5000 -n order_clades.csv # VERSIÓN SIMPLE
