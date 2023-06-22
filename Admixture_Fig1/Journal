@@ -216,17 +216,21 @@ grep -h CV /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE469/Admi
 rm Pong_mfile_SACE469.txt
 for seed in 1; 
 do   
-  for k in {6..10};   do     
+  for k in {1..10};   do     
     echo -e "K${k}s${seed}\t${k}\tMatrix_LDPrune_50_5_0.5_S${seed}_K${k}.${k}.Q" >> Pong_mfile_SACE469.txt # Pong_mfile_k11-13_s1-10.txt   
   done; 
 done
-mv Pong_mfile_SACE469.txt Pong_mfile_SACE469_K6-K10_S1.txt
+mv Pong_mfile_SACE469.txt Pong_mfile_SACE469_K1-K10_S1.txt
 
 qlogin
 cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SAPA469/Admixture/out 
 /usr/bin/pong -m out/Pong_mfile_SACE469_K1-K5_S1.txt -i ind2pop_SACE469.csv -p 5000 # VERSIÓN SIMPLE
-/usr/bin/pong -m Pong_mfile_SACE469_K1-K5_S1.txt -i ind2pop_SACE469.csv -p 5000 -n order_clades.csv # VERSIÓN SIMPLE
-/usr/bin/pong -m Pong_mfile_SACE469_K6-K10_S1.txt -i ind2pop_SACE469.csv -p 5000 -n order_clades.csv # VERSIÓN SIMPLE
+/usr/bin/pong -m Pong_mfile_SACE469_K1-K5_S1.txt -i ind2pop_SACE469.csv -p 5000 -n order_clades.csv 
+/usr/bin/pong -m Pong_mfile_SACE469_K6-K10_S1.txt -i ind2pop_SACE469.csv -p 5000 -n order_clades.csv 
+/usr/bin/pong -m Pong_mfile_SACE469_K1-K5_S1456.txt -i ind2pop_SACE469.csv -p 5000 -n order_clades.csv 
+/usr/bin/pong -m Pong_mfile_SACE469_K1-K10_S1.txt -i ind2pop_SACE469.csv -p 5000 -n order_clades.csv 
+#/usr/bin/pong -m Pong_mfile_SACE469_K6-K10_S145.txt -i ind2pop_SACE469.csv -p 5000 -n order_clades.csv 
+
 
 
 python3.7 vcf2phylip.py -i  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE4c/Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic
