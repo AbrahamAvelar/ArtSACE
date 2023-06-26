@@ -202,13 +202,13 @@ mkdir Admixture/out
 qlogin
 cd /mnt/Timina/lmorales/Public/ymez/bin/scripts/10_admixture
 module load python37/3.7.0 
-python3.7 SendAdmixtureSGEs.py --dirbed /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE469/Admixture --bed Matrix_LDPrune_50_5_0.5.bed --out /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE469/Admixture/out --minS 4 --maxS 10 --minK 11 --maxK 25 --setname SACE469
+python3.7 SendAdmixtureSGEs.py --dirbed /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE469/Admixture --bed Matrix_LDPrune_50_5_0.5.bed --out /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE469/Admixture/out --minS 1 --maxS 2 --minK 46 --maxK 55 --setname SACE469
 exit
 cd /mnt/Timina/lmorales/Public/ymez/bin/SGE/10_admixture
 
 cd /mnt/Timina/lmorales/Public/ymez/bin/SGE/10_admixture
-mv lmorales_admixture_K11-25_S4-10.sh lmorales_admixture_K11-25_S4-10_SACE469.sh
-bash lmorales_admixture_K11-25_S4-10_SACE469.sh
+mv javelar_admixture_K46-55_S1-2.sh javelar_admixture_K46-55_S1-2_SACE469.sh
+bash javelar_admixture_K46-55_S1-2_SACE469.sh
 
 
 grep -h CV /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE469/Admixture/out/log*_50_5_*.out|awk -F "=|:" '{print $2"\t"$3}' | sed 's/)//g'| sort -n #> Values_CV_SACE421_2.txt
@@ -230,7 +230,6 @@ cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SAPA469/Admixture/ou
 /usr/bin/pong -m Pong_mfile_SACE469_K1-K5_S1456.txt -i ind2pop_SACE469.csv -p 5000 -n order_clades.csv 
 /usr/bin/pong -m Pong_mfile_SACE469_K1-K10_S1.txt -i ind2pop_SACE469.csv -p 5000 -n order_clades.csv 
 #/usr/bin/pong -m Pong_mfile_SACE469_K6-K10_S145.txt -i ind2pop_SACE469.csv -p 5000 -n order_clades.csv 
-
 
 
 python3.7 vcf2phylip.py -i  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE4c/Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic
