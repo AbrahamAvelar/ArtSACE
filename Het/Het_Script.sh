@@ -1,6 +1,6 @@
 #!/bin/bash
 
-output_file="/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/OutHet2.txt"
+output_file="/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/OutHet2_SNP.txt"  # /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/${element}_SACE.gt.g.vcf
 printf "File,Strain,Total_Variants,Het_Count,Heterozygosity\n" > "$output_file"
 
 #vcf_file="DS002c6_SACE.gt.g.vcf"
@@ -8,7 +8,7 @@ printf "File,Strain,Total_Variants,Het_Count,Heterozygosity\n" > "$output_file"
 
 cut -d',' -f3 /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE469/SampleSheet_SACE469_V3.csv | cat | while IFS= read -r element; do
 echo "Processing: $element"
-vcf_file="/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/${element}_SACE.gt.g.vcf"
+vcf_file="/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/${element}_SACE.gt.SNP.g.vcf"
 
 
 # Calculate heterozygosity and count heterozygous sites
