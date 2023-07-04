@@ -3,6 +3,8 @@
 output_file="/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/OutHet.txt"
 printf "File\tStrain\tTotal_Variants\tHet_Count\tHeterozygosity\n" > "$output_file"
 
+
+
 vcf_file="DS002c6_SACE.gt.g.vcf"
 vcf_file="DK002c39_SACE.gt.g.vcf"
 vcf_file="XA126c1_SACE.gt.g.vcf"
@@ -16,9 +18,16 @@ vcf_file="JS861c1_SACE.gt.g.vcf"
 vcf_file="JS208c1_SACE.gt.g.vcf"
 vcf_file="XA145c3_SACE.gt.g.vcf"
 vcf_file="YMX005576_SACE.gt.g.vcf"
-
+vcf_file="BR008c1_SACE.gt.g.vcf"
 
 #vcf_file=$_1
+
+
+
+cut -d',' -f3 /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE469/SampleSheet_SACE469_V3.csv | cat | while IFS= read -r element; do
+echo "Processing: $element"
+vcf_file="/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/${element}_SACE.gt.g.vcf"
+
 
 # Calculate heterozygosity and count heterozygous sites
 het_count=$(bcftools query -f '[%GT]\n' "$vcf_file" | awk '{het_count += gsub(/0\/1|1\/0/, "")} END {print het_count}')
@@ -30,5 +39,5 @@ heterozygosity=$(awk "BEGIN {print $het_count / $total_variants}")
 # Store results in the output file with three columns
 strain="${vcf_file%%_*}"
 printf "%s\t%s\t%d\t%d\t%.4f\n" "$vcf_file" "$strain" "$total_variants" "$het_count" "$heterozygosity" >> "$output_file"
-
+done
 echo "Results stored in $output_file."
