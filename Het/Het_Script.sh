@@ -1,28 +1,10 @@
 #!/bin/bash
 
-output_file="/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/OutHet.txt"
-printf "File\tStrain\tTotal_Variants\tHet_Count\tHeterozygosity\n" > "$output_file"
+output_file="/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/OutHet2.txt"
+printf "File,Strain,Total_Variants,Het_Count,Heterozygosity\n" > "$output_file"
 
-
-
-vcf_file="DS002c6_SACE.gt.g.vcf"
-vcf_file="DK002c39_SACE.gt.g.vcf"
-vcf_file="XA126c1_SACE.gt.g.vcf"
-vcf_file="XA124c1_SACE.gt.g.vcf"
-vcf_file="XA126c5_SACE.gt.g.vcf"
-vcf_file="YMX507B07_SACE.gt.g.vcf"
-vcf_file="YMX005645_SACE.gt.g.vcf"
-vcf_file="XA121c18_SACE.gt.g.vcf"
-vcf_file="JS863c1_SACE.gt.g.vcf"
-vcf_file="JS861c1_SACE.gt.g.vcf"
-vcf_file="JS208c1_SACE.gt.g.vcf"
-vcf_file="XA145c3_SACE.gt.g.vcf"
-vcf_file="YMX005576_SACE.gt.g.vcf"
-vcf_file="BR008c1_SACE.gt.g.vcf"
-
+#vcf_file="DS002c6_SACE.gt.g.vcf"
 #vcf_file=$_1
-
-
 
 cut -d',' -f3 /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE469/SampleSheet_SACE469_V3.csv | cat | while IFS= read -r element; do
 echo "Processing: $element"
@@ -38,6 +20,8 @@ heterozygosity=$(awk "BEGIN {print $het_count / $total_variants}")
 
 # Store results in the output file with three columns
 strain="${vcf_file%%_*}"
-printf "%s\t%s\t%d\t%d\t%.4f\n" "$vcf_file" "$strain" "$total_variants" "$het_count" "$heterozygosity" >> "$output_file"
+filename="${vcf_file##*/}"
+
+printf "%s,%s,%d,%d,%.4f\n" "$filename" "$element" "$total_variants" "$het_count" "$heterozygosity" >> "$output_file"
 done
 echo "Results stored in $output_file."
