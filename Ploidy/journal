@@ -1,9 +1,15 @@
+
 cut -d',' -f1 SS_SACE469_AllStrains.csv | while read line 
 do
 cp YMX506F12_plot_reads_counts_ploidy_per_chromosome.Rmd ${line}_plot_reads_counts_ploidy_per_chromosome.Rmd
 perl -p -i -e 's/YMX506F12/'"${line}"'/g' ${line}_plot_reads_counts_ploidy_per_chromosome.Rmd
 done
 
+
+qlogin
+module load r/3.4.1
+cd /mnt/Timina/lmorales/Public/ymez/stats/genotyping
+R
 
 # Read the CSV file containing the identifiers
 identifier_data <- read.csv("test_AA_Borrame/SS_SACE469_AllStrains.csv", header = FALSE, colClasses = "character")
@@ -12,7 +18,7 @@ identifier_data <- read.csv("test_AA_Borrame/SS_SACE469_AllStrains.csv", header 
 identifiers <- identifier_data[[1]]
 
 # Loop through the identifiers
-for (identifier in identifiers[-1]) {
+for (identifier in identifiers[-1:-107][301:363] ) { # -109  ## identifiers[-1:-107][0:100] 101:200, 201:300 ## identifiers[-1:-107][301:363]
   # Create the file name by append<ing the identifier with a common suffix
   rmd_file <- paste0(identifier, "_plot_reads_counts_ploidy_per_chromosome.Rmd")
   print(rmd_file)
