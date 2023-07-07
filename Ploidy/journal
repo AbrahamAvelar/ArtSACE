@@ -3,3 +3,19 @@ do
 cp YMX506F12_plot_reads_counts_ploidy_per_chromosome.Rmd ${line}_plot_reads_counts_ploidy_per_chromosome.Rmd
 perl -p -i -e 's/YMX506F12/'"${line}"'/g' ${line}_plot_reads_counts_ploidy_per_chromosome.Rmd
 done
+
+
+# Read the CSV file containing the identifiers
+identifier_data <- read.csv("test_AA_Borrame/SS_SACE469_AllStrains.csv", header = FALSE, colClasses = "character")
+
+# Extract the identifiers from the first column
+identifiers <- identifier_data[[1]]
+
+# Loop through the identifiers
+for (identifier in identifiers[-1]) {
+  # Create the file name by append<ing the identifier with a common suffix
+  rmd_file <- paste0(identifier, "_plot_reads_counts_ploidy_per_chromosome.Rmd")
+  print(rmd_file)
+  # Render the RMarkdown script
+  rmarkdown::render(rmd_file)
+}
