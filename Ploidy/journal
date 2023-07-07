@@ -1,0 +1,5 @@
+cut -d',' -f1 SS_SACE469_AllStrains.csv | while read line 
+do
+cp YMX506F12_plot_reads_counts_ploidy_per_chromosome.Rmd ${line}_plot_reads_counts_ploidy_per_chromosome.Rmd
+perl -p -i -e 's/YMX506F12/'"${line}"'/g' ${line}_plot_reads_counts_ploidy_per_chromosome.Rmd
+done
