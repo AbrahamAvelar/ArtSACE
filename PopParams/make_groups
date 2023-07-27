@@ -1,0 +1,38 @@
+# colreg = $1
+# colid = $2
+# csv_file=$3
+# Replace "input.csv" with the name of your CSV file
+csv_file="SampleSheet_SACE469_V6_IDsPorfi.csv"
+
+# Read the CSV file and extract unique values from the "$1" column
+unique_regions=$(tail -n +2 "$csv_file" | cut -d ',' -f $1 | sort -u)
+
+# Loop through each unique region and create separate CSV files
+for region in $unique_regions; do
+  # Create a new CSV file with the region name
+  output_file="Pi/${region}.txt"
+  #echo "ID" > "$output_file"
+
+  # Extract IDs $2 corresponding to the current region and append to the file
+  grep "$region" "$csv_file" | cut -d ',' -f $2 >> "$output_file"
+done
+################
+
+#!/bin/bash
+# Replace "input.csv" with the name of your CSV file
+csv_file="SampleSheet_SACE469_V6_IDsPorfi.csv"
+
+# Read the CSV file and extract unique values from the "Region" column
+unique_regions=$(tail -n +2 "$csv_file" | cut -d ',' -f 2 | sort -u)
+
+# Loop through each unique region and create separate CSV files
+for region in $unique_regions; do
+  # Create a new CSV file with the region name
+  output_file="${region}.txt"
+  #echo "ID" > "$output_file"
+  
+  # Extract IDs corresponding to the current region and append to the file
+  grep "$region" "$csv_file" | cut -d ',' -f 1 >> "$output_file"
+done
+
+
