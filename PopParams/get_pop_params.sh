@@ -1,5 +1,5 @@
 module load vcftools/0.1.14
-for popfile in *.txt; 
+for popfile in *.csv; 
 do 
 echo $popfile;     
 population="${popfile%.txt}"; 
