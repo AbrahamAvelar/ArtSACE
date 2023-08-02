@@ -1,4 +1,4 @@
-# tengo que hacer la matriz primero!
+##230801
 #### 06_genotyping HACER MULTIVCF
 
 # /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2
@@ -11,3 +11,20 @@ exit
 cd  /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/
 mv javelar_SH_getSNPmatrix.sh javelar_SH_getSNPmatrix_SACEfromSACE_SACE217.sh
 bash javelar_SH_getSNPmatrix_SACEfromSACE_SACE217.sh
+
+
+#230802
+#hacer esto para preparar archivos de plink
+qsub Remove_LD_from_VCF_SACE421.sge /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admixture/Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic 50 5 .5
+
+
+
+qlogin
+cd /mnt/Timina/lmorales/Public/ymez/bin/scripts/10_admixture
+module load python37/3.7.0
+python3.7 SendAdmixtureSGEs.py --dirbed /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admixture --bed Matrix_LDPrune_50_5_.5.bed --out /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admixture/out --minS 1 --maxS 5 --minK 1 --maxK 20 --setname SACE217
+exit
+
+cd /mnt/Timina/lmorales/Public/ymez/bin/SGE/10_admixture
+mv javelar_admixture_K1-20_S1-5.sh javelar_admixture_K1-20_S1-5_SACE217.sh
+bash javelar_admixture_K1-20_S1-5_SACE217.sh #9:40
