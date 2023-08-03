@@ -22,16 +22,39 @@ qsub Remove_LD_from_VCF_SACE421.sge /mnt/Timina/lmorales/Public/ymez/tmp/06_geno
 qlogin
 cd /mnt/Timina/lmorales/Public/ymez/bin/scripts/10_admixture
 module load python37/3.7.0
-python3.7 SendAdmixtureSGEs.py --dirbed /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admixture --bed Matrix_LDPrune_50_5_.5.bed --out /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admixture/out --minS 6 --maxS 10 --minK 1 --maxK 20 --setname SACE217
+python3.7 SendAdmixtureSGEs.py --dirbed /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admixture --bed Matrix_LDPrune_50_5_.5.bed --out /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admixture/out --minS 1 --maxS 10 --minK 21 --maxK 30 --setname SACE217
 exit
 
 cd /mnt/Timina/lmorales/Public/ymez/bin/SGE/10_admixture
-mv javelar_admixture_K1-20_S6-10.sh javelar_admixture_K1-20_S6-10_SACE217.sh
-bash  javelar_admixture_K1-20_S6-10_SACE217.sh   ### javelar_admixture_K1-20_S6-10_SACE217.sh#9:40
+mv lmorales_admixture_K21-30_S1-10.sh lmorales_admixture_K21-30_S1-10_SACE217.sh
+bash  lmorales_admixture_K21-30_S1-10_SACE217.sh   ### javelar_admixture_K1-20_S6-10_SACE217.sh#9:40
 
-grep -h CV /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admixture/out/log*_50_5_*.out|awk -F "=|:" '{print $2"\t"$3}' | sed 's/)//g'| sort -n > /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admixture/out/Values_CV_SACE421.tx
+grep -h CV /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admixture/out/log*_50_5_*.out|awk -F "=|:" '{print $2"\t"$3}' | sed 's/)//g'| sort -n > /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admixture/out/Values_CV_SACE217.tx
+scp   javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admixture/out/Values_CV_SACESACE217.tx  D:/Dropbox/Posdoc/Admixture/SACE217/
 
-scp   javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admixture/out/Values_CV_SACE421.tx  D:/Dropbox/Posdoc/Admixture/SACE217/
+### PONG
+rm Pong_mfile_SACE217.txt
+for seed in {1..5}; 
+do   
+  for k in {1..10};   do     
+    echo -e "K${k}s${seed}\t${k}\tMatrix_LDPrune_50_5_.5_S${seed}_K${k}.${k}.Q" >> Pong_mfile_SACE217.txt # Pong_mfile_k11-13_s1-10.txt   
+  done; 
+done
+mv Pong_mfile_SACE217.txt Pong_mfile_SACE217_K1-K10_S1-5.txt
+
+Pong_mfile_SACE217_K10-K20_S1-5.txt
+
+# ind2pop
+sort -t',' -k1,1   |  cut -d"," -f 11 > /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admixture/out/ind2pop_Phylogroup.txt
+tail -n +2 /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/SampleSheet_217_Figure2.csv | sort -t',' -k1,1 | awk -F','  '{gsub(/ /, "", $11); print $11}' > /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admixture/out/ind2pop_Phylogroup.txt
+
+qlogin
+cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admixture/out 
+/usr/bin/pong -m Pong_mfile_SACE217_K1-K10_S1-5.txt -i ind2pop_Phylogroup.txt -p 5000 # VERSIÓN SIMPLE
+/usr/bin/pong -m Pong_mfile_SACE217_K10-K20_S1-5.txt -i ind2pop_Phylogroup.txt -p 5000 # VERSIÓN SIMPLE
+/usr/bin/pong -m Pong_mfile_SACE217_K10-K20_S1-5.txt -i ind2pop_Phylogroup.txt -p 5000 -n Order_Phylogroups.txt
+
+
 
 
 
