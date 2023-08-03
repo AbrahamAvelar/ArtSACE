@@ -58,5 +58,24 @@ cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admi
 
 
 
+# Hacer el Phylip
+qlogin
+cd  /mnt/Timina/lmorales/Public/ymez/bin/scripts/06_genotyping
+module load python37/3.7.0
+python3.7 vcf2phylip.py -i  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic
+cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/
+/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/RaXML_Phylogenetic_Trees_SACE421_toSACE.sge
+
+# ahora sí, cambiar por el nombre correcto
+#scp -r javelar@dna.lavis.unam.mx:  D:/Dropbox/Posdoc/Admixture/SACE421
+qsub RaXML_Phylogenetic_Trees_SACE217_toSACE.sge
+
+
+
+
+
+
+
+
 
 
