@@ -30,7 +30,7 @@ mv javelar_admixture_K1-30_S11-20.sh javelar_admixture_K1-30_S11-20_SACE217.sh
 bash  javelar_admixture_K1-30_S11-20_SACE217.sh   ### javelar_admixture_K1-20_S6-10_SACE217.sh#9:40
 
 grep -h CV /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admixture/out/log*_50_5_*.out|awk -F "=|:" '{print $2"\t"$3}' | sed 's/)//g'| sort -n > /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admixture/out/Values_CV_SACE217.tx
-scp   javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admixture/out/Values_CV_SACESACE217.tx  D:/Dropbox/Posdoc/Admixture/SACE217/
+scp   javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admixture/out/Values_CV_SACE217.tx  D:/Dropbox/Posdoc/Admixture/SACE217/
 
 ### PONG
 rm Pong_mfile_SACE217.txt
