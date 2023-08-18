@@ -72,6 +72,7 @@ qsub RaXML_Phylogenetic_Trees_SACE217_toSACE.sge
 
 
 
+scp  javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/RAxML_bipartitionsBranchLabels.Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_SACE469.tree "D:\Dropbox\Posdoc\Articulo Estructura SACE\YMXdomesticated_SACE_PopGen\Tables\SampleSheet_SACE469\SACE217_Fig2"
 
 
 
