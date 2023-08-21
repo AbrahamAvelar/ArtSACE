@@ -75,6 +75,24 @@ qsub RaXML_Phylogenetic_Trees_SACE217_toSACE.sge
 scp  javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/RAxML_bipartitionsBranchLabels.Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_SACE469.tree "D:\Dropbox\Posdoc\Articulo Estructura SACE\YMXdomesticated_SACE_PopGen\Tables\SampleSheet_SACE469\SACE217_Fig2"
 
 
+###2108
+
+
+rm Pong_mfile_SACE217.txt
+for seed in 7; 
+do   
+  for k in 16;   do     
+    echo -e "K${k}s${seed}\t${k}\tMatrix_LDPrune_50_5_.5_S${seed}_K${k}.${k}.Q" >> Pong_mfile_SACE217.txt # Pong_mfile_k11-13_s1-10.txt   
+  done; 
+done
+mv Pong_mfile_SACE217.txt Pong_mfile_SACE217_K16_S7.txt
+
+qlogin
+cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admixture/out 
+/usr/bin/pong -m Pong_mfile_SACE217_K16_S1-20.txt -i ind2pop_AllStrains.csv -p 5000 -n Order_AllStrains.csv
+/usr/bin/pong -m Pong_mfile_SACE217_K16_S7.txt -i ind2pop_AllStrains.csv -p 5000 -n Order_AllStrains.csv
+
+
 
 
 
