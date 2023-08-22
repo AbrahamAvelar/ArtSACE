@@ -76,6 +76,7 @@ scp  javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotypin
 
 scp "D:\Dropbox\Posdoc\Articulo Estructura SACE\YMXdomesticated_SACE_PopGen\Tables\SampleSheet_SACE469\SACE217_Fig2\ind2pop_AllStrains.csv" javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admixture/out/ind2pop_AllStrains.csv
 scp "D:\Dropbox\Posdoc\Articulo Estructura SACE\YMXdomesticated_SACE_PopGen\Tables\SampleSheet_SACE469\SACE217_Fig2\Order_AllStrains.csv" javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admixture/out/Order_AllStrains.csv
+ssh -L 4999:compute-00-11:5000 javelar@dna.lavis.unam.mx -Y # 00-11 es el número del qlogin
 
 ###2108
 rm Pong_mfile_SACE217.txt
