@@ -74,10 +74,10 @@ qsub RaXML_Phylogenetic_Trees_SACE217_toSACE.sge
 
 scp  javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/RAxML_bipartitionsBranchLabels.Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_SACE469.tree "D:\Dropbox\Posdoc\Articulo Estructura SACE\YMXdomesticated_SACE_PopGen\Tables\SampleSheet_SACE469\SACE217_Fig2"
 
+scp "D:\Dropbox\Posdoc\Articulo Estructura SACE\YMXdomesticated_SACE_PopGen\Tables\SampleSheet_SACE469\SACE217_Fig2\ind2pop_AllStrains.csv" javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admixture/out/ind2pop_AllStrains.csv
+scp "D:\Dropbox\Posdoc\Articulo Estructura SACE\YMXdomesticated_SACE_PopGen\Tables\SampleSheet_SACE469\SACE217_Fig2\Order_AllStrains.csv" javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admixture/out/Order_AllStrains.csv
 
 ###2108
-
-
 rm Pong_mfile_SACE217.txt
 for seed in 7; 
 do   
@@ -86,6 +86,9 @@ do
   done; 
 done
 mv Pong_mfile_SACE217.txt Pong_mfile_SACE217_K16_S7.txt
+
+
+
 
 qlogin
 cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Admixture/out 
