@@ -1,0 +1,145 @@
+# quiero convertir los vcfs en fasta para poder calcular dn/ds
+
+module load bcftools/1.9
+
+# get the 217 samples only_Chr to SAPA vcfs
+
+/mnt/Timina/lmorales/Public/ymez/tmp/05_vcalling
+module load bcftools/1.9
+
+# total number of SNPs
+bcftools view -v snps YMX005565_CONC.SNP_onlychr_SAPA.g.vcf.gz | bcftools view -H | wc -l  # TamaulipasSACE 6485
+bcftools view -v snps YMX005537_CONC.SNP_onlychr_SAPA.g.vcf.gz | bcftools view -H | wc -l  # SAPA_Mezcal 47625
+bcftools view -v snps SRR4074411_CONC.SNP_onlychr_SAPA.g.vcf.gz | bcftools view -H | wc -l  
+
+
+YMX005565_CONC.SNP_onlychr_SAPA.g.vcf.gz # SACE Tamaulipas 6485
+YMX005537_CONC.SNP_onlychr_SAPA.g.vcf  # SAPA_Mezcal      47625
+YMX506E06_CONC.SNP_onlychr_SAPA.g.vcf.gz # Durango SAPA   32653
+YMX506B12_CONC.SNP_onlychr_SAPA.g.vcf.gz # Oax_SpB SAPA   43737
+SRR4074412_SAPA.SNP_onlychr_SAPA.g.vcf.gz # Brazil SAPA   49578
+SRR4074411_CONC.SNP_onlychr_SAPA.g.vcf.gz # YPS138 SAPA    1484 # tiene menos porque, creo, es la referencia
+
+mkdir VCFCompare
+
+bcftools isec -n=3 -p VCFCompare/comparison_output YMX005565_CONC.SNP_onlychr_SAPA.g.vcf.gz  YMX005537_CONC.SNP_onlychr_SAPA.g.vcf.gz YMX506E06_CONC.SNP_onlychr_SAPA.g.vcf.gz  YMX506B12_CONC.SNP_onlychr_SAPA.g.vcf.gz
+
+cd /mnt/Timina/lmorales/Public/ymez/tmp/05_vcalling/VCFCompare/comparison_output
+
+cut  -f5  sites.txt| sort | uniq -c
+26312 0111
+  629 1011
+  842 1101
+  811 1110
+
+bcftools isec -n=1 -p VCFCompare/comparison_output5 YMX005565_CONC.SNP_onlychr_SAPA.g.vcf.gz  YMX005537_CONC.SNP_onlychr_SAPA.g.vcf.gz YMX506E06_CONC.SNP_onlychr_SAPA.g.vcf.gz  YMX506B12_CONC.SNP_onlychr_SAPA.g.vcf.gz SRR4074412_SAPA.SNP_onlychr_SAPA.g.vcf.gz SRR4074411_CONC.SNP_onlychr_SAPA.g.vcf.gz
+
+cut  -f5  VCFCompare/comparison_output5/sites.txt| sort | uniq -c
+
+for n in {1..6}; do
+    echo $n
+    bcftools isec -n="$n" -p "VCFCompare/comparison_output$n" \
+    YMX005565_CONC.SNP_onlychr_SAPA.g.vcf.gz \
+    YMX005537_CONC.SNP_onlychr_SAPA.g.vcf.gz \
+    YMX506E06_CONC.SNP_onlychr_SAPA.g.vcf.gz \
+    YMX506B12_CONC.SNP_onlychr_SAPA.g.vcf.gz \
+    SRR4074412_SAPA.SNP_onlychr_SAPA.g.vcf.gz\
+    SRR4074411_CONC.SNP_onlychr_SAPA.g.vcf.gz
+done
+
+for n in {1..6}; do
+  cut  -f5  "VCFCompare/comparison_output$n/sites.txt" | sort | uniq -c
+done
+
+  25846 000001
+ 172870 000010
+  73447 000100
+  45366 001000
+  79455 010000
+  24438 100000
+
+  315 100001
+ 1176 100010
+  961 100100
+  927 101000
+ 4117 110000
+
+155 011111
+ 32 101111
+ 48 110111
+ 34 111011
+ 56 111101
+755 111110
+101 111111
+
+for n in {1..6}; do
+    echo $n
+    bcftools isec -n="$n" -p "VCFCompare/comparison_output$n" -f 'FILTER=="HQSNP"' \
+    YMX005565_CONC.SNP_onlychr_SAPA.g.vcf.gz \
+    YMX005537_CONC.SNP_onlychr_SAPA.g.vcf.gz \
+    YMX506E06_CONC.SNP_onlychr_SAPA.g.vcf.gz \
+    YMX506B12_CONC.SNP_onlychr_SAPA.g.vcf.gz \
+    SRR4074412_CONC.SNP_onlychr_SAPA.g.vcf.gz \
+    SRR4074411_CONC.SNP_onlychr_SAPA.g.vcf.gz
+done
+
+for n in {1..6}; do
+  cut  -f5  "VCFCompare/comparison_output$n/sites.txt" | sort | uniq -c
+done
+ 25984 000001
+166456 000010
+ 73610 000100
+ 45370 001000
+ 79541 010000
+ 24464 100000
+
+  9899 000011
+   924 000101
+  6694 000110
+  1004 001001
+  7229 001010
+  7992 001100
+   973 010001
+  8478 010010
+  7766 010100
+  7136 011000
+
+   346 100001
+  1150 100010
+   965 100100
+   937 101000
+  4119 110000
+
+    91 100011
+    61 100101
+   277 100110
+    89 101001
+   190 101010
+   354 101100
+   108 110001
+   569 110010
+   456 110100
+   410 111000
+
+
+ 20569 011110
+
+    42 100111
+    30 101011
+    48 101101
+   200 101110
+    46 110011
+    53 110101
+   290 110110
+    70 111001
+   306 111010
+   384 111100
+
+   149 011111
+    27 101111
+    43 110111
+    25 111011
+    67 111101
+   759 111110
+
+    90 111111
