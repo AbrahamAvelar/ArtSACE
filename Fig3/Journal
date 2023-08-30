@@ -145,27 +145,39 @@ done
     90 111111
 
 
+
+
+
+
+
+
 ### Ahora voy a ver los datos de IVAN
 
-/mnt/Timina/lmorales/Public/ymez/stats/nonMainRefORFs
-*_introSAPA_All_noOrth.csv
+cd /mnt/Timina/lmorales/Public/ymez/stats/nonMainRefORFs
+csv_file="/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/SampleSheet_217_Figure2.csv"
+rm All_SACE217.csv
+head -n1 YMX507B03_introSAPA_All_noOrth.csv >> All_SACE217.csv 
+tail -n +2 "$csv_file" | cut -d',' -f1 | while read -r x; do
+  echo "$x"
+  file_pattern="${x}_introSAPA_All_noOrth.csv"
+  tail -n +2 $file_pattern >> All_SACE217.csv
+done
 
-tail -n +2 /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/SampleSheet_217_Figure2.csv | cut -d',' -f1
+
+awk -F',' 'NR == 1 {print; next} length($1) > max_length[$1] {max_length[$1] = length($1); row[$1] = $0} END {for (val in row) print row[val]}' All_SACE217.csv > All_SACE217_usefulgenes
+
+sort -t',' -k13,13 -k14,14n All_SACE217_usefulgenes > All_SACE217_useful_Sorted.csv
+
+
+scp 
+
+
+scp javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/stats/nonMainRefORFs/All_SACE217_useful_Sorted.csv "D:\Dropbox\Posdoc\Articulo Estructura SACE\YMXdomesticated_SACE_PopGen\Introgresiones\common_introgressions_in_strains.csv"
+
+sort -t"," -k20,20 -k21,21n  "D:\Dropbox\Posdoc\Articulo Estructura SACE\YMXdomesticated_SACE_PopGen\Introgresiones\All_SACE217_usefulORFs_sorted_v3.csv" > "D:\Dropbox\Posdoc\Articulo Estructura SACE\YMXdomesticated_SACE_PopGen\Introgresiones\All_SACE217_usefulORFs_sorted_v4.csv"
 
 
 
-#!/bin/bash
-csv_file="ids.csv"# Input CSV file
-files_directory="/path/to/your/files/directory"# Directory containing files
-output_file="concatenated_output.csv"# Output concatenated file
 
-while IFS= read -r id; do # Loop through each ID in the CSV file
-    file_pattern="${files_directory}/${id}__introSAPA_All_noOrth.csv"# Construct the file name pattern
-    if ls ${file_pattern} 1>/dev/null 2>&1; then # Check if files with the pattern exist
-        # Concatenate files matching the pattern
-        cat ${file_pattern} >> ${output_file}
-    else
-        echo "Files not found for ID: ${id}"
-    fi
-done < ${csv_file}
+
 
