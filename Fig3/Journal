@@ -177,7 +177,47 @@ scp javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/stats/nonMainRefO
 sort -t"," -k20,20 -k21,21n  "D:\Dropbox\Posdoc\Articulo Estructura SACE\YMXdomesticated_SACE_PopGen\Introgresiones\All_SACE217_usefulORFs_sorted_v3.csv" > "D:\Dropbox\Posdoc\Articulo Estructura SACE\YMXdomesticated_SACE_PopGen\Introgresiones\All_SACE217_usefulORFs_sorted_v4.csv"
 
 
+Después me fui a Matlab:D:\Dropbox\Posdoc\Articulo Estructura SACE\YMXdomesticated_SACE_PopGen\Introgresiones
+
+###
+# Sacar las posiciones de Tellini del VCF de SACE217 
+vcf = D:\Dropbox\Posdoc\Articulo Estructura SACE\YMXdomesticated_SACE_PopGen\Introgresiones\Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic
+# creí que los marcadores de NT iban a estar aquí: /mnt/Timina/lmorales/Public/ymez/data/introgressions/Lucia/int
+# pero como están en R, los tuve que convertir en csv primero y luego los puse en 
+
+/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2
+
+scp "D:/Dropbox/Posdoc/lavis/int/AllSegments/AllIntrogresions/AllMarkers_NTell.csv" javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/AllMarkers_NTell.csv
+
+ cut -d"," -f1,2 AllMarkers_NTell.csv > AllMarkers_Ntell_SACE
+
+sed 's/"chrI",/SACE_S288C_v1_chr_01\t/g' AllMarkers_Ntell_SACE > AllMarkers_Ntell_SACE2.txt
+sed 's/"chrII",/SACE_S288C_v1_chr_02\t/g' AllMarkers_Ntell_SACE2.txt > AllMarkers_Ntell_SACE3.txt
+sed 's/"chrIII",/SACE_S288C_v1_chr_03\t/g' AllMarkers_Ntell_SACE3.txt > AllMarkers_Ntell_SACE2.txt
+sed 's/"chrIV",/SACE_S288C_v1_chr_04\t/g' AllMarkers_Ntell_SACE2.txt > AllMarkers_Ntell_SACE3.txt
+sed 's/"chrV",/SACE_S288C_v1_chr_05\t/g' AllMarkers_Ntell_SACE3.txt > AllMarkers_Ntell_SACE2.txt
+sed 's/"chrVI",/SACE_S288C_v1_chr_06\t/g' AllMarkers_Ntell_SACE2.txt > AllMarkers_Ntell_SACE3.txt
+sed 's/"chrVII",/SACE_S288C_v1_chr_07\t/g' AllMarkers_Ntell_SACE3.txt > AllMarkers_Ntell_SACE2.txt
+sed 's/"chrVIII",/SACE_S288C_v1_chr_08\t/g' AllMarkers_Ntell_SACE2.txt > AllMarkers_Ntell_SACE3.txt
+sed 's/"chrIX",/SACE_S288C_v1_chr_09\t/g' AllMarkers_Ntell_SACE3.txt > AllMarkers_Ntell_SACE2.txt
+sed 's/"chrX",/SACE_S288C_v1_chr_10\t/g' AllMarkers_Ntell_SACE2.txt > AllMarkers_Ntell_SACE3.txt
+sed 's/"chrXI",/SACE_S288C_v1_chr_11\t/g' AllMarkers_Ntell_SACE3.txt > AllMarkers_Ntell_SACE2.txt
+sed 's/"chrXII",/SACE_S288C_v1_chr_12\t/g' AllMarkers_Ntell_SACE2.txt > AllMarkers_Ntell_SACE3.txt
+sed 's/"chrXIII",/SACE_S288C_v1_chr_13\t/g' AllMarkers_Ntell_SACE3.txt > AllMarkers_Ntell_SACE2.txt
+sed 's/"chrXIV",/SACE_S288C_v1_chr_14\t/g' AllMarkers_Ntell_SACE2.txt > AllMarkers_Ntell_SACE3.txt
+sed 's/"chrXV",/SACE_S288C_v1_chr_15\t/g' AllMarkers_Ntell_SACE3.txt > AllMarkers_Ntell_SACE2.txt
+sed 's/"chrXVI",/SACE_S288C_v1_chr_16\t/g' AllMarkers_Ntell_SACE2.txt > AllMarkers_Ntell_SACE3.txt
+
+tail -n +2 AllMarkers_Ntell_SACE3.txt > positions.txt
 
 
+bcftools view -T testPositions.txt -o output.vcf $vcf_file
 
+bcftools view -T positions.txt -o positions_AllNT.vcf $vcf_file
+bcftools query -f '%CHROM\t%POS\t%ID\t%REF\t%ALT\t[%GT]\n' positions_AllNT.vcf > genotypes.txt
+
+
+awk '{$6 = gensub(/(...)/, "\\1,", "g", $6)    print}' genotypes.txt > modified_data.txt
+
+sed 's/0\/0/0/g'  modified_data.txt | sed 's/0|1/1/g' | sed 's/1|1/2/g' | sed 's/1\/1/2/g' | sed 's/0\/1/1/g' |  sed 's/.\/./-1/g' > modified_data_genotyped.txt
 
