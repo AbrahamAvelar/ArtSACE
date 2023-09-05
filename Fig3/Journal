@@ -210,7 +210,6 @@ sed 's/"chrXVI",/SACE_S288C_v1_chr_16\t/g' AllMarkers_Ntell_SACE2.txt > AllMarke
 
 tail -n +2 AllMarkers_Ntell_SACE3.txt > positions.txt
 
-
 bcftools view -T testPositions.txt -o output.vcf $vcf_file
 
 bcftools view -T positions.txt -o positions_AllNT.vcf $vcf_file
@@ -218,6 +217,14 @@ bcftools query -f '%CHROM\t%POS\t%ID\t%REF\t%ALT\t[%GT]\n' positions_AllNT.vcf >
 
 
 awk '{$6 = gensub(/(...)/, "\\1,", "g", $6)    print}' genotypes.txt > modified_data.txt
+sed 's/0\/0/0/g'  modified_data.txt | sed 's/0|1/1/g' | sed 's/1|1/2/g' | sed 's/1\/1/2/g' | sed 's/0\/1/1/g' |  sed 's/.\/./-1/g' > modified_data_genotyped.txt # Este tenía muchos errorcillos que primero intenté corregir en R pero mejor lo que sigue:
 
-sed 's/0\/0/0/g'  modified_data.txt | sed 's/0|1/1/g' | sed 's/1|1/2/g' | sed 's/1\/1/2/g' | sed 's/0\/1/1/g' |  sed 's/.\/./-1/g' > modified_data_genotyped.txt
+module load vcftools/0.1.14
+vcftools --vcf positions_AllNT.vcf --extract-FORMAT-info GT --out positions_AllNT.genotypes.txt
+sed 's/0\/0/0/g'  positions_AllNT.genotypes.txt.GT.FORMAT |  sed 's/1|1/2/g'  |  sed 's/1\/1/2/g'|sed 's/0|1/1/g' |sed 's/0|0/1/g'|sed 's/0\/1/0/g'|sed 's/.\/./-1/g'|sed 's/\./-1/g'  > modified_data_genotyped.txt
+
+
+scp javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/data/ref/SACE_S288C_v1/annot/SACE_S288C_v1_allChr.gff "D:\Dropbox\Posdoc\Articulo Estructura SACE\YMXdomesticated_SACE_PopGen\Introgresiones\SACE_S288C_v1_allChr.gff"
+
+
 
