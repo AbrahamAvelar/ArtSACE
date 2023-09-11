@@ -225,6 +225,7 @@ sed 's/0\/0/0/g'  positions_AllNT.genotypes.txt.GT.FORMAT |  sed 's/1|1/2/g'  | 
 
 
 
+bcftools query -f '%CHROM\t%POS\t%REF\t%ALT\n' positions_AllNT.vcf > alleles.txt
 
 scp javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/data/ref/SACE_S288C_v1/annot/SACE_S288C_v1_allChr.gff "D:\Dropbox\Posdoc\Articulo Estructura SACE\YMXdomesticated_SACE_PopGen\Introgresiones\SACE_S288C_v1_allChr.gff"
 
@@ -232,5 +233,5 @@ scp javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/data/ref/SACE_S28
 GGRANGES.R
 
 
-
+sss
 
