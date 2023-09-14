@@ -233,5 +233,7 @@ scp javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/data/ref/SACE_S28
 GGRANGES.R
 
 
-sss
+grep -E '^SACE_S288C_v1_chr_01\s+[0-9]{5,5}$' positions.txt | head -n 400 | tail -n65 > positions_onegene.txt
 
+vcf_file=Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic
+bcftools view -s YMX507A05 -T positions_onegene.txt -o positions_YMX507A05_onegene.vcf $vcf_file
