@@ -237,3 +237,71 @@ grep -E '^SACE_S288C_v1_chr_01\s+[0-9]{5,5}$' positions.txt | head -n 400 | tail
 
 vcf_file=Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic
 bcftools view -s YMX507A05 -T positions_onegene.txt -o positions_YMX507A05_onegene.vcf $vcf_file
+
+
+#230919 quedarme con los que son igual en ALT deNT y del alineamiento a SC.
+awk -F',' '{print $6}' AllMarkers_NTell.csv > alt_alleles.txt
+sed 's/"//g' alt_alleles.txt > alt_alleles2.txt
+tail -n +2 alt_alleles2.txt > alt_alleles3.txt
+awk -F',' '{print $2}' AllMarkers_NTell.csv > posScc_alleles.txt
+tail -n +2 posScc_alleles.txt > posScc_alleles2.txt
+
+
+paste positions.txt alt_alleles3.txt > merged_file.txt
+cp merged_file.txt extracted_info_NT
+bcftools query -f '%CHROM\t%POS\t%ALT\n' positions_AllNT.vcf > extracted_info.txt
+
+
+join <(sort extracted_info_NT) <(sort extracted_info.txt) > common_rows.txt
+
+
+
+head extracted_info_NT  > a.txt
+head extracted_info.txt > b.txt
+join <(sort a.txt) <(sort b.txt) > common_rows.txt
+comm -12 <(sort a.txt) <(sort b.txt) > common_lines.txt
+
+
+
+bcftools view -i 'ALT=@alt_alleles3.txt' -o positions_AllNT_filtered.vcf  positions_AllNT.vcf
+
+
+
+
+file_to_check="extracted_info.txt"
+search_file="extracted_info_NT"
+matching_lines="matching_lines.txt"
+> "$matching_lines"
+
+
+
+while IFS= read -r line; do 
+  #echo "$line"
+  CHR=$(echo "$line" | cut  -f1)
+  POS=$(echo "$line" | cut  -f2)
+  ALT=$(echo "$line" | cut  -f3)
+  grep "$CHR"  "$search_file"  | grep $POS | grep $ALT$ >> "$matching_lines"
+  #ALTd = $(echo "$a" | cut -f3)
+  #echo $ALTd
+  #echo $CHR  #echo $POS echo $ALT
+  tail -n1 "$matching_lines"
+done < "$file_to_check"
+
+
+
+
+
+
+while IFS= read -r line; do
+    if grep -Fxq "$line" "$search_file"; then
+        # If it exists, append it to the output file
+        echo "$line" >> "$matching_lines"
+    fi
+done < "$file_to_check"
+
+echo "Matching lines have been saved to $matching_lines"
+
+
+
+
+
