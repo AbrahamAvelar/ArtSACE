@@ -251,10 +251,13 @@ paste positions.txt alt_alleles3.txt > merged_file.txt
 cp merged_file.txt extracted_info_NT
 bcftools query -f '%CHROM\t%POS\t%ALT\n' positions_AllNT.vcf > extracted_info.txt
 
+# aquí me fui a jupyterlab filter_positions.ipynb el output es filtered_positions.csv
+vcf_file=Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic
+bcftools view -T filtered_positions.csv -o filtered.vcf $vcf_file
+
+
 
 join <(sort extracted_info_NT) <(sort extracted_info.txt) > common_rows.txt
-
-
 
 head extracted_info_NT  > a.txt
 head extracted_info.txt > b.txt
@@ -273,8 +276,6 @@ search_file="extracted_info_NT"
 matching_lines="matching_lines.txt"
 > "$matching_lines"
 
-
-
 while IFS= read -r line; do 
   #echo "$line"
   CHR=$(echo "$line" | cut  -f1)
@@ -287,7 +288,6 @@ while IFS= read -r line; do
   tail -n1 "$matching_lines"
 done < "$file_to_check"
 
-
 while IFS= read -r line; do
     if grep -Fxq "$line" "$search_file"; then
         # If it exists, append it to the output file
@@ -297,10 +297,11 @@ done < "$file_to_check"
 
 echo "Matching lines have been saved to $matching_lines"
 
-
 bcftools query -f '%CHROM\t%POS\t%ALT\n' positions_AllNT.vcf > extracted_info.txt
 paste positions.txt alt_alleles3.txt > merged_file.txt
 cp merged_file.txt extracted_info_NT
+
+
 
 
 
