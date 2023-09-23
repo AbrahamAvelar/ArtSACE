@@ -197,7 +197,7 @@ sed 's/"chrIII",/SACE_S288C_v1_chr_03\t/g' AllMarkers_Ntell_SACE3.txt > AllMarke
 sed 's/"chrIV",/SACE_S288C_v1_chr_04\t/g' AllMarkers_Ntell_SACE2.txt > AllMarkers_Ntell_SACE3.txt
 sed 's/"chrV",/SACE_S288C_v1_chr_05\t/g' AllMarkers_Ntell_SACE3.txt > AllMarkers_Ntell_SACE2.txt
 sed 's/"chrVI",/SACE_S288C_v1_chr_06\t/g' AllMarkers_Ntell_SACE2.txt > AllMarkers_Ntell_SACE3.txt
-sed 's/"chrVII",/SACE_S288C_v1_chr_07\t/g' AllMarkers_Ntell_SACE3.txt > AllMarkers_Ntell_SACE2.txt
+sed 's/"chrVII",/SACE_S288C_v1_chr_07\t/g' AllMarkers_Ntell_SACE3.txt > AlwclMarkers_Ntell_SACE2.txt
 sed 's/"chrVIII",/SACE_S288C_v1_chr_08\t/g' AllMarkers_Ntell_SACE2.txt > AllMarkers_Ntell_SACE3.txt
 sed 's/"chrIX",/SACE_S288C_v1_chr_09\t/g' AllMarkers_Ntell_SACE3.txt > AllMarkers_Ntell_SACE2.txt
 sed 's/"chrX",/SACE_S288C_v1_chr_10\t/g' AllMarkers_Ntell_SACE2.txt > AllMarkers_Ntell_SACE3.txt
@@ -216,7 +216,7 @@ bcftools view -T positions.txt -o positions_AllNT.vcf $vcf_file
 bcftools query -f '%CHROM\t%POS\t%ID\t%REF\t%ALT\t[%GT]\n' positions_AllNT.vcf > genotypes.txt
 
 
-awk '{$6 = gensub(/(...)/, "\\1,", "g", $6)    print}' genotypes.txt > modified_data.txt
+awk '{$6 = gensub(/(...)/, "\\1,", "g", $6)    print}' genotypes.txt > modified_data.txt # separa los genotipos por comas para que quede como csv
 sed 's/0\/0/0/g'  modified_data.txt | sed 's/0|1/1/g' | sed 's/1|1/2/g' | sed 's/1\/1/2/g' | sed 's/0\/1/1/g' |  sed 's/.\/./-1/g' > modified_data_genotyped.txt # Este tenía muchos errorcillos que primero intenté corregir en R pero mejor lo que sigue:
 
 module load vcftools/0.1.14
@@ -256,6 +256,14 @@ vcf_file=Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic
 bcftools view -T filtered_positions.csv -o filtered.vcf $vcf_file
 
 
+module load vcftools/0.1.14
+vcftools --vcf filtered.vcf --extract-FORMAT-info GT --out filtered.vcf.genotypes.txt
+sed 's/0\/0/0/g'  filtered.vcf.genotypes.txt.GT.FORMAT |  sed 's/1|1/2/g'  |  sed 's/1\/1/2/g'|sed 's/0|1/1/g' |sed 's/0|0/1/g'|sed 's/0\/1/0/g'|sed 's/.\/./-1/g'|sed 's/\./-1/g'  > modified_data_genotyped_filtered.txt
+
+
+
+
+# TODO ESTO NO JALÓ:
 
 join <(sort extracted_info_NT) <(sort extracted_info.txt) > common_rows.txt
 
@@ -264,11 +272,7 @@ head extracted_info.txt > b.txt
 join <(sort a.txt) <(sort b.txt) > common_rows.txt
 comm -12 <(sort a.txt) <(sort b.txt) > common_lines.txt
 
-
-
 bcftools view -i 'ALT=@alt_alleles3.txt' -o positions_AllNT_filtered.vcf  positions_AllNT.vcf
-
-
 
 
 file_to_check="extracted_info.txt"
