@@ -308,7 +308,31 @@ cp merged_file.txt extracted_info_NT
 
 
 
+### 280923
+bcftools view -r <chromosome>:<start>-<end> input.vcf > output.vcf
+
+module load bcftools/1.9
+vcf_file=Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic
+bcftools view -r SACE_S288C_v1_chr_01:31707-37117 $vcf_file > subtrees/Chr01_31707_37117.vcf
+bcftools query -f '%CHROM\t%POS\t%ALT\n' $vcf_file > subtrees/test.txt
+bcftools view -v snps SRR4074411_CONC.SNP_onlychr_SAPA.g.vcf.gz | bcftools view -H | wc -l  
+
+vcftools --vcf $vcf_file --positions range_positions.txt --recode --out subtrees/Chr01_31707_37117.vcf
+
+nano range_positions.txt
+SACE_S288C_v1_chr_01:31707-37117
 
 
+bcftools view $vcf_file  -Oz -o test.gz
+bcftools index test.gz
+bcftools query -f '%CHROM\t%POS\t%ALT\n' markers_extracted.vcf > subtrees/test.txt
+
+/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/markers_extracted.vcf
 
 
+(base) [javelar@chromatin 06_genotyping]$ python3.7 vcf2phylip_v28.py  -i /mnt/Timina/lmorales/Public/ymez/tmp/06_genot
+yping/trees/SACE217_Figure2/markers_extracted.vcf --output-folder /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/tr
+ees/SACE217_Figure2/subtrees/
+
+cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/subtrees
+qsub RaXML_Phylogenetic_Trees_SACE217_toSACE.sge
