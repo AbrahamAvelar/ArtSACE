@@ -329,6 +329,7 @@ bcftools query -f '%CHROM\t%POS\t%ALT\n' markers_extracted.vcf > subtrees/test.t
 
 /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/markers_extracted.vcf
 
+bcftools view -r "SACE_S288C_v1_chr_01:190306-196233" test.gz > markers_ext
 
 (base) [javelar@chromatin 06_genotyping]$ python3.7 vcf2phylip_v28.py  -i /mnt/Timina/lmorales/Public/ymez/tmp/06_genot
 yping/trees/SACE217_Figure2/markers_extracted.vcf --output-folder /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/tr
@@ -336,3 +337,25 @@ ees/SACE217_Figure2/subtrees/
 
 cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/subtrees
 qsub RaXML_Phylogenetic_Trees_SACE217_toSACE.sge
+
+
+##### 2023 09 29 ver algun proxi a cuánta evolución de las introgresiones de Tamaulipas. diferencia entre las publicas y las privadas
+chromosome="SACE_S288C_v1_chr_01"
+start_position=1790
+end_position=2013
+
+bcftools view markers_extracted_190306-196233.vcf  -Oz -o test2.vcf.gz
+bcftools index test2.vcf.gz
+
+
+while IFS= read -r strain; do
+    num_snps=$(bcftools view -r "${chromosome}:${start_position}-${end_position}" -c 1 -s "$strain" test2.vcf.gz | grep -v "^#" | wc -l)     # Use bcftools to count SNPs for the current strain within the specified region
+
+    echo "Strain: $strain - Number of SNPs: $num_snps"     # Print the strain name and the number of SNPs
+done < Northeast.txt
+
+
+
+
+
+
