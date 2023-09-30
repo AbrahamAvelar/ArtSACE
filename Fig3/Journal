@@ -366,6 +366,9 @@ done < Northeast.txt
 
 bcftools view -r SACE_S288C_v1_chr_01:31707-37117 $vcf_file > subtrees/Chr01_31707_37117.vcf
 
-
+#from get_pop_params.sh
+vcftools --vcf markers_extracted.vcf  --keep Northeast.txt --window-pi 1000 --out "firstvcf_Window_results";
+vcftools --vcf markers_extracted_190306-196233.vcf  --keep Northeast.txt --window-pi 1000 --out "secondvcf_Window_results";
+cat *.windowed.pi
 
 
