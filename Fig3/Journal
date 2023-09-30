@@ -341,20 +341,30 @@ qsub RaXML_Phylogenetic_Trees_SACE217_toSACE.sge
 
 ##### 2023 09 29 ver algun proxi a cuánta evolución de las introgresiones de Tamaulipas. diferencia entre las publicas y las privadas
 chromosome="SACE_S288C_v1_chr_01"
-start_position=1790
-end_position=2013
+start_position=31707 #190306
+end_position=37117 #196233
+
+start_position=190306
+end_position=196233
+
+
 
 bcftools view markers_extracted_190306-196233.vcf  -Oz -o test2.vcf.gz
 bcftools index test2.vcf.gz
 
+bcftools view markers_extracted.vcf  -Oz -o markers_extracted.vcf.gz
+bcftools index markers_extracted.vcf.gz
+
+
+
 
 while IFS= read -r strain; do
     num_snps=$(bcftools view -r "${chromosome}:${start_position}-${end_position}" -c 1 -s "$strain" test2.vcf.gz | grep -v "^#" | wc -l)     # Use bcftools to count SNPs for the current strain within the specified region
-
     echo "Strain: $strain - Number of SNPs: $num_snps"     # Print the strain name and the number of SNPs
 done < Northeast.txt
 
 
+bcftools view -r SACE_S288C_v1_chr_01:31707-37117 $vcf_file > subtrees/Chr01_31707_37117.vcf
 
 
 
