@@ -271,4 +271,31 @@ mv lmorales_admixture_K1-10_S4-10.sh lmorales_admixture_K1-10_S4-10_SACE469.sh
 bash lmorales_admixture_K1-10_S4-10_SACE469.sh 
 
 
+###### Noviembre #####
+# Hacer el árbol a partir de las 469 
+-Quitar las 2 que LF encontró con BUSCOs Raros XA121c14 ~= XA097c4   y XA097c15 ~=  YMX005588. # Se van por estar 'contaminadas' (ver figuras con mapeo al concatenado en wap 27/07/2023
+
+scp "D:/Dropbox/Posdoc/Articulo Estructura SACE/YMXdomesticated_SACE_PopGen/Tables/SampleSheet_SACE467/SampleSheet_SACE467_V8.csv" javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/
+cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467
+
+qlogin
+cd /mnt/Timina/lmorales/Public/ymez/bin/scripts/06_genotyping
+module load  python37/3.7.0
+python3.7 genotyping_and_filtering.py -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_CONC.txt -s /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/SampleSheet_SACE467_V8.csv  -m .1
+exit 
+cd /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping
+mv get_SACE_SNPmatrix_from_CONC.sge get_SACE_SNPmatrix_from_CONC_SACE467.sge
+mv javelar_SH_getSNPmatrix.sh javelar_SH_getSNPmatrix_SACE467.sh
+vim javelar_SH_getSNPmatrix_SACE467.sh
+bash javelar_SH_getSNPmatrix_SACE467.sh
+
+
+
+-Agregar más de Wine de Canadá   #
+-Agregar más Mediterranean Oak (en el de Canadá hay varias) #
+-Agregar TODAS las de americas de Peter? Barbosa? #
+-Por qué uno u otro modelo X para el árbol? #
+
+
+
 
