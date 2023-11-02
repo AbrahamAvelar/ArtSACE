@@ -290,6 +290,14 @@ vim javelar_SH_getSNPmatrix_SACE467.sh
 bash javelar_SH_getSNPmatrix_SACE467.sh
 
 
+cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/
+
+
+cd /mnt/Timina/lmorales/Public/ymez/bin/scripts/06_genotyping
+module load  python37/3.7.0
+python3.7 vcf2phylip.py -i  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/Matrix_SNPs_SACE_from_CONC_gt_onlySNPs_filtered_missing_10_biallelic #17:05
+
+
 
 -Agregar más de Wine de Canadá   #
 -Agregar más Mediterranean Oak (en el de Canadá hay varias) #
