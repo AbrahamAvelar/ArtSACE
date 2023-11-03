@@ -290,12 +290,26 @@ vim javelar_SH_getSNPmatrix_SACE467.sh
 bash javelar_SH_getSNPmatrix_SACE467.sh
 
 
-cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/
 
 
 cd /mnt/Timina/lmorales/Public/ymez/bin/scripts/06_genotyping
 module load  python37/3.7.0
 python3.7 vcf2phylip.py -i  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/Matrix_SNPs_SACE_from_CONC_gt_onlySNPs_filtered_missing_10_biallelic #17:05
+
+
+cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/
+qsub RaXML_Phylogenetic_Trees_SACE467_fromCONC.sge
+
+# Repetir Admixture
+qsub Remove_LD_from_VCF_SACE421.sge /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/new_Admixture/Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic 50 5 .5 ## 500 100 .15
+# Yo quería usar la versión de new_Admixture!
+# /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/new_Admixture/
+qlogin
+cd /mnt/Timina/lmorales/Public/ymez/bin/scripts/10_admixture
+module load python37/3.7.0 
+python3.7 SendAdmixtureSGEs.py --dirbed /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/new_Admixture --bed Matrix_LDPrune_50_5_.5.bed --out /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/out --minS 1 --maxS 5 --minK 1 --maxK 35 --setname SACE421_2
+exit
+
 
 
 
