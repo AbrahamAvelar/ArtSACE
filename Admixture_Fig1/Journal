@@ -320,6 +320,11 @@ less Values_CV_SACE421.txt
 
 
 
+# Necesito volver a correr los análisis de Pi y Tajima's D, pero ahora con esta matriz que está mapeada a CONC.
+# https://github.com/AbrahamAvelar/ArtSACE/blob/main/PopParams/get_pop_params.sh
+#hubo que quitar a mano a BR023c1 de SAM2.txt porque en Tellinietal está como SAM2 y a mi me sale SAM1
+
+
 
 
 -Agregar más de Wine de Canadá   #
