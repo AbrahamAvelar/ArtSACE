@@ -313,7 +313,7 @@ bcftools view -r <chromosome>:<start>-<end> input.vcf > output.vcf
 
 module load bcftools/1.9
 vcf_file=Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic
-bcftools view -r SACE_S288C_v1_chr_01:31707-37117 $vcf_file > subtrees/Chr01_31707_37117.vcf
+bcftools view -r SACE_S288C_v1_chr_01:31707-37117 $vcf_file > subtrees/Chr01_31707_37117.vcf   ## CREO QUE ESTA ES LA QUE SÍ JALÓ
 bcftools query -f '%CHROM\t%POS\t%ALT\n' $vcf_file > subtrees/test.txt
 bcftools view -v snps SRR4074411_CONC.SNP_onlychr_SAPA.g.vcf.gz | bcftools view -H | wc -l  
 
@@ -370,5 +370,44 @@ bcftools view -r SACE_S288C_v1_chr_01:31707-37117 $vcf_file > subtrees/Chr01_317
 vcftools --vcf markers_extracted.vcf  --keep Northeast.txt --window-pi 1000 --out "firstvcf_Window_results";
 vcftools --vcf markers_extracted_190306-196233.vcf  --keep Northeast.txt --window-pi 1000 --out "secondvcf_Window_results";
 cat *.windowed.pi
+
+####### 231108 hacer varios árboles con introgresiones. ########
+# Uno con los genes que son mapeados a SACE directamente
+# Otro con los mapeados a SAPA en el mapeo concatenado
+
+
+bcftools view Matrix_SNPs_SACE_from_CONC_gt_onlySNPs_filtered_missing_10_biallelic -Oz -o subtrees/YAR027W/OneGene_Output.gz
+cd subtrees/YAR027W/
+bcftools index OneGene_Output.gz
+bcftools view -r SACE_S288C_v1_chr_01:183770-184477 OneGene_Output.gz > Extracted_Chr1-183770-184477.vcf
+bcftools view -r SACE_S288C_v1_chr_01:225460-226863 OneGene_Output.gz > Extracted_Chr1-225460-226863.vcf
+bcftools view -r SACE_S288C_v1_chr_02:802631-804475 OneGene_Output.gz > Extracted_Chr2-802631-804475.vcf
+bcftools view -r SACE_S288C_v1_chr_04:535192-538467 OneGene_Output.gz > Extracted_Chr4-535192-538467.vcf
+bcftools view -r SACE_S288C_v1_chr_02:802631-804475 OneGene_Output.gz > Extracted_Chr6-802631-804475.vcf
+bcftools view -r SACE_S288C_v1_chr_02:802631-804475 OneGene_Output.gz > Extracted_Chr6-802631-804475.vcf
+bcftools view -r SACE_S288C_v1_chr_02:802631-804475 OneGene_Output.gz > Extracted_Chr8-802631-804475.vcf
+bcftools view -r SACE_S288C_v1_chr_02:802631-804475 OneGene_Output.gz > Extracted_Chr10-802631-804475.vcf
+bcftools view -r SACE_S288C_v1_chr_02:802631-804475 OneGene_Output.gz > Extracted_Chr10-802631-804475.vcf
+bcftools view -r SACE_S288C_v1_chr_02:802631-804475 OneGene_Output.gz > Extracted_Chr14-802631-804475.vcf
+bcftools view -r SACE_S288C_v1_chr_02:802631-804475 OneGene_Output.gz > Extracted_Chr14-802631-804475.vcf
+
+SACE_S288C_v1_chr_04:535192-538467
+SACE_S288C_v1_chr_06:258855-259433
+SACE_S288C_v1_chr_06:264204-265226
+SACE_S288C_v1_chr_08:92627-94510
+SACE_S288C_v1_chr_10:628712-629083
+SACE_S288C_v1_chr_10:728574-729596
+SACE_S288C_v1_chr_14:13267-14163
+SACE_S288C_v1_chr_14:14832-15854
+
+
+mkdir subtrees/YAR027W/
+nano subtrees/YAR027W/range_positions.txt
+SACE_S288C_v1_chr_01:183770-184477 
+module load vcftools/0.1.14
+vcftools --vcf Matrix_SNPs_SACE_from_CONC_gt_onlySNPs_filtered_missing_10_biallelic --positions subtrees/YAR027W/range_positions.txt --recode --out subtrees/YAR027W//Chr_01_183770-184477.vcf
+bcftools view -O v -o output.vcf --samples-file sample_names.txt input.vcf
+
+
 
 
