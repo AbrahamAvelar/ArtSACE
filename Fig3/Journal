@@ -383,13 +383,13 @@ bcftools view -r SACE_S288C_v1_chr_01:183770-184477 OneGene_Output.gz > Extracte
 bcftools view -r SACE_S288C_v1_chr_01:225460-226863 OneGene_Output.gz > Extracted_Chr1-225460-226863.vcf
 bcftools view -r SACE_S288C_v1_chr_02:802631-804475 OneGene_Output.gz > Extracted_Chr2-802631-804475.vcf
 bcftools view -r SACE_S288C_v1_chr_04:535192-538467 OneGene_Output.gz > Extracted_Chr4-535192-538467.vcf
-bcftools view -r SACE_S288C_v1_chr_02:802631-804475 OneGene_Output.gz > Extracted_Chr6-802631-804475.vcf
-bcftools view -r SACE_S288C_v1_chr_02:802631-804475 OneGene_Output.gz > Extracted_Chr6-802631-804475.vcf
-bcftools view -r SACE_S288C_v1_chr_02:802631-804475 OneGene_Output.gz > Extracted_Chr8-802631-804475.vcf
-bcftools view -r SACE_S288C_v1_chr_02:802631-804475 OneGene_Output.gz > Extracted_Chr10-802631-804475.vcf
-bcftools view -r SACE_S288C_v1_chr_02:802631-804475 OneGene_Output.gz > Extracted_Chr10-802631-804475.vcf
-bcftools view -r SACE_S288C_v1_chr_02:802631-804475 OneGene_Output.gz > Extracted_Chr14-802631-804475.vcf
-bcftools view -r SACE_S288C_v1_chr_02:802631-804475 OneGene_Output.gz > Extracted_Chr14-802631-804475.vcf
+bcftools view -r SACE_S288C_v1_chr_06:258855-259433 OneGene_Output.gz > Extracted_Chr6-258855-259433.vcf
+bcftools view -r SACE_S288C_v1_chr_06:264204-265226 OneGene_Output.gz > Extracted_Chr6-264204-265226.vcf
+bcftools view -r SACE_S288C_v1_chr_08:92627-94510 OneGene_Output.gz > Extracted_Chr8-92627-94510.vcf
+bcftools view -r SACE_S288C_v1_chr_10:628712-629083 OneGene_Output.gz > Extracted_Chr10-628712-629083.vcf
+bcftools view -r SACE_S288C_v1_chr_10:728574-729596 OneGene_Output.gz > Extracted_Chr10-728574-729596.vcf
+bcftools view -r SACE_S288C_v1_chr_14:13267-14163 OneGene_Output.gz > Extracted_Chr14-13267-14163.vcf
+bcftools view -r SACE_S288C_v1_chr_14:14832-15854 OneGene_Output.gz > Extracted_Chr14-14832-15854.vcf
 
 SACE_S288C_v1_chr_04:535192-538467
 SACE_S288C_v1_chr_06:258855-259433
@@ -401,12 +401,25 @@ SACE_S288C_v1_chr_14:13267-14163
 SACE_S288C_v1_chr_14:14832-15854
 
 
-mkdir subtrees/YAR027W/
-nano subtrees/YAR027W/range_positions.txt
-SACE_S288C_v1_chr_01:183770-184477 
-module load vcftools/0.1.14
-vcftools --vcf Matrix_SNPs_SACE_from_CONC_gt_onlySNPs_filtered_missing_10_biallelic --positions subtrees/YAR027W/range_positions.txt --recode --out subtrees/YAR027W//Chr_01_183770-184477.vcf
-bcftools view -O v -o output.vcf --samples-file sample_names.txt input.vcf
+for linea in ls *.vcf; do
+    echo $linea
+    grep -v "^#" $linea | wc -l
+done  > NumberOfSnpsExtracted.txt
+
+Extracted_Chr10-628712-629083.vcf
+34
+Extracted_Chr10-728574-729596.vcf
+12
+Extracted_Chr2-802631-804475.vcf
+258
+Extracted_Chr4-535192-538467.vcf
+60
+
+
+
+qsub RaXML_Phylogenetic_Trees_Chr10_1_toSACE.sge
+
+
 
 
 
