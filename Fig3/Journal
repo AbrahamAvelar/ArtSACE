@@ -415,12 +415,38 @@ Extracted_Chr2-802631-804475.vcf
 Extracted_Chr4-535192-538467.vcf
 60
 
-
-
 qsub RaXML_Phylogenetic_Trees_Chr10_1_toSACE.sge
 
 
+### necesito hacer esto mismo pero en el mapeo a SACE, no en el mapeo a Conc. Para eso me voy a ir a la carpeta SACE217
+cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/
+/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE217_Figure2/Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic
+bcftools view Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic -Oz -o subtrees_Nov2023/Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic.gz
+cd subtrees_Nov2023/
+bcftools index Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic.gz
+bcftools view -r SACE_S288C_v1_chr_01:183770-184477 Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic.gz > Extracted_Chr1-183770-184477.vcf
+bcftools view -r SACE_S288C_v1_chr_01:225460-226863 Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic.gz > Extracted_Chr1-225460-226863.vcf
+bcftools view -r SACE_S288C_v1_chr_02:802631-804475 Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic.gz > Extracted_Chr2-802631-804475.vcf
+bcftools view -r SACE_S288C_v1_chr_04:535192-538467 Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic.gz > Extracted_Chr4-535192-538467.vcf
+bcftools view -r SACE_S288C_v1_chr_06:258855-259433 Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic.gz > Extracted_Chr6-258855-259433.vcf
+bcftools view -r SACE_S288C_v1_chr_06:264204-265226 Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic.gz > Extracted_Chr6-264204-265226.vcf
+bcftools view -r SACE_S288C_v1_chr_08:92627-94510 Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic.gz > Extracted_Chr8-92627-94510.vcf
+bcftools view -r SACE_S288C_v1_chr_10:628712-629083 Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic.gz > Extracted_Chr10-628712-629083.vcf
+bcftools view -r SACE_S288C_v1_chr_10:728574-729596 Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic.gz > Extracted_Chr10-728574-729596.vcf
+bcftools view -r SACE_S288C_v1_chr_14:13267-14163 Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic.gz > Extracted_Chr14-13267-14163.vcf
+bcftools view -r SACE_S288C_v1_chr_14:14832-15854 Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic.gz > Extracted_Chr14-14832-15854.vcf
 
+for linea in ls *.vcf; do
+    echo $linea
+    grep -v "^#" $linea | wc -l
+done  > NumberOfSnpsExtracted.txt
 
-
+Extracted_Chr6-264204-265226.vcf
+100
+Extracted_Chr8-92627-94510.vcf
+162
+Extracted_Chr4-535192-538467.vcf
+47
+Extracted_Chr2-802631-804475.vcf
+337
 
