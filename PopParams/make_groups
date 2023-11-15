@@ -20,7 +20,7 @@ for region in $unique_regions; do
 
   # Extract IDs $2 corresponding to the current region and append to the file
   #grep "$region" "$csv_file" | cut -d ',' -f $2 >> "$output_file" 
-  grep ",$region," "$csv_file" | cut -d ',' -f 1 >> "$output_file"
+  grep ",$region1" "$csv_file" | cut -d ',' -f 1 >> "$output_file"#Poner ",$region1," si hay más columnas
 done
 ################
 
