@@ -333,8 +333,7 @@ qlogin
 cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE469/Admixture/out 
 #quitar  XA121c14    XA097c15
 /usr/bin/pong -m Pong_mfile_SACE467_K24-K25_S1-10.txt -i ind2pop_SACE467_AllStrains.csv -p 5000 # VERSIÓN SIMPLE
-/usr/bin/pong -m Pong_mfile_SACE467.txt Pong_mfile_SACE467_K24-K25_S1-10.txt -i ind2pop_SACE469.csv -p 5000 -n order_clades.csv 
-/usr/bin/pong -m Pong_mfile_SACE467.txt Pong_mfile_SACE467_K24-K25_S1-10.txt -i ind2pop_SACE469_AllStrains.csv -p 5000 -n order_strains.csv
+/usr/bin/pong -m Pong_mfile_SACE467_K1-K10_SBest.txt -i ind2pop_SACE467_AllStrains.csv -p 5000 -n order_strains.csv 
 
 /usr/bin/pong -m Pong_mfile_SACE467.txt Pong_mfile_SACE467_K24-K25_S1-10.txt -i ind2pop_SACE469_AllStrains.csv -p 5000 -n order_strains_inverte.csv
 /usr/bin/pong -m Pong_mfile_SACE467.txt Pong_mfile_SACE467_K24-K25_S1-10.txt -i ind2pop_SACE469_AllStrains.csv -p 5000 -n order_strains_inverte.csv
@@ -344,9 +343,20 @@ cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE469/Admixture/ou
 Pong_mfile_SACE469_K13-K14_S1-10.txt
 Pong_mfile_SACE469_K15-K16_S1-10.txt
 Pong_mfile_SACE469_K17-K18_S1-10.txt
-
-
-
+  
+awk 'BEGIN{FS=OFS="\t"} !($2 in minVal) || $3 < minVal[$2]{minVal[$2]=$3; line[$2]=$0} END{for (key in line) print line[key]}' CVOutput_Filenames.txt | sort -n -k2,2 >> CV_minimos.txt
+cut -d"_" -f7,8 CV_minimos.txt| tr '_' '\t' | sed 's/S/s/g' > Best_minimosCV.txt
+input_file="Best_minimosCV.txt"
+counter=1
+while IFS=$'\t' read -r s_value k_value; do     
+    combined_value="${k_value}${s_value}";     
+    echo -e "${combined_value}\t${counter}\tMatrix_LDPrune_50_5_.5_${s_value^^}_${k_value}.${counter}.Q"; 
+    ((counter++)); 
+done < "$input_file" > Pong_mfile_SACE467_K1-K35_SBest.txt
+head Pong_mfile_SACE467_K1-K35_SBest.txt > Pong_mfile_SACE467_K1-K10_SBest.txt
+head -n 20 Pong_mfile_SACE467_K1-K35_SBest.txt | tail  > Pong_mfile_SACE467_K11-K20_SBest.txt
+head -n 30 Pong_mfile_SACE467_K1-K35_SBest.txt | tail  > Pong_mfile_SACE467_K21-K30_SBest.txt
+tail Pong_mfile_SACE467_K1-K35_SBest.txt > Pong_mfile_SACE467_K26-K35_SBest.txt
 
 ### Repetir figura 2 solo con las 217?
 ###
