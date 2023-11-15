@@ -333,7 +333,8 @@ qlogin
 cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE469/Admixture/out 
 #quitar  XA121c14    XA097c15
 /usr/bin/pong -m Pong_mfile_SACE467_K24-K25_S1-10.txt -i ind2pop_SACE467_AllStrains.csv -p 5000 # VERSIÓN SIMPLE
-/usr/bin/pong -m Pong_mfile_SACE467_K1-K10_SBest.txt -i ind2pop_SACE467_AllStrains.csv -p 5000 -n order_strains.csv 
+/usr/bin/pong -m Pong_mfile_SACE467_K1-K10_SBest.txt -i ind2pop_SACE467_AllStrains.csv -p 5000 -n order_strains.csv  --color_list /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE421_Admixture1/out/colores_pong
+
 
 /usr/bin/pong -m Pong_mfile_SACE467.txt Pong_mfile_SACE467_K24-K25_S1-10.txt -i ind2pop_SACE469_AllStrains.csv -p 5000 -n order_strains_inverte.csv
 /usr/bin/pong -m Pong_mfile_SACE467.txt Pong_mfile_SACE467_K24-K25_S1-10.txt -i ind2pop_SACE469_AllStrains.csv -p 5000 -n order_strains_inverte.csv
@@ -356,11 +357,13 @@ done < "$input_file" > Pong_mfile_SACE467_K1-K35_SBest.txt
 head Pong_mfile_SACE467_K1-K35_SBest.txt > Pong_mfile_SACE467_K1-K10_SBest.txt
 head -n 20 Pong_mfile_SACE467_K1-K35_SBest.txt | tail  > Pong_mfile_SACE467_K11-K20_SBest.txt
 head -n 30 Pong_mfile_SACE467_K1-K35_SBest.txt | tail  > Pong_mfile_SACE467_K21-K30_SBest.txt
-tail Pong_mfile_SACE467_K1-K35_SBest.txt > Pong_mfile_SACE467_K26-K35_SBest.txt
+head -n 26 Pong_mfile_SACE467_K1-K35_SBest.txt | tail -n6  > Pong_mfile_SACE467_K21-K26_SBest.txt
+  head -n 31 Pong_mfile_SACE467_K1-K35_SBest.txt | tail -n6  > Pong_mfile_SACE467_K25-K31_SBest.txt
+
+
 
 ### Repetir figura 2 solo con las 217?
 ###
-
 
 
 # Necesito volver a correr los análisis de Pi y Tajima's D, pero ahora con esta matriz que está mapeada a CONC.
