@@ -314,8 +314,37 @@ bash javelar_admixture_K1-35_S1-5_SACE467.sh
 
 ### Generar archivo CV
 cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/Admixture/out
-grep -h CV /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/Admixture/out/log*.out|awk -F "=|:" '{print $2"\t"$3}' | sed 's/)//g'| sort -n #> Values_CV_SACE421.txt
-less Values_CV_SACE421.txt
+grep -h CV /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/Admixture/out/log*.out|awk -F "=|:" '{print $2"\t"$3}' | sed 's/)//g'| sort -n #> Values_CV_SACE427.txt
+
+rm Pong_mfile_SACE467.txt
+for seed in {1..10}; 
+do   
+  for k in {24..25};   do     
+    echo -e "K${k}s${seed}\t${k}\tMatrix_LDPrune_50_5_.5_S${seed}_K${k}.${k}.Q" >> Pong_mfile_SACE467.txt # Pong_mfile_k11-13_s1-10.txt   
+  done; 
+done
+mv Pong_mfile_SACE467.txt Pong_mfile_SACE467_K24-K25_S1-10.txt
+
+bash GetTreeTags.sh InputTest.nwk
+scp "D:/Dropbox/Posdoc/Articulo Estructura SACE/Trees/Rooted_Squared/SACE469_ML/*.csv" javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE469/Admixture/out/
+
+
+qlogin
+cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE469/Admixture/out 
+#quitar  XA121c14    XA097c15
+/usr/bin/pong -m Pong_mfile_SACE467_K24-K25_S1-10.txt -i ind2pop_SACE467_AllStrains.csv -p 5000 # VERSIÓN SIMPLE
+/usr/bin/pong -m Pong_mfile_SACE467.txt Pong_mfile_SACE467_K24-K25_S1-10.txt -i ind2pop_SACE469.csv -p 5000 -n order_clades.csv 
+/usr/bin/pong -m Pong_mfile_SACE467.txt Pong_mfile_SACE467_K24-K25_S1-10.txt -i ind2pop_SACE469_AllStrains.csv -p 5000 -n order_strains.csv
+
+/usr/bin/pong -m Pong_mfile_SACE467.txt Pong_mfile_SACE467_K24-K25_S1-10.txt -i ind2pop_SACE469_AllStrains.csv -p 5000 -n order_strains_inverte.csv
+/usr/bin/pong -m Pong_mfile_SACE467.txt Pong_mfile_SACE467_K24-K25_S1-10.txt -i ind2pop_SACE469_AllStrains.csv -p 5000 -n order_strains_inverte.csv
+/usr/bin/pong -m Pong_mfile_SACE467.txt Pong_mfile_SACE467_K24-K25_S1-10.txt -i ind2pop_SACE469_AllStrains.csv -p 5000 -n order_strains_inverte.csv
+
+
+Pong_mfile_SACE469_K13-K14_S1-10.txt
+Pong_mfile_SACE469_K15-K16_S1-10.txt
+Pong_mfile_SACE469_K17-K18_S1-10.txt
+
 
 
 
