@@ -8,6 +8,7 @@ cut -d',' -f1 /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/S
 
 echo "Processing: $element"
 cp "/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/${element}_CONC.gt.SNP_onlychr_SACE.g.vcf.gz" .
+gunzip "${element}_CONC.gt.SNP_onlychr_SACE.g.vcf.gz"
 vcf_file="${element}_CONC.gt.SNP_onlychr_SACE.g.vcf"
 
 # Calculate heterozygosity and count heterozygous sites
@@ -22,5 +23,6 @@ strain="${vcf_file%%_*}"
 filename="${vcf_file##*/}"
 
 printf "%s,%s,%d,%d,%.4f\n" "$filename" "$element" "$total_variants" "$het_count" "$heterozygosity" >> "$output_file"
+rm "${element}_CONC.gt.SNP_onlychr_SACE.g.vcf"
 done
 echo "Results stored in $output_file."
