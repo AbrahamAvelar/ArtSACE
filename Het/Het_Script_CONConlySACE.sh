@@ -8,7 +8,7 @@ cut -d',' -f1 /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/S
 
 echo "Processing: $element"
 cp "/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/${element}_CONC.gt.SNP_onlychr_SACE.g.vcf.gz" .
-echo gunzip "${element}_CONC.gt.SNP_onlychr_SACE.g.vcf.gz"
+gunzip "${element}_CONC.gt.SNP_onlychr_SACE.g.vcf.gz"
 ls -alth | head
 vcf_file="${element}_CONC.gt.SNP_onlychr_SACE.g.vcf"
 
