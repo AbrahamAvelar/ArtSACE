@@ -1,6 +1,8 @@
 #!/bin/bash
 
-output_file="/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/OutHet2_SNP.txt"  # /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/${element}_SACE.gt.g.vcf
+# output_file="/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/OutHet2_SNP.txt"  # /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/${element}_SACE.gt.g.vcf
+output_file="/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/Output_heterozygosity.txt"
+
 printf "File,Strain,Total_Variants,Het_Count,Heterozygosity\n" > "$output_file"
 
 #vcf_file="DS002c6_SACE.gt.g.vcf"
