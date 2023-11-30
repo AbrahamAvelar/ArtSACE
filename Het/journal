@@ -1,3 +1,14 @@
+había intentado con Het_Script_CONConlySACE.sh usando los vcfs con terminación _CONC.gt.SNP_onlychr_SACE.g.vcf pero un buen número de muestras no lo tienen.
 
+XA017c1_CONC.gt.SNP_onlychr_SACE.g.vcf,XA017c1,78282,1077,0.0138
+XB073c8_CONC.gt.SNP_onlychr_SACE.g.vcf
+ERR1309288_CONC.gt.SNP_onlychr_SACE.g.vcf,ERR1309288,0,0,0.0000
+BR020c1_CONC.gt.SNP_onlychr_SACE.g.vcf,BR020c1,0,0,0.0000
+YMX005642_CONC.gt.SNP_onlychr_SACE.g.vcf,YMX005642,0,0,0.0000
+
+los que sí salieron son todos de turban, de 2020. revisé en otro dir: tmp/05_vcalling/ y ahí están los _CONC.SNP_onlychr_SACE.g.vcf.gz
+
+
+en un qlogin:
 cd .../SACE467/
 vcftools --vcf Matrix_SNPs_SACE_from_CONC.vcf  --het --out outputhet_test
