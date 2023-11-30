@@ -33,7 +33,8 @@ filename="${vcf_file##*/}"
 
 printf "%s,%s,%d,%d,%.4f\n" "$filename" "$element" "$total_variants" "$het_count" "$heterozygosity" >> "$output_file"
 #rm "${element}_CONC.gt.SNP_onlychr_SACE.g.vcf"
-rm "${element}_CONC.SNP_onlychr_SACE.g.vcf*"
+rm "${element}_CONC.SNP_onlychr_SACE.g.vcf"
+rm "${element}_CONC.SNP_onlychr_SACE.g.vcf.gz"
 
 done
 echo "Results stored in $output_file."
