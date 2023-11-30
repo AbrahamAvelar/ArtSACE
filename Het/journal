@@ -1,0 +1,3 @@
+
+cd .../SACE467/
+vcftools --vcf Matrix_SNPs_SACE_from_CONC.vcf  --het --out outputhet_test
