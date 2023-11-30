@@ -2,7 +2,9 @@
 module load bcftools/1.9
 
 output_file="/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/Output_heterozygosity_CONC.onlychr_SACE.g.vcf.gz.txt"
+output_file="/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/Output_heterozygosity_CONC.gt.SNP_onlychr_SACE.g.vcf.gz.txt"
 printf "File,Strain,Total_Variants,Het_Count,Heterozygosity\n" > "$output_file"
+
 
 cut -d',' -f1 /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/SampleSheet_SACE467_V8.csv | cat | while IFS= read -r element; do
 
