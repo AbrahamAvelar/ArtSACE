@@ -1,8 +1,9 @@
 #!/bin/bash
 module load bcftools/1.9
 
-output_file="/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/Output_heterozygosity_CONC.onlychr_SACE.g.vcf.gz.txt"
-output_file="/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/Output_heterozygosity_CONC.gt.SNP_onlychr_SACE.g.vcf.gz.txt"
+#output_file="/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/Output_heterozygosity_CONC.onlychr_SACE.g.vcf.gz.txt"
+#output_file="/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/Output_heterozygosity_CONC.gt.SNP_onlychr_SACE.g.vcf.gz.txt"
+output_file="/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/Output_heterozygosity_CONC.SNP_onlychr_SACE.g.vcf.txt"
 printf "File,Strain,Total_Variants,Het_Count,Heterozygosity\n" > "$output_file"
 
 
@@ -31,6 +32,8 @@ strain="${vcf_file%%_*}"
 filename="${vcf_file##*/}"
 
 printf "%s,%s,%d,%d,%.4f\n" "$filename" "$element" "$total_variants" "$het_count" "$heterozygosity" >> "$output_file"
-rm "${element}_CONC.gt.SNP_onlychr_SACE.g.vcf"
+#rm "${element}_CONC.gt.SNP_onlychr_SACE.g.vcf"
+rm "${element}_CONC.SNP_onlychr_SACE.g.vcf*"
+
 done
 echo "Results stored in $output_file."
