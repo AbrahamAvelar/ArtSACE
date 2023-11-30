@@ -13,8 +13,8 @@ echo "Processing: $element"
 #gunzip "${element}_CONC.gt.SNP_onlychr_SACE.g.vcf.gz"
 #vcf_file="${element}_CONC.gt.SNP_onlychr_SACE.g.vcf"
 
-cp "/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/${element}_CONC.SNP_onlychr_SACE.g.vcf.gz" .
-cp "/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/${element}_CONC.SNP_onlychr_SACE.g.vcf" .
+cp "/mnt/Timina/lmorales/Public/ymez/tmp/05_vcalling/${element}_CONC.SNP_onlychr_SACE.g.vcf.gz" .
+cp "/mnt/Timina/lmorales/Public/ymez/tmp/05_vcalling/${element}_CONC.SNP_onlychr_SACE.g.vcf" .
 gunzip "${element}_CONC.SNP_onlychr_SACE.g.vcf.gz"
 vcf_file="${element}_CONC.SNP_onlychr_SACE.g.vcf"
 
