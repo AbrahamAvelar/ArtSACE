@@ -450,3 +450,26 @@ Extracted_Chr4-535192-538467.vcf
 Extracted_Chr2-802631-804475.vcf
 337
 
+
+#### Bajar lo de heterocigocidad de IS ####
+
+while ls *All_noOrth.csv | cat 
+do
+echo _$1
+done
+
+
+
+for file in *All_noOrth.csv; do
+    # Check if the file exists and is a regular file
+    if [ -f "$file" ]; then
+        # Extract columns 1 and 18 and add the first element of the filename to each line
+        awk -F',' -v filename="$(echo "$file" | awk -F'_' '{print $1}')" '{print filename "," $1 "," $4 "," $9 "," $18 "," $20}' "$file"
+    fi
+done >> HetTable.csv
+
+
+ grep -v Has_ortholog HetTable.csv > HetTable_2.csv
+
+
+
