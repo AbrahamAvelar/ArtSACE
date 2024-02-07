@@ -469,7 +469,13 @@ for file in *All_noOrth.csv; do
 done >> HetTable_240207.csv
 
 
-grep -v Has_ortholog HetTable.csv > HetTable_2.csv
-grep -v HetTable_240207.csv > HetTable_2_240207.csv
+grep -v Has_ortholog Has_ortholog HetTable.csv > HetTable_2.csv
+grep -v Has_ortholog HetTable_240207.csv > HetTable_2_240207.csv
+
+BR001c1,YPS138_06G00030,43.1868,0.5836054054054054,NA,0,0.0,0,HetSAPA,0.0
+grep YPS138_06G00030 BR001c1*All_noOrth.csv
+YPS138_06G00030,43.1868,0.5836054054054054,NA,0,0.0,NA,NA,0,0,17149,17844,SAPA_YPS138_v1_chr_06,NA,NA,NA,0.0,HetSAPA,Tru
+e,0.0
+
 
 
