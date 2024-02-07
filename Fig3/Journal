@@ -458,7 +458,7 @@ do
 echo _$1
 done
 
-
+cd /mnt/Timina/lmorales/Public/ymez/stats/nonMainRefORFs/2024/
 
 for file in *All_noOrth.csv; do
     # Check if the file exists and is a regular file
