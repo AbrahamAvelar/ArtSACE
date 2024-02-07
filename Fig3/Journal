@@ -464,12 +464,12 @@ for file in *All_noOrth.csv; do
     # Check if the file exists and is a regular file
     if [ -f "$file" ]; then
         # Extract columns 1 and 18 and add the first element of the filename to each line
-        awk -F',' -v filename="$(echo "$file" | awk -F'_' '{print $1}')" '{print filename "," $1 "," $4 "," $9 "," $18 "," $20}' "$file"
+        awk -F',' -v filename="$(echo "$file" | awk -F'_' '{print $1}')" '{print filename "," $1 "," $2 "," $3 "," $4 "," $5 "," $6 "," $9 "," $18 "," $20}' "$file"
     fi
-done >> HetTable.csv
+done >> HetTable_240207.csv
 
 
- grep -v Has_ortholog HetTable.csv > HetTable_2.csv
-
+grep -v Has_ortholog HetTable.csv > HetTable_2.csv
+grep -v HetTable_240207.csv > HetTable_2_240207.csv
 
 
