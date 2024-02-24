@@ -478,4 +478,28 @@ YPS138_06G00030,43.1868,0.5836054054054054,NA,0,0.0,NA,NA,0,0,17149,17844,SAPA_Y
 e,0.0
 
 
+### Ahora voy a ver los datos de IVAN SACE469
+
+cd /mnt/Timina/lmorales/Public/ymez/stats/nonMainRefORFs/2024
+csv_file="/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/SampleSheet_SACE467_V8.csv"
+rm All_SACE467.csv
+head -n1 YMX507B03_introSAPA_All_noOrth.csv >> All_SACE467.csv
+tail -n +2 "$csv_file" | cut -d',' -f1 | while read -r x; do
+  echo "$x"
+  file_pattern="${x}_introSAPA_All_noOrth.csv"
+  tail -n +2 $file_pattern >> All_SACE467.csv
+done
+
+
+awk -F',' 'NR == 1 {print; next} length($1) > max_length[$1] {max_length[$1] = length($1); row[$1] = $0} END {for (val in row) print row[val]}' All_SACE467.csv > All_SACE467_usefulgenes
+
+sort -t',' -k13,13 -k14,14n All_SACE467_usefulgenes > All_SACE467_useful_Sorted.csv
+
+
+scp 
+
+
+scp javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/stats/nonMainRefORFs/2024/All_SACE467_useful_Sorted.csv "D:\Dropbox\Posdoc\Articulo Estructura SACE\YMXdomesticated_SACE_PopGen\Introgresiones\common_introgressions_in_strains_SACE467.csv"
+
+sort -t"," -k20,20 -k21,21n  "D:\Dropbox\Posdoc\Articulo Estructura SACE\YMXdomesticated1_SACE_PopGen\Introgresiones\All_SACE217_usefulORFs_sorted_v3.csv" > "D:\Dropbox\Posdoc\Articulo Estructura SACE\YMXdomesticated_SACE_PopGen\Introgresiones\All_SACE467_usefulORFs_sorted_v4.csv"
 
