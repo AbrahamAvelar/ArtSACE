@@ -1,0 +1,5 @@
+090524
+grep -v -E 'DK0|DS0|YMX|XA|XB' SampleSheet_SACE467_only_PiCategories2  |  cut -d"," -f1  > withoutYMX.txt
+vim # quitarle la primera línea
+grep -E 'DK0|DS0|YMX|XA|XB' SampleSheet_SACE467_only_PiCategories2  |  cut -d"," -f1  > withoutYMX.txt
+cut -d"," -f1 SampleSheet_SACE467_only_PiCategories2  > SACE467.txt
