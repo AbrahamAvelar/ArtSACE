@@ -1,5 +1,10 @@
 090524
+cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/PopulationParameters/AllVsYMX
 grep -v -E 'DK0|DS0|YMX|XA|XB' SampleSheet_SACE467_only_PiCategories2  |  cut -d"," -f1  > withoutYMX.txt
 vim # quitarle la primera línea
 grep -E 'DK0|DS0|YMX|XA|XB' SampleSheet_SACE467_only_PiCategories2  |  cut -d"," -f1  > withoutYMX.txt
 cut -d"," -f1 SampleSheet_SACE467_only_PiCategories2  > SACE467.txt
+
+correr get_pop_parames.sh
+
+scp javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/PopulationParameters/AllVsYMX/* "D:/Dropbox/Posdoc/Articulo Estructura SACE/YMXdomesticated_SACE_PopGen/Tables/SampleSheet_SACE467/PopParameters/AllvsYMX/"
