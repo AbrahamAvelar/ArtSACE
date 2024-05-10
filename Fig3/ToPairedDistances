@@ -1,4 +1,4 @@
-cd /mnt/Timina/lmorales/isedeno/introgression_origin/pipelineV2/data/vcfs
+cd /mnt/Timina/lmorales/isedeno/introgression_origin/wblocks/data/vcfs
 module load bcftools/1.9
 genes=$(ls -d */)
 genes_array=($genes)
@@ -11,9 +11,8 @@ ${#genes_array[@]} # tamaño del arreglo
 #for ((i=444; i<555; i++)); do
 #for ((i=555; i<666; i++)); do
 #for ((i=666; i<777; i++)); do
-#for ((i=777; i<888; i++)); do
-#for ((i=888; i<999; i++)); do
-for ((i=999; i<1214; i++)); do
+for ((i=777; i<888; i++)); do
+
   echo "Processing directory: ${genes_array[$i]}"
 dir=${genes_array[$i]%/}
 gen="${dir%/}"
