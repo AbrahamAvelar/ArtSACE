@@ -4,14 +4,14 @@ genes=$(ls -d */)
 genes_array=($genes)
 ${#genes_array[@]} # tamaño del arreglo
 
-#for ((i=1; i<111; i++)); do
-#for ((i=111; i<222; i++)); do
-#for ((i=222; i<333; i++)); do
-#for ((i=333; i<444; i++)); do
-#for ((i=444; i<555; i++)); do
+#for ((i=46; i<111; i++)); do
+#for ((i=127; i<222; i++)); do
+#for ((i=236; i<333; i++)); do
+#for ((i=345; i<444; i++)); do
+#for ((i=463; i<555; i++)); do
 #for ((i=555; i<666; i++)); do
-#for ((i=666; i<777; i++)); do
-for ((i=777; i<888; i++)); do
+for ((i=669; i<777; i++)); do
+#for ((i=777; i<888; i++)); do
 
   echo "Processing directory: ${genes_array[$i]}"
 dir=${genes_array[$i]%/}
