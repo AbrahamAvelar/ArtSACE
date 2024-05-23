@@ -1,1 +1,8 @@
 
+#sampleSheet
+/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/SampleSheet_SACE467_V8.csv
+
+ cut -d"," -f1 /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/SampleSheet_SACE467_V8.csv
+
+/mnt/Timina/lmorales/Public/ymez/stats/coverage/$ThisStrain/CONC/Q20/$ThisStrain_CONC_Q20_perReference.csv
+cut -d"," -f1,2,3,9 XB250c6_CONC_Q30_perReference.csv
