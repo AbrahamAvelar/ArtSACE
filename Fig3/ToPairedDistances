@@ -4,13 +4,13 @@ genes=$(ls -d */)
 genes_array=($genes)
 ${#genes_array[@]} # tamaño del arreglo
 
-#for ((i=46; i<111; i++)); do
+for ((i=46; i<111; i++)); do
 #for ((i=127; i<222; i++)); do
 #for ((i=236; i<333; i++)); do
 #for ((i=345; i<444; i++)); do
 #for ((i=463; i<555; i++)); do
 #for ((i=555; i<666; i++)); do
-for ((i=669; i<777; i++)); do
+#for ((i=669; i<777; i++)); do
 #for ((i=777; i<888; i++)); do
 
   echo "Processing directory: ${genes_array[$i]}"
@@ -39,15 +39,47 @@ echo $current_pos
 done < /mnt/Timina/lmorales/javelar/cepas_$gen.txt
 done
 
-
+cd /mnt/Timina/lmorales/isedeno/introgression_origin/wblocks/data/vcfs
 module load bcftools/1.9
-$gen=YPS138_01G00750_2_YPS138_01G00750
+gen=YPS138_01G00750_2_YPS138_01G00750
 while IFS= read -r strain1; do
+strain1=BR023c1
   current_pos=$(grep -n "^$strain1$" /mnt/Timina/lmorales/javelar/cepas_$gen.txt | cut -d: -f1)
   #echo $current_pos
+  con=0
   sed "1,${current_pos}d" /mnt/Timina/lmorales/javelar/cepas_$gen.txt  | while IFS= read -r strain2; do
-    #diferencias=$(bcftools query -f '%CHROM\t%POS\t%REF\t%ALT[\t%GT]\n' -s "$strain1","$strain2" $gen/Matrix_"$gen"_combinegvcfs_genotype_onlySNPs_filterlow_filteredSNPs_missing40_biallelic.vcf | awk 'BEGIN { FS = "\t" } { split($5, g1, ":"); split($6, g2, ":"); diff = 0; for (i=1;i<=length(g1); i++) { if (g1[i] != g2[i]){ diff++; } } print diff }'  | grep 1 | wc -l)
+    con=$((con + 1))
+    diferencias=$(bcftools query -f '%CHROM\t%POS\t%REF\t%ALT[\t%GT]\n' -s "$strain1","$strain2" /mnt/Timina/lmorales/isedeno/introgression_origin/wblocks/data/vcfs/$gen/Matrix_"$gen"_combinegvcfs_genotype_onlySNPs_filterlow_filteredSNPs_missing40_biallelic.vcf | awk 'BEGIN { FS = "\t" } { split($5, g1, ":"); split($6, g2, ":"); diff = 0; for (i=1;i<=length(g1); i++) { if (g1[i] != g2[i]){ diff++; } } print diff }'  | grep 1 | wc -l)
+    echo "$con"
     echo "$strain1,$strain2,$diferencias"
+    sleep .3
   done
 done < /mnt/Timina/lmorales/javelar/cepas_$gen.txt
+
+
+
+nano lasquefaltan.txt
+genes=$(cat lasquefaltan.txt)
+$genes
+module load bcftools/1.9
+cd /mnt/Timina/lmorales/isedeno/introgression_origin/wblocks/data/vcfs
+
+for i in $genes; do
+gen="${dir%/}"
+gen="${i%/}"
+echo $gen
+echo $i
+bcftools query -l $gen/Matrix_"$gen"_combinegvcfs_genotype_onlySNPs_filterlow_filteredSNPs_missing40_biallelic.vcf  > /mnt/Timina/lmorales/javelar/cepas_$gen.txt
+rm /mnt/Timina/lmorales/javelar/paired_distances_sapa_$gen.csv
+wc -l /mnt/Timina/lmorales/javelar/cepas_$gen.txt
+
+while IFS= read -r strain1; do
+  current_pos=$(grep -n "^$strain1$" /mnt/Timina/lmorales/javelar/cepas_$gen.txt | cut -d: -f1)
+  echo $current_pos
+  sed "1,${current_pos}d" /mnt/Timina/lmorales/javelar/cepas_$gen.txt  | while IFS= read -r strain2; do
+    diferencias=$(bcftools query -f '%CHROM\t%POS\t%REF\t%ALT[\t%GT]\n' -s "$strain1","$strain2" /mnt/Timina/lmorales/isedeno/introgression_origin/wblocks/data/vcfs/${gen}/Matrix_"$gen"_combinegvcfs_genotype_onlySNPs_filterlow_filteredSNPs_missing40_biallelic.vcf | awk 'BEGIN { FS = "\t" } { split($5, g1, ":"); split($6, g2, ":"); diff = 0; for (i=1;i<=length(g1); i++) { if (g1[i] != g2[i]){ diff++; } } print diff }'  | grep 1 | wc -l)
+    echo "$strain1,$strain2,$diferencias" >> /mnt/Timina/lmorales/javelar/paired_distances_sapa_$gen.csv
+  done
+done < /mnt/Timina/lmorales/javelar/cepas_$gen.txt
+done
 
