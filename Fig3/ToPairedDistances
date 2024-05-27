@@ -39,6 +39,11 @@ echo $current_pos
 done < /mnt/Timina/lmorales/javelar/cepas_$gen.txt
 done
 
+
+###################################################
+  #                Para un de bloque           #
+###################################################
+
 cd /mnt/Timina/lmorales/isedeno/introgression_origin/wblocks/data/vcfs
 module load bcftools/1.9
 gen=YPS138_01G00750_2_YPS138_01G00750
@@ -57,7 +62,9 @@ strain1=BR023c1
 done < /mnt/Timina/lmorales/javelar/cepas_$gen.txt
 
 
-
+###################################################
+#Para una lista de bloques específicos que falten #
+###################################################
 nano lasquefaltan.txt
 genes=$(cat lasquefaltan.txt)
 $genes
