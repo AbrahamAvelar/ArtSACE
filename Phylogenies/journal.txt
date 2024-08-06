@@ -25,6 +25,7 @@ bash  javelar_SH_clean_fastq.sh
 
 
 # Para hacer sinTequila
+#tuve que hacer 05 para XB073c8
 qlogin
 cd  /mnt/Timina/lmorales/Public/ymez/bin/scripts/06_genotyping
 module load python37/3.7.0
