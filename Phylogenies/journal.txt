@@ -34,7 +34,14 @@ exit
 cd  /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/
 mv javelar_SH_getSNPmatrix.sh javelar_SH_getSNPmatrix_SACE_sinTequila.sh
 mv get_SACE_SNPmatrix_from_SACE.sge  get_SACE_SNPmatrix_from_SACE_sinTequila.sge 
-vim javelar_SH_getSNPmatrix_SACE_sinTequila.sh # cambié el nombre del sge que va a mandar correr
+vim javelar_SH_getSNPmatrix_SACE_sinTequila.sh # cambié el nombre del sge que va a mandar correr TAMBIÉN LA CARPETA OUTPUT!
 vim  get_SACE_SNPmatrix_from_SACE_SACE_sinTequila.sge # cambie output de .err y .out
 bash javelar_SH_getSNPmatrix_SACE_sinTequila.sh
+
+
+cd  /mnt/Timina/lmorales/Public/ymez/bin/scripts/06_genotyping
+python3.7 vcf2phylip.py -i  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE451_sintequila/Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic
+
+cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping
+mv Matrix_SNPs_SAPA_from_SAPA* trees/SAPA1/
 
