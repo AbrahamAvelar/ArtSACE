@@ -113,7 +113,7 @@ exit
 cd  /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/
 
 mv javelar_SH_getSNPmatrix.sh javelar_SH_getSNPmatrix_SACE466.sh  
-mv get_SACE_SNPmatrix_from_CONC.sge  get_SACE_SNPmatrix_from_CONC_SACE466.sge
+mv get_SACE_SNPmatrix_from_CONC.sge  get_SACE_SNPmatrix_from_CONC_SACE466.sge #SinTequila, sin SAM2 con MissingAlpechin
 vim javelar_SH_getSNPmatrix_SACE466.sh   # cambié el nombre del sge que va a mandar correr TAMBIÉN LA CARPETA OUTPUT!
 vim  get_SACE_SNPmatrix_from_CONC_SACE466.sge # cambie output de .err y .out
 bash javelar_SH_getSNPmatrix_SACE466.sh
