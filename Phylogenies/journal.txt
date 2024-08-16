@@ -97,8 +97,7 @@ cp RaXML_Phylogenetic_Trees_SAPA91_CONC.sge SAPA117/RaXML_Phylogenetic_Trees_SAP
 vim RaXML_Phylogenetic_Trees_SAPA117_CONC.sge # cambiar el archivo de entrada, de salida y los st/
 qsub RaXML_Phylogenetic_Trees_SACE451_sintequila.sge
 
-#Creo que este genotyping está 'mal' porque puse "ref_only_SACE-txt". el árbol salió con las ramas largas de las introgresiones.
-
+#Creo que este genotyping está 'mal' porque puse "ref_only_SACE-txt". el árbol salió con las ramas largas de las introgresiones. voy a hacer la siguiente iteración ya con las de alpechín y quitando SAM2 que sí mete ruido. ahora sí haciendo el genotyping a ref_only_CONC.txt
 # Falta SinTequila SinSam2 MasAlpechin para la figura principal en CONC
 # falta "Todas" mapeadas a CONC y a SACE
 
