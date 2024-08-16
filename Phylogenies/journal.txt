@@ -104,6 +104,7 @@ qsub RaXML_Phylogenetic_Trees_SACE451_sintequila.sge
 
 
 # 06_genotyping HACER MULTIVCF
+FIG1C: sinTequila_SinSAM2_MasAlpechin
 qlogin
 cd  /mnt/Timina/lmorales/Public/ymez/bin/scripts/06_genotyping
 module load python37/3.7.0
@@ -117,5 +118,23 @@ vim javelar_SH_getSNPmatrix_SACE466.sh   # cambié el nombre del sge que va a ma
 vim  get_SACE_SNPmatrix_from_CONC_SACE466.sge # cambie output de .err y .out
 bash javelar_SH_getSNPmatrix_SACE466.sh
 
-/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE466/SACE467_sinTequila_SinSAM2_MasAlpechin.csv
+FIG_S1A: SACE467MasAlpechin mapeado a CONC  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/SACE489.csv
+python3.7 genotyping_and_filtering.py   -s /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/SACE489.csv  -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_CONC.txt -m .1
+cd  /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/
+mv javelar_SH_getSNPmatrix.sh javelar_SH_getSNPmatrix_SACE489.sh  
+mv get_SACE_SNPmatrix_from_CONC.sge  get_SACE_SNPmatrix_from_CONC_SACE489.sge
+vim javelar_SH_getSNPmatrix_SACE489.sh   # cambié el nombre del sge que va a mandar correr TAMBIÉN LA CARPETA OUTPUT!
+vim  get_SACE_SNPmatrix_from_CONC_SACE489.sge # cambie output de .err y .out
+bash javelar_SH_getSNPmatrix_SACE489.sh
+
+
+FIG_S1B: SACE467MasAlpechin mapeado a SACE  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/SACE489.csv
+# MAP A SACE
+cd /mnt/Timina/lmorales/Public/ymez/bin/scripts/03_mapping
+python3.7 mapping2ref.py -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_SACE.txt -s /mnt/Timina/lmorales/javelar/samplesheets/SACE24_Missing_Alpechin.csv
+cd /mnt/Timina/lmorales/Public/ymez/bin/SGE/03_mapping
+mv javelar_SH_map2ref.sh javelar_SH_map2ref_MissAlpSACE.sh
+bash javelar_SH_map2ref_MissAlpSACE.sh
+
+python3.7 genotyping_and_filtering.py   -s /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/SACE489.csv  -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_SACE.txt -m .1
 
