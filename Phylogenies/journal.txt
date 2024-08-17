@@ -156,21 +156,13 @@ python3.7 SNPs_onlyChr.py -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_
 cd /mnt/Timina/lmorales/Public/ymez/bin/SGE/05_vcalling
 mv javelar_SH_vcfOnlychr.sh javelar_SH_vcfOnlychr_SACE24_Missing_AlpechinSACE.sh
 bash javelar_SH_vcfOnlychr_SACE24_Missing_AlpechinSACE.sh
-
-
 # 06 
-qlogin
 cd  /mnt/Timina/lmorales/Public/ymez/bin/scripts/06_genotyping
 python3.7 genotyping_and_filtering.py   -s /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/SACE489.csv  -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_SACE.txt -m .1
-exit
 cd  /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/
-mv javelar_SH_getSNPmatrix.sh javelar_SH_getSNPmatrix_SACE466.sh  
-mv get_SACE_SNPmatrix_from_CONC.sge  get_SACE_SNPmatrix_from_CONC_SACE466.sge #SinTequila, sin SAM2 con MissingAlpechin
-vim javelar_SH_getSNPmatrix_SACE466.sh   # cambié el nombre del sge que va a mandar correr TAMBIÉN LA CARPETA OUTPUT!
-vim  get_SACE_SNPmatrix_from_CONC_SACE466.sge # cambie output de .err y .out
-bash javelar_SH_getSNPmatrix_SACE466.sh # Output en: /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE466
-
-
-
-python3.7 genotyping_and_filtering.py   -s /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/SACE489.csv  -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_SACE.txt -m .1
+mv javelar_SH_getSNPmatrix.sh javelar_SH_getSNPmatrix_SACE489fromSACE.sh  
+mv get_SACE_SNPmatrix_from_SACE.sge  get_SACE_SNPmatrix_from_SACE_SACE489fromSACE.sge  #
+vim javelar_SH_getSNPmatrix_SACE489fromSACE.sh   # cambié el nombre del sge que va a mandar correr TAMBIÉN LA CARPETA OUTPUT!
+vim  get_SACE_SNPmatrix_from_SACE_SACE489fromSACE.sge # cambie output de .err y .out
+bash javelar_SH_getSNPmatrix_SACE489fromSACE.sh # Output en: /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/SACE
 
