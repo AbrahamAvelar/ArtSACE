@@ -128,6 +128,13 @@ vim  get_SACE_SNPmatrix_from_CONC_SACE489.sge # cambie output de .err y .out
 bash javelar_SH_getSNPmatrix_SACE489.sh  # output en /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/CONC
 
 python3.7 vcf2phylip.py -i  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/CONC/Matrix_SNPs_SACE_from_CONC_gt_onlySNPs_filtered_missing_10_biallelic
+qsub RaxML
+(base) [javelar@chromatin CONC]$ cat RAxML_info.Matrix_SNPs_SAPA_from_CONC_gt_onlySNPs_filtered_missing_10.tree
+ERROR: Sequence ERR3010150 consists entirely of undetermined values which will be treated as missing data
+ERROR: Found 1 sequences that consist entirely of undetermined values, exiting...
+bcftools view -s ^SAMPLE_TO_REMOVE -o output.vcf                      -O v input.vcf
+bcftools view -s ^ERR3010150        -o OutputVCF_SinERR3010150_3rd.vcf -O v Matrix_SNPs_SACE_from_CONC_gt_onlySNPs_filtered_missing_10_biallelic
+Parece que esto solo deja una muestra!
 
 
 FIG_S1B: SACE467MasAlpechin mapeado a SACE  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/SACE489.csv
@@ -165,4 +172,8 @@ mv get_SACE_SNPmatrix_from_SACE.sge  get_SACE_SNPmatrix_from_SACE_SACE489fromSAC
 vim javelar_SH_getSNPmatrix_SACE489fromSACE.sh   # cambié el nombre del sge que va a mandar correr TAMBIÉN LA CARPETA OUTPUT!
 vim  get_SACE_SNPmatrix_from_SACE_SACE489fromSACE.sge # cambie output de .err y .out
 bash javelar_SH_getSNPmatrix_SACE489fromSACE.sh # Output en: /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/SACE
+
+
+python3.7 vcf2phylip_v28.py -i  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/SACE/Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic
+
 
