@@ -72,7 +72,7 @@ mv javelar_SH_getSNPmatrix.sh javelar_SH_getSNPmatrix_sinTequila2_masAlpechin.sh
 mv get_SACE_SNPmatrix_from_CONC.sge  get_SACE_SNPmatrix_from_CONC_sinTequila2_masAlpechin.sge
 vim javelar_SH_getSNPmatrix_sinTequila2_masAlpechin.sh   # cambié el nombre del sge que va a mandar correr TAMBIÉN LA CARPETA OUTPUT!
 vim  get_SACE_SNPmatrix_from_CONC_sinTequila2_masAlpechin.sge # cambie output de .err y .out
-bash javelar_SH_getSNPmatrix_sinTequila2_masAlpechin.sh # output en /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees ESTE YA NO SE PORQUE
+bash javelar_SH_getSNPmatrix_sinTequila2_masAlpechin.sh # output en /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees ESTE YA NO SE PORQUE ya lo eliminé
 
 
 
@@ -136,6 +136,9 @@ bcftools view -s ^SAMPLE_TO_REMOVE -o output.vcf                      -O v input
 bcftools view -s ^ERR3010150        -o OutputVCF_SinERR3010150_3rd.vcf -O v Matrix_SNPs_SACE_from_CONC_gt_onlySNPs_filtered_missing_10_biallelic
 Parece que esto solo deja una muestra!
 
+grep -v ERR3010150 Matrix_SNPs_SACE_from_CONC_gt_onlySNPs_filtered_missing_10_biallelic.phy > OutputsinERR3010150_CONC.phy
+sed -i '1s/489/488/' OutputsinERR3010150_CONC.phy
+
 
 FIG_S1B: SACE467MasAlpechin mapeado a SACE  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/SACE489.csv
 # MAP A SACE
@@ -175,5 +178,8 @@ bash javelar_SH_getSNPmatrix_SACE489fromSACE.sh # Output en: /mnt/Timina/lmorale
 
 
 python3.7 vcf2phylip_v28.py -i  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/SACE/Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic
+grep -v ERR3010150 Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic.min4.phy > OutputsinERR3010150.phy
+sed -i '1s/489/488/' OutputsinERR3010150.phy
+
 
 
