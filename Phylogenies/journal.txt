@@ -75,7 +75,6 @@ vim  get_SACE_SNPmatrix_from_CONC_sinTequila2_masAlpechin.sge # cambie output de
 bash javelar_SH_getSNPmatrix_sinTequila2_masAlpechin.sh # output en /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees ESTE YA NO SE PORQUE ya lo eliminé
 
 
-
 # Para hacer sinTequila
 #tuve que hacer 05 para XB073c8
 qlogin
@@ -116,6 +115,22 @@ mv get_SACE_SNPmatrix_from_CONC.sge  get_SACE_SNPmatrix_from_CONC_SACE466.sge #S
 vim javelar_SH_getSNPmatrix_SACE466.sh   # cambié el nombre del sge que va a mandar correr TAMBIÉN LA CARPETA OUTPUT!
 vim  get_SACE_SNPmatrix_from_CONC_SACE466.sge # cambie output de .err y .out
 bash javelar_SH_getSNPmatrix_SACE466.sh # Output en: /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE466
+
+
+
+
+
+qlogin
+cd  /mnt/Timina/lmorales/Public/ymez/bin/scripts/06_genotyping
+python3.7 vcf2phylip_v28.py -i  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE466/Matrix_SNPs_SACE_from_CONC_gt_onlySNPs_filtered_missing_10_biallelic
+
+grep -v ERR3010150 Matrix_SNPs_SACE_from_CONC_gt_onlySNPs_filtered_missing_10_biallelic.min4.phy > OutputsinERR3010150_SACE466.phy
+sed -i '1s/465/464/' OutputsinERR3010150_SACE466.phy
+
+raxmlHPC-PTHREADS-AVX2 -f a -x 12345 -p 12345 -N 100  -T 20 -m GTRGAMMA -s OutputsinERR3010150_SACE466.phy -n Matrix_SNPs_SAPA_from_CONC_gt_onlySNPs_filtered_missing_10_SAPA93.tree
+
+
+
 
 
 FIG_S1A: SACE467MasAlpechin mapeado a CONC  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/SACE489.csv
