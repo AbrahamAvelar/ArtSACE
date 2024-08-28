@@ -360,6 +360,10 @@ head -n 30 Pong_mfile_SACE467_K1-K35_SBest.txt | tail  > Pong_mfile_SACE467_K21-
 head -n 26 Pong_mfile_SACE467_K1-K35_SBest.txt | tail -n6  > Pong_mfile_SACE467_K21-K26_SBest.txt
   head -n 31 Pong_mfile_SACE467_K1-K35_SBest.txt | tail -n6  > Pong_mfile_SACE467_K25-K31_SBest.txt
 
+28/08/2024
+ssh -L 4999:compute-00-10:5000 javelar@dna.lavis.unam.mx -Y
+http://localhost:4999/
+
 
 
 ### Repetir figura 2 solo con las 217?
