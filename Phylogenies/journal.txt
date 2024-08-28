@@ -198,3 +198,29 @@ sed -i '1s/489/488/' OutputsinERR3010150.phy
 
 
 
+# Me di cuenta que meter a Alpechin complica justificar los cambios en sets de datos pa la figura 2. mejor voy a volver a correrla con 467 menos SAM2+Tequila
+#Fig1C SACE467_sinTequila_sinSAM2nisam1sam2.csv mapeado a CONC
+cd  /mnt/Timina/lmorales/Public/ymez/bin/scripts/06_genotyping
+module load python37/3.7.0
+python3.7 genotyping_and_filtering.py   -s /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE443/SACE467_sinTequila_sinSAM2nisam1sam2.csv  -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_CONC.txt -m .1
+cd  /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/
+mv javelar_SH_getSNPmatrix.sh javelar_SH_getSNPmatrix_SACE443fromCONC.sh  
+mv get_SACE_SNPmatrix_from_CONC.sge  get_SACE_SNPmatrix_from_CONC_SACE443.sge.sge  #
+vim javelar_SH_getSNPmatrix_SACE443fromCONC.sh   # cambié el nombre del sge que va a mandar correr TAMBIÉN LA CARPETA OUTPUT!
+vim  get_SACE_SNPmatrix_from_CONC_SACE443.sge.sge # cambie output de .err y .out
+bash javelar_SH_getSNPmatrix_SACE443fromCONC.sh # Output en: /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE443/CONC
+tail /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/st/CONC_getSNPmatrix_javelar_SACE443.err
+
+
+#FigS1 SACE467 mapeado a CONC, como ya está,
+#FigS2 SACE467 mapeado a SACE, falta.
+cd  /mnt/Timina/lmorales/Public/ymez/bin/scripts/06_genotyping
+module load python37/3.7.0
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/SampleSheet_SACE467_V8.csv  -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_SACE.txt -m .1
+cd  /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/
+mv javelar_SH_getSNPmatrix.sh  javelar_SH_getSNPmatrix_toSACE.sh  
+mv get_SACE_SNPmatrix_from_SACE.sge  get_SACE_SNPmatrix_from_SACE_toSACE.sge  #
+vim javelar_SH_getSNPmatrix_toSACE.sh   # cambié el nombre del sge que va a mandar correr TAMBIÉN LA CARPETA OUTPUT!
+vim  get_SACE_SNPmatrix_from_SACE_toSACE.sge # cambie output de .err y .out
+bash javelar_SH_getSNPmatrix_toSACE.sh  # Output en: /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/toSACE
+tail  /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/st/SACE_getSNPmatrix_javelar_SACE467toSACE.err
