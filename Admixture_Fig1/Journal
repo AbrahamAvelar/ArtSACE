@@ -364,18 +364,17 @@ head -n 26 Pong_mfile_SACE467_K1-K35_SBest.txt | tail -n6  > Pong_mfile_SACE467_
 ssh -L 4999:compute-00-10:5000 javelar@dna.lavis.unam.mx -Y
 http://localhost:4999/
 
+#para sacar los dos K con más origen de cada cepa
+bash GetTwoPopulationsPerSample3.sh Matrix_LDPrune_50_5_.5_S3_K24.24.Q ind2pop_SACE467_AllStrains.csv > TwoPopulationsPerSample.csv
+
+scp javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/Admixture/out/TwoPopulationsPerSample.csv  Dropbox/YMXdomesticated_SACE_PopGen/Draft_Estructura_SACE/Supp_Material/BuildSuppTable
 
 
 ### Repetir figura 2 solo con las 217?
 ###
-
-
 # Necesito volver a correr los análisis de Pi y Tajima's D, pero ahora con esta matriz que está mapeada a CONC.
 # https://github.com/AbrahamAvelar/ArtSACE/blob/main/PopParams/get_pop_params.sh
 #hubo que quitar a mano a BR023c1 de SAM2.txt porque en Tellinietal está como SAM2 y a mi me sale SAM1
-
-
-
 
 -Agregar más de Wine de Canadá   #
 -Agregar más Mediterranean Oak (en el de Canadá hay varias) #
