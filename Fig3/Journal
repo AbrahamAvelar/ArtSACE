@@ -492,16 +492,31 @@ tail -n +2 "$csv_file" | cut -d',' -f1 | while read -r x; do
   tail -n +2 $file_pattern >> All_SACE467.csv
 done
 
-
 awk -F',' 'NR == 1 {print; next} length($1) > max_length[$1] {max_length[$1] = length($1); row[$1] = $0} END {for (val in row) print row[val]}' All_SACE467.csv > All_SACE467_usefulgenes
 
 sort -t',' -k13,13 -k14,14n All_SACE467_usefulgenes > All_SACE467_useful_Sorted.csv
 
-
-scp 
-
-
 scp javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/stats/nonMainRefORFs/2024/All_SACE467_useful_Sorted.csv "D:\Dropbox\Posdoc\Articulo Estructura SACE\YMXdomesticated_SACE_PopGen\Introgresiones\common_introgressions_in_strains_SACE467.csv"
 
 sort -t"," -k20,20 -k21,21n  "D:\Dropbox\Posdoc\Articulo Estructura SACE\YMXdomesticated1_SACE_PopGen\Introgresiones\All_SACE217_usefulORFs_sorted_v3.csv" > "D:\Dropbox\Posdoc\Articulo Estructura SACE\YMXdomesticated_SACE_PopGen\Introgresiones\All_SACE467_usefulORFs_sorted_v4.csv"
+
+
+#AHORA CON SACE489
+cd /mnt/Timina/lmorales/Public/ymez/stats/nonMainRefORFs/2024
+csv_file="/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/SACE489.csv"
+rm All_SACE489.csv
+head -n1 YMX507B03_introSAPA_All_noOrth.csv >> All_SACE489.csv
+tail -n +2 "$csv_file" | cut -d',' -f1 | while read -r x; do
+  echo "$x"
+  file_pattern="${x}_introSAPA_All_noOrth.csv"
+  tail -n +2 $file_pattern >> All_SACE489.csv
+done
+
+awk -F',' 'NR == 1 {print; next} length($1) > max_length[$1] {max_length[$1] = length($1); row[$1] = $0} END {for (val in row) print row[val]}' All_SACE489.csv > All_SACE489_usefulgenes
+
+sort -t',' -k13,13 -k14,14n All_SACE489_usefulgenes > All_SACE489_usefulgenes_Sorted.csv
+
+scp javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/stats/nonMainRefORFs/2024/All_SACE489_usefulgenes_Sorted.csv "C:\Users\HP\Dropbox\Posdoc\Articulo Estructura SACE\YMXdomesticated_SACE_PopGen\Introgresiones\common_introgressions_in_strains_SACE489.csv"
+
+sort -t"," -k20,20 -k21,21n  "C:\Users\HP\Dropbox\Posdoc\Articulo Estructura SACE\YMXdomesticated1_SACE_PopGen\Introgresiones\All_SACE217_usefulORFs_sorted_v3.csv" > "D:\Dropbox\Posdoc\Articulo Estructura SACE\YMXdomesticated_SACE_PopGen\Introgresiones\All_SACE467_usefulORFs_sorted_v4.csv"
 
