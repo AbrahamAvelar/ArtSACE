@@ -405,5 +405,11 @@ END {
     }
 }' genotypes.txt  # Paso 2: Contar SNPs para cada muestra
 
+bcftools query -l Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic
+
+
+
+
+
 
 
