@@ -146,3 +146,11 @@ for ((i=0; i<912; i++)); do
     done
   done < /mnt/Timina/lmorales/javelar/Introgression_origin_perBlock_3_Oct2024/cepas_$gen.txt
 done
+
+
+# la regué en que moví estas cepas a PairedDistances #
+-paired_distances_sapa_YPS138_06G00410_2_YPS138_06G00690.csv
+-el índice es aprox 342-16. ES LA 326 ahí se ve el error en el .out
+
+
+
