@@ -124,7 +124,7 @@ genes=$(ls -d */)
 genes_array=($genes)
 ${#genes_array[@]} # tamaño del arreglo
 
-for ((i=0; i<912; i++)); do
+for ((i=0; i<912; i++)); do  #${#genes_array[@]}
   echo "Processing directory: ${genes_array[$i]}"
   dir=${genes_array[$i]%/}
   gen="${dir%/}"
@@ -133,6 +133,7 @@ for ((i=0; i<912; i++)); do
   bcftools query -l $gen/Matrix_"$gen"_combinegvcfs_genotype_onlySNPs_filterlow_filteredSNPs_missing40_biallelic.vcf  > /mnt/Timina/lmorales/javelar/Introgression_origin_perBlock_3_Oct2024/cepas_$gen.txt
   rm /mnt/Timina/lmorales/javelar/Introgression_origin_perBlock_3_Oct2024/paired_distances_sapa_$gen.csv
   wc -l /mnt/Timina/lmorales/javelar/Introgression_origin_perBlock_3_Oct2024/cepas_$gen.txt
+  >  /mnt/Timina/lmorales/javelar/Introgression_origin_perBlock_3_Oct2024/paired_distances_sapa_$gen.csv
   while IFS= read -r strain1; do
   # Almacenar la posición actual en el archivo de cepas
     current_pos=$(grep -n "^$strain1$" /mnt/Timina/lmorales/javelar/Introgression_origin_perBlock_3_Oct2024/cepas_$gen.txt | cut -d: -f1)
