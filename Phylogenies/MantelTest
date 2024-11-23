@@ -1,0 +1,37 @@
+library(ape)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(vegan)
+library(geosphere)
+
+tree2<-read.tree("C:/Users/HP/Dropbox/YMXdomesticated_SACE_PopGen/Draft_Estructura_SACE/Supp_Material/BuildSuppTable/tree_SACE467_TreeName.nwk")
+PatristicDistMatrix<-cophenetic(tree2)
+
+new_Mgd <- read.csv("D:/Dropbox/Posdoc/lavis/int/AllSegments/AllIntrogresions/merged_df_ISandGroups3.csv")
+mmmg=match( new_Mgd[new_Mgd$PhyloGroup_SACE469=="MMMG","Row_Names"], colnames(PatristicDistMatrix) )
+MA2=mmmg[!is.na(mmmg)]
+tmps=match( new_Mgd[new_Mgd$PhyloGroup_SACE469=="Tamaulipas","Row_Names"], colnames(PatristicDistMatrix) )
+MA1=tmps[!is.na(tmps)]
+
+MA1_MA2=PatristicDistMatrix[MA1,MA2]
+
+suptable=read.csv("C:/Users/HP/Dropbox/YMXdomesticated_SACE_PopGen/Draft_Estructura_SACE/Supp_Material/Supplementary_Table1.csv")
+submat=suptable[(!is.na(suptable$Latitude)),c("Sample_Name","Latitude","Longitude")]
+coordenadas<-as.matrix(submat[, c("Longitude", "Latitude")])
+matriz_distancias <- distm(coordenadas, fun = distHaversine)
+
+
+a=suptable$PhylogeneticGroup.SuppFig1.=="Mexican_Agave_1"
+b=suptable$PhylogeneticGroup.SuppFig1.=="Mexican_Agave_2"
+interesantes=suptable[a|b,"Sample_Name"]
+
+common_rownames <- intersect(row
+names(matriz_distancias), rownames(PatristicDistMatrix))
+comm = intersect(common_rownames, interesantes )
+matriz_distancias_common <- matriz_distancias[comm, comm]
+PatristicDistMatrix_common <- PatristicDistMatrix[comm, comm]
+mantel_pearson_MA1MA2 <- mantel(matriz_distancias_common, PatristicDistMatrix_common, method = "pearson", permutations = 9999)
+
+
+###  Ver C:/Users/HP/Dropbox/Posdoc/Articulo Estructura SACE/YMXdomesticated_SACE_PopGen/Tables/SampleSheet_SACE467/tree_distance/ ###
