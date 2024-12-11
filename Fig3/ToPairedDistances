@@ -154,4 +154,6 @@ done
 -el índice es aprox 342-16. ES LA 326 ahí se ve el error en el .out
 
 
-
+#### 241211
+cd /mnt/Timina/lmorales/javelar/Introgression_origin_perBlock_Dec2024
+qsub Get_Paired_Distances_dec2024.sge
