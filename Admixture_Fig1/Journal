@@ -512,6 +512,8 @@ curl -O http://1002genomes.u-strasbg.fr/files/1011Matrix.gvcf.gz
 1658367  3316734 32206684
 # entonces parece que realmente sí teníamos la matriz original solo cambia el número de caracteres porque estos dicen 'chromosome'
 
+scp javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/javelar/SNPS_PerSampleFrom1011Matrix.txt  YMXdomesticated_SACE_PopGen/Draft_Estructura_SACE/figs_code/
+scp javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/javelar/Names_1011Matrix.txt  YMXdomesticated_SACE_PopGen/Draft_Estructura_SACE/figs_code/
 
 
 
