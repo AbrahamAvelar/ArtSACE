@@ -457,7 +457,7 @@ bcftools view -v snps -Ou  Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missi
 
 #  AHORA SOLO EN LAS 1011 #
 
-cd /mnt/Timina/lmorales/Public/ymez/data/vcf/1011_Mezcal_Merge/SetR_denoised.vcf.recode.vcf
+cd /mnt/Timina/lmorales/Public/ymez/data/vcf/1011_Mezcal_Merge/
 module load bcftools/1.9
 bcftools query -f '%CHROM\t%POS[\t%GT]\n' 1011Matrix.gvcf.gz  >  genotypes_From1011Matrix.txt  # Extraer genotipos con bcftools
 
@@ -498,3 +498,19 @@ bcftools view -v snps -Ou  1011Matrix.vcf.gz |  bcftools query -f '%CHROM\t%POS\
 en contraste con lo que dice Peter et al 2018: "This matrix of SNPs included 1,625,809 segregating sites across our 1,011 isolates"
 
 Entonces, tal vez LFGO rehizo esta matriz con nuestros criterios? voy a volver a bajar el vcf del artículo
+
+scp javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/SACE/SNPS_PerSample.txt Dropbox/YMXdomesticated_SACE_PopGen/Draft_Estructura_SACE/figs_code/
+scp javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/CONC/SNPS_PerSampleFromCONC_15Gvcf.txt Dropbox/YMXdomesticated_SACE_PopGen/Draft_Estructura_SACE/figs_code/
+scp javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/data/vcf/1011_Mezcal_Merge/SNPS_PerSampleFromSetRDenoised_2.txt Dropbox/YMXdomesticated_SACE_PopGen/Draft_Estructura_SACE/figs_code/
+scp javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/data/vcf/1011_Mezcal_Merge/SNPS_PerSampleFromSetRDenoised.txt Dropbox/YMXdomesticated_SACE_PopGen/Draft_Estructura_SACE/figs_code/
+
+
+
+
+
+
+
+
+
+
+
