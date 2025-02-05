@@ -455,3 +455,46 @@ bcftools view -v snps -Ou 1011Matrix.gvcf.gz | bcftools query -f '%CHROM\t%POS\n
 bcftools view -v snps -Ou  Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic |  bcftools query -f '%CHROM\t%POS\n' > snps_input2.txt
 
 
+#  AHORA SOLO EN LAS 1011 #
+
+cd /mnt/Timina/lmorales/Public/ymez/data/vcf/1011_Mezcal_Merge/SetR_denoised.vcf.recode.vcf
+module load bcftools/1.9
+bcftools query -f '%CHROM\t%POS[\t%GT]\n' 1011Matrix.gvcf.gz  >  genotypes_From1011Matrix.txt  # Extraer genotipos con bcftools
+
+awk ' 
+BEGIN { OFS="\t"; }
+{
+    for (i=3; i<=NF; i++) {
+        if ($i != "0/0" && $i != "./.") {
+            count[i]++;
+        }
+    }
+}
+END {
+    for (i=3; i<=NF; i++) {
+        print "Sample", i-2, "has", count[i], "SNPs";
+    }
+}' genotypes_From1011Matrix.txt   > SNPS_PerSampleFrom1011Matrix.txt  # Contar SNPs para cada muestra
+
+bcftools query -l 1011Matrix.gvcf.gz  > Names_1011Matrix.txt
+
+SACE_S288C_v1_chr_03
+bcftools view -v snps -Ou 1011Matrix.gvcf.gz | bcftools query -f '%CHROM\t%POS\n' > snps_input1.txt
+bcftools view -v snps -Ou  Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic |  bcftools query -f '%CHROM\t%POS\n' > snps_input2.txt
+
+vcftools --gzvcf 1011Matrix.gvcf.gz --counts
+vcftools --gzvcf SetR_denoised.vcf.recode.vcf --counts
+
+bcftools view -v snps -Ou  SetR_denoised.vcf.recode.vcf |  bcftools query -f '%CHROM\t%POS\n' > snps_input2_SetR_denoised.txt
+wc snps_input2_SetR_denoised.txt 
+1678330  3356660 15815655
+
+bcftools view -v snps -Ou  1011_SNPs.vcf.gz |  bcftools query -f '%CHROM\t%POS\n' > snps_input2_1011_SNP.txt
+1658367  3316734 15623014
+
+bcftools view -v snps -Ou  1011Matrix.vcf.gz |  bcftools query -f '%CHROM\t%POS\n' > snps_input2_1011Matrix.txt
+1658367  3316734 46289287 snps_input2_1011Matrix.txt
+
+en contraste con lo que dice Peter et al 2018: "This matrix of SNPs included 1,625,809 segregating sites across our 1,011 isolates"
+
+Entonces, tal vez LFGO rehizo esta matriz con nuestros criterios? voy a volver a bajar el vcf del artículo
