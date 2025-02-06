@@ -515,8 +515,28 @@ curl -O http://1002genomes.u-strasbg.fr/files/1011Matrix.gvcf.gz
 scp javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/javelar/SNPS_PerSampleFrom1011Matrix.txt  YMXdomesticated_SACE_PopGen/Draft_Estructura_SACE/figs_code/
 scp javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/javelar/Names_1011Matrix.txt  YMXdomesticated_SACE_PopGen/Draft_Estructura_SACE/figs_code/
 
+ wget -c https://zenodo.org/records/12580561/files/full3039Matrix.AllPositions.DP10.GQ20.Mind20.99pNonMiss.ExcHet99.SNPs.Var.vcf.gz
 
+cd /mnt/Timina/lmorales/Public/ymez/data/vcf
+module load bcftools/1.9
+bcftools query -f '%CHROM\t%POS[\t%GT]\n' GVCF_3039samples.tar.gz  >  genotypes_From3039samples.txt  # Extraer genotipos con bcftools
 
+awk ' 
+BEGIN { OFS="\t"; }
+{
+    for (i=3; i<=NF; i++) {
+        if ($i != "0/0" && $i != "./.") {
+            count[i]++;
+        }
+    }
+}
+END {
+    for (i=3; i<=NF; i++) {
+        print "Sample", i-2, "has", count[i], "SNPs";
+    }
+}' genotypes_From1011Matrix.txt   > SNPS_PerSampleFrom1011Matrix.txt  # Contar SNPs para cada muestra
+
+bcftools query -l 1011Matrix.gvcf.gz  > Names_1011Matrix.txt
 
 
 
