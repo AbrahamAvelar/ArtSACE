@@ -542,4 +542,41 @@ bcftools query -l full3039Matrix.AllPositions.DP10.GQ20.Mind20.99pNonMiss.ExcHet
 
 
 
+#!/bin/bash
+## Use current working directory (change working directory)
+. /etc/profile.d/modules.sh
+##Error file
+#$ -e /mnt/Timina/lmorales/Public/ymez/data/vcf/otherMatrix3039/runbcftools.err
+## Out file
+#$ -o /mnt/Timina/lmorales/Public/ymez/data/vcf/otherMatrix3039/runbcftools.out
+#$ -S /bin/bash
+## Job's name
+#$ -N JAARbcftools
+#$ -l vf=8G
+#$ -pe openmp 4
+#$ -m e
+source /etc/bashrc
+## notification
+#$ -M jabrahamavelar@gmail.com
 
+## Modules
+module load bcftools/1.9
+
+bcftools query -f '%CHROM\t%POS[\t%GT]\n' /mnt/Timina/lmorales/Public/ymez/data/vcf/otherMatrix3039/full3039Matrix.AllPositions.DP10.GQ20.Mind20.99pNonMiss.ExcHet99.SNPs.Var.vcf.gz  >  /mnt/Timina/lmorales/Public/ymez/data/vcf/otherMatrix3039/genotypes_From3039samples_qsub.txt  # Extraer genotipos con bcftools
+
+awk ' 
+BEGIN { OFS="\t"; }
+{
+    for (i=3; i<=NF; i++) {
+        if ($i != "0/0" && $i != "./.") {
+            count[i]++;
+        }
+    }
+}
+END {
+    for (i=3; i<=NF; i++) {
+        print "Sample", i-2, "has", count[i], "SNPs";
+    }
+}' /mnt/Timina/lmorales/Public/ymez/data/vcf/otherMatrix3039/genotypes_From3039samples_qsub.txt    > /mnt/Timina/lmorales/Public/ymez/data/vcf/otherMatrix3039/SNPS_PerSampleFrom3039samples_qsub.txt  # Contar SNPs para cada muestra
+
+bcftools query -l /mnt/Timina/lmorales/Public/ymez/data/vcf/otherMatrix3039/full3039Matrix.AllPositions.DP10.GQ20.Mind20.99pNonMiss.ExcHet99.SNPs.Var.vcf.gz  > /mnt/Timina/lmorales/Public/ymez/data/vcf/otherMatrix3039/Names_3039samples.txt
