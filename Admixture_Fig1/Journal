@@ -580,3 +580,16 @@ END {
 }' /mnt/Timina/lmorales/Public/ymez/data/vcf/otherMatrix3039/genotypes_From3039samples_qsub.txt    > /mnt/Timina/lmorales/Public/ymez/data/vcf/otherMatrix3039/SNPS_PerSampleFrom3039samples_qsub.txt  # Contar SNPs para cada muestra
 
 bcftools query -l /mnt/Timina/lmorales/Public/ymez/data/vcf/otherMatrix3039/full3039Matrix.AllPositions.DP10.GQ20.Mind20.99pNonMiss.ExcHet99.SNPs.Var.vcf.gz  > /mnt/Timina/lmorales/Public/ymez/data/vcf/otherMatrix3039/Names_3039samples.txt
+
+
+#### usar IQtree + ASC
+iqtree2 -s alignment.fasta -m MFP # para seleccionar el mejor modelo para el alineamiento
+
+iqtree2 -s alignment.fasta -m GTR+G -bb 100 -alrt 100 -T AUTO #1k bootstraps ultrarrápidos y test de razón de verosimilitud
+# for version 1.x change -B to -bb
+-bnni # reduce the risk of branch supports due to severe model biolations
+-T AUTO # multiples hilos para acelerar el cálculo
+
+iqtree -s example.phy --rate # inferring site-specific rates
+# for version 1.x change --rate to -wsr
+iqtree -s example.phy -t ml.treefile -n 0 --rate  # este --rate es mejor cuando ya tienes el .treefile
