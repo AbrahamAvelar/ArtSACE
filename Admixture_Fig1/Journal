@@ -624,14 +624,68 @@ vim javelar_SH_getSNPmatrix_SACE109_2SACE.sh # cambié el nombre del sge que va 
 nano get_SACE_SNPmatrix_from_SACE_SACE109_2.sge # out, err y /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE109_random/SACE_2
 bash javelar_SH_getSNPmatrix_SACE109_2SACE.sh
 
-
+module load python37/3.7.0
 python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE109_random/subsampled_data_02.csv  -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_CONC.txt -m .1
 mv lmorales_SH_getSNPmatrix.sh lmorales_SH_getSNPmatrix_SACE109_2CONC.sh
 mv get_SACE_SNPmatrix_from_CONC.sge get_SACE_SNPmatrix_from_CONC_SACE109_2CONC.sge
 nano lmorales_SH_getSNPmatrix_SACE109_2CONC.sh
 vim  get_SACE_SNPmatrix_from_CONC_SACE109_2CONC.sge #/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE109_random/CONC_2
-mkdi r/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE109_random/CONC_2
+mkdir /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE109_random/CONC_2
 bash morales_SH_getSNPmatrix_SACE109_2CONC.sh
+
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE109_random/subsampled_data_03.csv  -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_SACE.txt -m .1
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/lmorales_SH_getSNPmatrix.sh /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/lmorales_SH_getSNPmatrix_SACE109_3SACE.sh
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE.sge  /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE109_3.sge
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/lmorales_SH_getSNPmatrix_SACE109_3SACE.sh # cambié el nombre del sge que va a mandar correr
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE109_3.sge # out, err y /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE109_random/SACE_3
+bash javelar_SH_getSNPmatrix_SACE109_3SACE.sh
+
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE109_random/subsampled_data_03.csv  -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_CONC.txt -m .1
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/lmorales_SH_getSNPmatrix.sh    /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/lmorales_SH_getSNPmatrix_SACE109_3CONC.sh
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC.sge  /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE109_3CONC.sge
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/lmorales_SH_getSNPmatrix_SACE109_3CONC.sh
+nano  /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE109_3CONC.sge #/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE109_random/CONC_3
+## _SACE109_CONC_3_$JOBID  ## /trees/SACE109_random/CONC_3
+bash morales_SH_getSNPmatrix_SACE109_3CONC.sh
+/mnt/Timina/lmorales/Public/ymez/bin/scripts/06_genotyping
+
+cd /mnt/Timina/lmorales/Public/ymez/bin/scripts/06_genotyping
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE109_random/subsampled_data_04.csv  -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_SACE.txt -m .1
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/lmorales_SH_getSNPmatrix.sh /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/lmorales_SH_getSNPmatrix_SACE109_4SACE.sh
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE.sge  /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE109_4.sge
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/lmorales_SH_getSNPmatrix_SACE109_4SACE.sh # cambié el nombre del sge que va a mandar correr
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE109_4.sge # out, err y /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE109_random/SACE_4
+## _SACE109_SACE_4_$JOBID  ## /trees/SACE109_random/SACE_4
+bash lmorales_SH_getSNPmatrix_SACE109_4SACE.sh
+
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE109_random/subsampled_data_04.csv  -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_CONC.txt -m .1
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/lmorales_SH_getSNPmatrix.sh    /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/lmorales_SH_getSNPmatrix_SACE109_4CONC.sh
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC.sge  /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE109_4CONC.sge
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/lmorales_SH_getSNPmatrix_SACE109_4CONC.sh
+nano  /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE109_4CONC.sge #/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE109_random/CONC_4
+## _SACE109_CONC_4_$JOBID  ## /trees/SACE109_random/CONC_4
+bash lmorales_SH_getSNPmatrix_SACE109_4CONC.sh
+
+
+cd /mnt/Timina/lmorales/Public/ymez/bin/scripts/06_genotyping
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE109_random/subsampled_data_05.csv  -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_SACE.txt -m .1
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix.sh /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_SACE109_5SACE.sh
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE.sge  /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE109_5.sge
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_SACE109_5SACE.sh # cambié el nombre del sge que va a mandar correr
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE109_5.sge # out, err y /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE109_random/SACE_5
+## _SACE109_SACE_5_$JOBID  ## /trees/SACE109_random/SACE_5
+bash javelar_SH_getSNPmatrix_SACE109_5SACE.sh
+
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE109_random/subsampled_data_05.csv  -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_CONC.txt -m .1
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix.sh    /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_SACE109_5CONC.sh
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC.sge  /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE109_5CONC.sge
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_SACE109_5CONC.sh
+nano  /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE109_5CONC.sge #/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE109_random/CONC_5
+## _SACE109_CONC_5_$JOBID  ## /trees/SACE109_random/CONC_5
+bash javelar_SH_getSNPmatrix_SACE109_5CONC.sh
+
+
+
 
 
 ###
