@@ -774,6 +774,9 @@ module load python37/3.7.0
 cd /mnt/Timina/lmorales/Public/ymez/bin/scripts/06_genotyping
   cd /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping
 
+bgzip -f ${out_dir}/Matrix_SNPs_SACE_from_CONC.vcf
+bgzip -f ${out_dir}/Matrix_SNPs_SACE_from_SACE.vcf                                                                                                  
+bgzip -f ${out_dir}/Matrix_SNPs_SACE_from_SACE_gt.vcf
 ###
 module load iq-tree/2.3.6
 iqtree2 -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SAPA66_27filtered/Matrix_SNPs_SAPA_from_CONC_gt_onlySNPs_filtered_missing_10_biallelic.min4.phy -m MFP -bb 1000 -alrt 1000 -T AUTO
