@@ -224,3 +224,34 @@ vim javelar_SH_getSNPmatrix_toSACE.sh   # cambié el nombre del sge que va a man
 vim  get_SACE_SNPmatrix_from_SACE_toSACE.sge # cambie output de .err y .out
 bash javelar_SH_getSNPmatrix_toSACE.sh  # Output en: /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/toSACE
 tail  /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/st/SACE_getSNPmatrix_javelar_SACE467toSACE.err
+
+# 25/02/16
+# Para hacer sinTequila
+#tuve que hacer 05 para XB073c8
+qlogin
+cd  /mnt/Timina/lmorales/Public/ymez/bin/scripts/06_genotyping
+module load python37/3.7.0
+python3.7 genotyping_and_filtering.py   -s /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE451_sintequila/SACE250/SACE467_sinTequila.csv  -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_SACE.txt -m .1
+exit
+cd  /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/
+mv javelar_SH_getSNPmatrix.sh javelar_SH_getSNPmatrix_SACE_sinTequila250216.sh
+mv get_SACE_SNPmatrix_from_SACE.sge  get_SACE_SNPmatrix_from_SACE_sinTequila250216.sge 
+vim javelar_SH_getSNPmatrix_SACE_sinTequila.sh # cambié el nombre del sge que va a mandar correr TAMBIÉN LA CARPETA OUTPUT!
+vim  get_SACE_SNPmatrix_from_SACE_SACE_sinTequila.sge # cambie output de .err y .out
+bash javelar_SH_getSNPmatrix_SACE_sinTequila.sh
+
+
+
+python3.7 genotyping_and_filtering.py   -s /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE451_sintequila/SACE250/SACE467_sinTequila.csv  -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_CONC.txt -m .1
+exit
+cd  /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/
+mv javelar_SH_getSNPmatrix.sh javelar_SH_getSNPmatrix_SACE_sinTequila_CONC250216.sh
+mv get_SACE_SNPmatrix_from_CONC.sge  get_SACE_SNPmatrix_from_CONC250216.sge 
+vim javelar_SH_getSNPmatrix_SACE_sinTequila.sh # cambié el nombre del sge que va a mandar correr TAMBIÉN LA CARPETA OUTPUT!
+vim  get_SACE_SNPmatrix_from_SACE_SACE_sinTequila.sge # cambie output de .err y .out
+bash javelar_SH_getSNPmatrix_SACE_sinTequila.sh
+
+
+
+
+
