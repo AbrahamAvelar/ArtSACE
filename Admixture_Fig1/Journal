@@ -817,11 +817,12 @@ mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/lmorales_SH_getSNPmatr
 mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC.sge  /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE4317_greater9.sge
 nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/lmorales_SH_getSNPmatrix_SACE317_greater9.sh
 nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE4317_greater9.sge #
+-j 674385
 
 python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE_ToNCm/SACE317_SampleSheet_To_Pick_Randomly_1stKgreaterthan0.9.csv  -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_SACE.txt -m .1
 mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/lmorales_SH_getSNPmatrix.sh    /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/lmorales_SH_getSNPmatrix_SACE317_grt9_toSACE.sh
 mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE.sge  /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE317_grt9_toSACE.sge
 nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/lmorales_SH_getSNPmatrix_SACE317_grt9_toSACE.sh
 nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE317_grt9_toSACE.sge #
-
+- 674386
 
