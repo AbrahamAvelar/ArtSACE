@@ -826,4 +826,158 @@ nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/lmorales_SH_getSNPma
 nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE317_grt9_toSACE.sge #
 - 674386
 
+-----
+cd  /mnt/Timina/lmorales/Public/ymez/bin/scripts/06_genotyping
+module load python37/3.7.0
+cd  /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/
+
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/subsampled_data_01_fromSACE333.csv -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_SACE.txt -m .1
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix.sh    /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_SACE83rand_01.sh
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE.sge /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE83rand_01.sge
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_SACE83rand_01.sh
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE83rand_01.sge # /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/
+
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/subsampled_data_02_fromSACE333.csv -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_SACE.txt -m .1
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix.sh    /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_SACE83rand_02.sh
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE.sge /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE83rand_02.sge
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_SACE83rand_02.sh
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE83rand_02.sge # /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/SACE01
+mkdir /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/SACE02
+
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/subsampled_data_03_fromSACE333.csv -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_SACE.txt -m .1
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix.sh    /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_SACE83rand_03.sh
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE.sge /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE83rand_03.sge
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_SACE83rand_03.sh
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE83rand_03.sge # /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/SACE03
+mkdir /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/SACE03  ## _$JOB_ID
+
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/subsampled_data_04_fromSACE333.csv -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_SACE.txt -m .1
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix.sh    /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_SACE83rand_04.sh
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE.sge /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE83rand_04.sge
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_SACE83rand_04.sh
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE83rand_04.sge # /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/SACE04
+mkdir /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/SACE04  ## _$JOB_ID
+
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/subsampled_data_05_fromSACE333.csv -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_SACE.txt -m .1
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix.sh    /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_SACE83rand_05.sh
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE.sge /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE83rand_05.sge
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_SACE83rand_05.sh
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE83rand_05.sge # /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/SACE05
+mkdir /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/SACE05  ## _$JOB_ID
+
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/subsampled_data_06_fromSACE333.csv -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_SACE.txt -m .1
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix.sh    /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_SACE83rand_06.sh
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE.sge /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE83rand_06.sge
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_SACE83rand_06.sh
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE83rand_06.sge # /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/SACE06
+mkdir /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/SACE06  ## _$JOB_ID
+
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/subsampled_data_07_fromSACE333.csv -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_SACE.txt -m .1
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix.sh    /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_SACE83rand_07.sh
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE.sge /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE83rand_07.sge
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_SACE83rand_07.sh
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE83rand_07.sge # /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/SACE07
+mkdir /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/SACE07  ## _$JOB_ID
+
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/subsampled_data_08_fromSACE333.csv -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_SACE.txt -m .1
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix.sh    /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_SACE83rand_08.sh
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE.sge /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE83rand_08.sge
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_SACE83rand_08.sh
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE83rand_08.sge # /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/SACE07
+mkdir /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/SACE08  ## _$JOB_ID
+
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/subsampled_data_09_fromSACE333.csv -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_SACE.txt -m .1
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix.sh    /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_SACE83rand_09.sh
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE.sge /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE83rand_09.sge
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_SACE83rand_09.sh
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE83rand_09.sge # /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/SACE09
+mkdir /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/SACE09  ## _$JOB_ID
+
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/subsampled_data_10_fromSACE333.csv -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_SACE.txt -m .1
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix.sh    /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_SACE83rand_10.sh
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE.sge /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE83rand_10.sge
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_SACE83rand_10.sh
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_SACE_SACE83rand_10.sge # /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/SACE10
+mkdir /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/SACE10  ## _$JOB_ID
+
+###CONC
+
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/subsampled_data_01_fromSACE333.csv -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_CONC.txt -m .1
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix.sh    /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_from_CONC_SACE83rand_01.sh
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC.sge /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE83rand_01.sge
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_from_CONC_SACE83rand_01.sh
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE83rand_01.sge #
+mkdir /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/CONC01  ## _$JOB_ID
+
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/subsampled_data_02_fromSACE333.csv -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_CONC.txt -m .1
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix.sh    /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_from_CONC_SACE83rand_02.sh
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC.sge /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE83rand_02.sge
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_from_CONC_SACE83rand_02.sh
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE83rand_02.sge #
+mkdir /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/CONC02  ## _$JOB_ID
+
+
+
+
+
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/subsampled_data_03_fromSACE333.csv -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_CONC.txt -m .1
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix.sh    /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_from_CONC_SACE83rand_03.sh
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC.sge /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE83rand_03.sge
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_from_CONC_SACE83rand_03.sh
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE83rand_03.sge #
+mkdir /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/CONC03  ## _$JOB_ID
+
+
+
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/subsampled_data_04_fromSACE333.csv -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_CONC.txt -m .1
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix.sh    /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_from_CONC_SACE83rand_04.sh
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC.sge /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE83rand_04.sge
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_from_CONC_SACE83rand_04.sh
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE83rand_04.sge #
+mkdir /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/CONC04  ## _$JOB_ID
+
+
+
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/subsampled_data_05_fromSACE333.csv -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_CONC.txt -m .1
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix.sh    /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_from_CONC_SACE83rand_05.sh
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC.sge /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE83rand_05.sge
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_from_CONC_SACE83rand_05.sh
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE83rand_05.sge #
+mkdir /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/CONC05  ## _$JOB_ID
+
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/subsampled_data_06_fromSACE333.csv -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_CONC.txt -m .1
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix.sh    /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_from_CONC_SACE83rand_06.sh
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC.sge /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE83rand_06.sge
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_from_CONC_SACE83rand_06.sh
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE83rand_06.sge #
+mkdir /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/CONC06  ## _$JOB_ID
+
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/subsampled_data_07_fromSACE333.csv -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_CONC.txt -m .1
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix.sh    /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_from_CONC_SACE83rand_07.sh
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC.sge /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE83rand_07.sge
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_from_CONC_SACE83rand_07.sh
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE83rand_07.sge #
+mkdir /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/CONC07  ## _$JOB_ID
+
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/subsampled_data_08_fromSACE333.csv -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_CONC.txt -m .1
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix.sh    /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_from_CONC_SACE83rand_08.sh
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC.sge /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE83rand_08.sge
+mkdir /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/CONC08
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_from_CONC_SACE83rand_08.sh
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE83rand_08.sge #
+mkdir /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/CONC08  ## _$JOB_ID
+
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/subsampled_data_09_fromSACE333.csv -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_CONC.txt -m .1
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix.sh    /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_from_CONC_SACE83rand_09.sh
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC.sge /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE83rand_09.sge
+mkdir /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/CONC09
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_from_CONC_SACE83rand_09.sh
+nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE83rand_09.sge #
+mkdir /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/CONC09  ## _$JOB_ID
+
+python3.7 genotyping_and_filtering.py   -s  /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/subsampled_data_10_fromSACE333.csv -r /mnt/Timina/lmorales/Public/ymez/data/metadata/ref_only_CONC.txt -m .1
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix.sh    /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/javelar_SH_getSNPmatrix_from_CONC_SACE83rand_10.sh
+mv /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC.sge /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE83rand_10.sge
+ nano /mnt/Timina/lmorales/Public/ymez/bin/SGE/06_genotyping/get_SACE_SNPmatrix_from_CONC_SACE83rand_10.sge #
+mkdir /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE82_random/CONC10  ## _$JOB_ID
 
