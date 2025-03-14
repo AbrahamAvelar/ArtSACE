@@ -17,3 +17,31 @@ grep -E 'MMMG|Tequila|Tamaulipas|FG|SAM2' SampleSheet_SACE467_only_PiCategories2
 
 vim withoutNeotropical.txt # quitarle la primera línea
 
+
+13032025
+/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE467/PopulationParameters  # group_by_region.sh  # make_groups
+cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/SACE
+module load vcftools/0.1.14
+
+vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic --weir-fst-pop Grupos/MMMG.txt --weir-fst-pop Grupos/MMMG.txt --out FST_output/fst_output1
+vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic --weir-fst-pop Grupos/Tequila.txt --weir-fst-pop Grupos/FG.txt --out FST_output/fst_output2
+vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic --weir-fst-pop Grupos/FG.txt --weir-fst-pop Grupos/FG.txt --out FST_output/fst_output3
+vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic --weir-fst-pop Grupos/MMMG.txt --weir-fst-pop Grupos/FG.txt --out FST_output/fst_output4
+vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic --weir-fst-pop Grupos/MMMG.txt --weir-fst-pop Grupos/Tamaulipas.txt --out FST_output/fst_output5
+vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic --weir-fst-pop Grupos/FG.txt --weir-fst-pop Grupos/Tamaulipas.txt. --out FST_output/fst_output6
+
+cat fst_output1.weir.fst fst_output2.weir.fst > all_fst_results.txt
+MMMG vs MMG
+-0.00413489
+Teq vs FG
+awk '$3 != "-nan" {sum += $3; count++} END {if (count > 0) print sum/count; else print "No valid Fst values"}' fst_output2.weir.fst
+0.296137
+FG vs FG
+-0.0231784
+MMMG vs FG
+0.243507
+MMMG vs tmps
+0.204332
+
+
+
