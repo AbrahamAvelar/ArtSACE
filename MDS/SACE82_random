@@ -1,4 +1,5 @@
 ### genetic distances para hacer PCA
+module load plink/1.9
 for i in {1..10}; do
     dir="SACE_$i"
     
@@ -29,3 +30,21 @@ for i in {1..10}; do
         echo "Advertencia: No se encontró el directorio $dir, saltando..."
     fi
 done
+
+--------------------------------------------------------------------------------------------------
+
+cd /mnt/Timina/lmorales/Public/ymez/data/vcf
+module load bcftools/1.9
+
+plink --vcf /mnt/Timina/lmorales/Public/ymez/data/vcf/full3039Matrix.AllPositions.DP10.GQ20.Mind20.99pNonMiss.ExcHet99.SNPs.Var.vcf.gz  \
+    --distance square ibs  \
+    --out /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/genotype_distances_3039_PLINK  \
+    --allow-extra-chr
+
+
+
+
+
+
+
+
