@@ -1,0 +1,31 @@
+### genetic distances para hacer PCA
+for i in {02..10}; do
+    dir="SACE$i"
+    
+    if [[ -d "$dir" ]]; then
+        echo "Procesando $dir..."
+        
+        plink --vcf "$dir/Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic" \
+              --distance square ibs \
+              --out "${dir}_genotype_distances_PLINK" \
+              --allow-extra-chr
+    else
+        echo "Advertencia: No se encontró el directorio $dir, saltando..."
+    fi
+done
+
+for i in {02..10}; do
+    dir="CONC$i"
+    
+    # Verificar si el directorio existe antes de entrar
+    if [[ -d "$dir" ]]; then
+        echo "Procesando $dir..."
+        
+        plink --vcf "$dir/Matrix_SNPs_SACE_from_CONC_gt_onlySNPs_filtered_missing_10_biallelic" \
+              --distance square ibs \
+              --out "${dir}_genotype_distances_PLINK" \
+              --allow-extra-chr
+    else
+        echo "Advertencia: No se encontró el directorio $dir, saltando..."
+    fi
+done
