@@ -1,6 +1,6 @@
 ### genetic distances para hacer PCA
-for i in {02..10}; do
-    dir="SACE$i"
+for i in {1..10}; do
+    dir="SACE_$i"
     
     if [[ -d "$dir" ]]; then
         echo "Procesando $dir..."
@@ -14,8 +14,8 @@ for i in {02..10}; do
     fi
 done
 
-for i in {02..10}; do
-    dir="CONC$i"
+for i in {1..10}; do
+    dir="CONC_$i"
     
     # Verificar si el directorio existe antes de entrar
     if [[ -d "$dir" ]]; then
