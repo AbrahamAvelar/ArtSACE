@@ -1,0 +1,47 @@
+C:\Users\HP\Dropbox\YMXdomesticated_SACE_PopGen\Draft_Estructura_SACE\figs_code\figsR
+NMDSplot.R
+
+pcadata2=read.table("mds_SetR_denoised_data_raw.csv", sep=",", header=TRUE)
+pcadata=read.table("mds_data_desde250328.csv", sep=",", header=TRUE)
+
+head(pcadata)
+head(pcadata2)
+library(ggplot2)
+pca=pcadata[c("FID","Phylogenetic_Group","ToColorMds","colorMDS","ThisStudy")]
+#merged_df <- merge.data.frame(Strict_origins, new_Mgd, by.x = "Row_Name", by.y="Row_Names", all.x=TRUE)
+
+pcad2=merge.data.frame(pcadata2,pca,by.x="FID",by.y="FID",all.x=TRUE)
+dim(pcad2)
+
+my_palette2 = c("#ED9B52",#FG
+                "#973894",#MA1
+                "#1C72B8",#MA2
+                "#695333",#MixOri
+                "#99CB99",#NorthAmOak
+                "#F4AEE4",#SAM2
+                "#CACA30",#Tequila
+                "#AB1948",#WB3
+                "#9B7D3D",#Wine14
+                "#1C72B8",#MA2 #99CB00 es NAOak de peter. la otra North_America_oak son las que yo agregué a ese grupo
+                "#AAAAAA",# Others
+                "#1C12B8",#
+                "#878787")#"#99CB99",
+
+pdf("MDSplot_fig1A_6.pdf",5.55,2.8)
+ggplot(pcad2, aes(x = C1, y = C2, fill = colorMDS)) +
+  geom_point(size = ifelse(pcad2$colorMDS != "others", 2, 1.2),
+             shape = 21, 
+             color = ifelse(pcad2$ThisStudy == 1, "black", 'gray'), 
+             #color = ifelse(pcadata2$ThisStudy == 1, "black", ifelse(pcadata2$ThisStudy == 1, "pink","gray")), 
+             stroke = ifelse(pcad2$colorMDS != "others", .5, 0)) +
+  scale_fill_manual(values = my_palette2) +
+  theme_minimal()+
+  guides(fill = guide_legend(override.aes = list(size = 2)))+
+  theme(
+    panel.grid = element_blank(),
+    axis.ticks = element_line(color = "black"),
+    axis.line = element_line(color = "black"),
+    axis.ticks.length = unit(0.2, "cm"),
+    panel.border = element_rect(color = "black", fill = NA)
+  )
+dev.off()
