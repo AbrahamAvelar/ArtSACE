@@ -1,0 +1,37 @@
+# YMXdomesticated_SACE_PopGen/Draft_Estructura_SACE/figs_code/Mapas/mpa
+# Mapa de las muestras.R
+
+library(mapdata)
+library(ggplot2)
+library(ggfortify)
+library(ggmap)
+library(dplyr)
+library("rnaturalearth")
+library("rnaturalearthdata")
+library("sf")
+library("ggspatial")
+
+archivo=".../YMXdomesticated_SACE_PopGen/Draft_Estructura_SACE/202409_Submission/Supplementary_Table1_Submission_202409.csv"
+TS1=read.csv(archivo)
+data=TS1[1:216,]
+
+world <- ne_countries(scale = "medium", returnclass = "sf")
+class(world)
+theme_set(theme_bw())
+contrasting_colors <- c("red", "gray","blue", "green",  "lightyellow", "darkcyan", "orange", "purple", "cyan", "darkgray", "pink","darkgreen")
+
+# Gráfico con los puntos coloreados según el año
+ggplot(data = world) +
+  geom_sf() +  # Dibuja el mapa
+  geom_point(data = data, aes(x = Longitude, y = Latitude, color = Year, shape = Reference), 
+             size = 2, alpha = 0.7) +  # Agrega los puntos, colorea según el año y cambia forma según Reference
+  annotation_scale(location = "bl", width_hint = 0.5) +  # Escala
+  annotation_north_arrow(location = "bl", which_north = "true", 
+                         pad_x = unit(0.75, "in"), pad_y = unit(0.5, "in"),
+                         style = north_arrow_fancy_orienteering) +  # Flecha norte
+  coord_sf(xlim = c(-118, -86), ylim = c(14, 33.5)) +  # Límites del mapa
+  theme_minimal() +  # Tema minimalista
+  scale_color_manual(name = "Collection Year", values = contrasting_colors) +  # Escala de color contrastante
+  scale_shape_manual(name = "Reference", values = 1:length(unique(data$Reference)))  # Asigna formas diferentes según 'Reference'
+
+ggsave("map.pdf")
