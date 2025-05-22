@@ -43,5 +43,24 @@ MMMG vs FG
 MMMG vs tmps
 0.204332
 
+/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE1266_SetR
+bash make_groups 2
+/mnt/Timina/lmorales/Public/ymez/data/vcf/1011_Mezcal_Merge/SetR_denoised.vcf.recode.vcf
 
 
+module load vcftools/0.1.14
+matriz="/mnt/Timina/lmorales/Public/ymez/data/vcf/1011_Mezcal_Merge/SetR_denoised.vcf.recode.vcf" #../../Admixture/Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic  
+
+for popfile in *.txt; # puede ser también csv; 
+do 
+echo $popfile;     
+population="${popfile%.txt}"; 
+echo $population;  
+
+vcftools --vcf "$matriz"  --keep "$popfile" --site-pi --out "${population}_results";
+
+vcftools --vcf "$matriz"  --keep "$popfile" --window-pi 10000 --out "${population}_Window_results";
+
+vcftools --vcf "$matriz" --keep "$popfile"  --TajimaD 10000 --out "${population}_TDw_results";
+
+done
