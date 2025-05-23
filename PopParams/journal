@@ -57,10 +57,6 @@ echo $popfile;
 population="${popfile%.txt}"; 
 echo $population;  
 
-vcftools --vcf "$matriz"  --keep "$popfile" --site-pi --out "${population}_results";
-
 vcftools --vcf "$matriz"  --keep "$popfile" --window-pi 10000 --out "${population}_Window_results";
-
-vcftools --vcf "$matriz" --keep "$popfile"  --TajimaD 10000 --out "${population}_TDw_results";
 
 done
