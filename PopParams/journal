@@ -60,3 +60,26 @@ echo $population;
 vcftools --vcf "$matriz"  --keep "$popfile" --window-pi 10000 --out "${population}_Window_results";
 
 done
+
+
+
+module load bcftools/1.9
+cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE109_random/CONC_4
+bcftools view -v snps,indels Matrix_SNPs_SACE_from_CONC_gt.vcf.gz | grep -vc "^#"
+module load plink2/2.0.0-a.6.9LM
+plink2 --vcf  Matrix_SNPs_SACE_from_CONC_gt_onlySNPs.vcf.gz  --make-bed --out cohort
+ls -alth
+plink2 --vcf  Matrix_SNPs_SACE_from_CONC_gt_onlySNPs_filtered_missing_10_biallelic  --make-bed --out cohort
+ls -alth
+module load plink/1.9
+cp Matrix_SNPs_SACE_from_CONC_gt_onlySNPs_filtered_missing_10_biallelic  cohort.vcf
+plink --vcf cohort.vcf --recode --out cohort --allow-extra-chr
+ls -alth
+plink --bfile cohort --distance square ibs --out ibs_matrix --allow-extra-chr
+ls -alth
+less  ibs_matrix.mibs.id
+less  ibs_matrix.nosex
+less ibs_matrix.mibs
+history
+
+
