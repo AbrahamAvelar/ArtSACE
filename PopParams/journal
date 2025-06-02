@@ -82,4 +82,28 @@ less  ibs_matrix.nosex
 less ibs_matrix.mibs
 history
 
+# hacer esto con la matriz completa: CONC
+cd /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/CONC/IBS
+module load bcftools/1.9
+module load plink2/2.0.0-a.6.9LM
+plink2 --vcf Matrix_SNPs_SACE_from_CONC_gt_onlySNPs_filtered_missing_10_biallelic   --make-bed --out cohort
+module load plink/1.9
+cp Matrix_SNPs_SACE_from_CONC_gt_onlySNPs_filtered_missing_10_biallelic  cohort.vcf
+plink --vcf cohort.vcf --recode --out cohort --allow-extra-chr
+plink --bfile cohort --distance square ibs --out ibs_matrix --allow-extra-chr
+ls -alth
+less ibs_matrix.mibs
+less ibs_matrix.mibs.id
+
+#SACE
+/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/SACE/IBS
+plink2 --vcf  cohort.vcf   --make-bed --out cohort
+plink --vcf cohort.vcf --recode --out cohort --allow-extra-chr
+plink --bfile cohort --distance square ibs --out ibs_matrix --allow-extra-chr
+
+scp javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/CONC/IBS/ibs_matrix* ~/Dropbox/YMXdomesticated_SACE_PopGen/Draft_Estructura_SACE/figs_code/figsR/PLINK_IBS/SACE489_toCONC/
+
+
+
+
 
