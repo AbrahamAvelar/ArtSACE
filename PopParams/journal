@@ -103,6 +103,7 @@ plink --bfile cohort --distance square ibs --out ibs_matrix --allow-extra-chr
 
 scp javelar@dna.lavis.unam.mx:/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/CONC/IBS/ibs_matrix* ~/Dropbox/YMXdomesticated_SACE_PopGen/Draft_Estructura_SACE/figs_code/figsR/PLINK_IBS/SACE489_toCONC/
 
+plink --bfile cohort --recodeA --out geno_matrix
 
 
 
