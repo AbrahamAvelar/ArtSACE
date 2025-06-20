@@ -28,7 +28,66 @@ vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_bial
 vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic --weir-fst-pop Grupos/FG.txt --weir-fst-pop Grupos/FG.txt --out FST_output/fst_output3
 vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic --weir-fst-pop Grupos/MMMG.txt --weir-fst-pop Grupos/FG.txt --out FST_output/fst_output4
 vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic --weir-fst-pop Grupos/MMMG.txt --weir-fst-pop Grupos/Tamaulipas.txt --out FST_output/fst_output5
-vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic --weir-fst-pop Grupos/FG.txt --weir-fst-pop Grupos/Tamaulipas.txt. --out FST_output/fst_output6
+vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic --weir-fst-pop Grupos/FG.txt --weir-fst-pop Grupos/Tamaulipas.txt --out FST_output/fst_output6
+
+vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic --weir-fst-pop Grupos/SAM2_b.txt --weir-fst-pop Grupos/Tamaulipas.txt --out FST_output2/fst_output_sam2_MA1
+vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic --weir-fst-pop Grupos/WB3.txt --weir-fst-pop Grupos/Tamaulipas.txt --out FST_output2/fst_output_wb3_MA1
+vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic --weir-fst-pop Grupos/FG.txt --weir-fst-pop Grupos/Tamaulipas.txt --out FST_output2/fst_output_fg_MA1
+vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic --weir-fst-pop Grupos/MMMG.txt --weir-fst-pop Grupos/Tamaulipas.txt --out FST_output2/fst_output_ma2_MA1
+vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic --weir-fst-pop Grupos/WB3.txt --weir-fst-pop Grupos/SAM2_b.txt --out FST_output2/fst_output_wb3_SAM2_b
+vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic --weir-fst-pop Grupos/FG.txt --weir-fst-pop Grupos/SAM2_b.txt --out FST_output2/fst_output_fg_SAM2_b
+vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic --weir-fst-pop Grupos/MMMG.txt --weir-fst-pop Grupos/SAM2_b.txt --out FST_output2/fst_output_ma2_SAM2_b
+vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic --weir-fst-pop Grupos/FG.txt --weir-fst-pop Grupos/WB3.txt --out FST_output2/fst_output_fg_WB3
+vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic --weir-fst-pop Grupos/MMMG.txt --weir-fst-pop Grupos/WB3.txt --out FST_output2/fst_output_ma2_WB3
+
+vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic --weir-fst-pop Grupos/MMMG.txt --weir-fst-pop Grupos/FG.txt --out FST_output2/fst_output_ma2_FG
+
+vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic --weir-fst-pop Grupos/SAM2_b.txt --weir-fst-pop Grupos/Tequila.txt --out FST_output2/fst_output_sam2_Teq
+vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic --weir-fst-pop Grupos/WB3.txt --weir-fst-pop Grupos/Tequila.txt --out FST_output2/fst_output_wb3_Teq
+vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic --weir-fst-pop Grupos/FG.txt --weir-fst-pop Grupos/Tequila.txt --out FST_output2/fst_output_fg_Teq
+vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic --weir-fst-pop Grupos/MMMG.txt --weir-fst-pop Grupos/Tequila.txt --out FST_output2/fst_output_ma2_Teq
+vcftools --gzvcf Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic --weir-fst-pop Grupos/Tamaulipas.txt --weir-fst-pop Grupos/Tequila.txt --out FST_output2/fst_output_ma_Teq
+
+
+
+#!/bin/bash
+VCF_FILE="/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/SACE/Matrix_SNPs_SACE_from_SACE_gt_onlySNPs_filtered_missing_10_biallelic"
+mkdir -p /mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/SACE/FST_output2
+# Define solo las poblaciones deseadas
+POP_DIR="/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/SACE/Grupos"
+POP_FILES=(
+  "$POP_DIR/MMMG.txt"
+  "$POP_DIR/FG.txt"
+  "$POP_DIR/Tamaulipas.txt"
+  "$POP_DIR/SAM2_b.txt"
+  "$POP_DIR/WB3.txt"
+  "$POP_DIR/Tequila.txt"
+  "$POP_DIR/Alpechin.txt"
+  "$POP_DIR/Wine12.txt"
+  "$POP_DIR/Wine14.txt"
+)
+SUMMARY_FILE="/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/SACE/FST_output2/fst_summary.txt"
+echo -e "Comparación\tMean_Fst\tWeighted_Fst" > "$SUMMARY_FILE"
+# Iterar sobre todos los pares posibles de poblaciones (todas vs todas)
+for ((i=0; i<${#POP_FILES[@]}; i++)); do
+    for ((j=i+1; j<${#POP_FILES[@]}; j++)); do
+        POP1=${POP_FILES[i]}
+        POP2=${POP_FILES[j]}
+        NAME1=$(basename "$POP1" .txt)
+        NAME2=$(basename "$POP2" .txt)
+        OUTPUT="/mnt/Timina/lmorales/Public/ymez/tmp/06_genotyping/trees/SACE489/SACE/FST_output2/fst_${NAME1}_vs_${NAME2}"
+        echo "Calculando Fst para $NAME1 vs $NAME2..."
+        vcftools --gzvcf "$VCF_FILE" --weir-fst-pop "$POP1" --weir-fst-pop "$POP2" --out "$OUTPUT" > "${OUTPUT}.log"
+        MEAN_FST=$(grep "Weir and Cockerham mean Fst estimate" "${OUTPUT}.log" | awk '{print $6}')
+        WEIGHTED_FST=$(grep "Weir and Cockerham weighted Fst estimate" "${OUTPUT}.log" | awk '{print $7}')
+        echo -e "${NAME1}_vs_${NAME2}\t${MEAN_FST}\t${WEIGHTED_FST}" >> "$SUMMARY_FILE"
+    done
+done
+echo "Análisis completado. Resultados en: $SUMMARY_FILE"
+
+
+
+
 
 cat fst_output1.weir.fst fst_output2.weir.fst > all_fst_results.txt
 MMMG vs MMG
