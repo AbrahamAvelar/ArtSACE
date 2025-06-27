@@ -12,3 +12,8 @@ los que sí salieron son todos de turban, de 2020. revisé en otro dir: tmp/05_v
 en un qlogin:
 cd .../SACE467/
 vcftools --vcf Matrix_SNPs_SACE_from_CONC.vcf  --het --out outputhet_test
+
+##### 270625 ### ahora quiero ver la heterocigosidad dentro del subgenoma S.par en las introgresioens de MA1. en una de esas hasta podemos diferenciar las introgresioens anteriores de las actuales como en los híbridos
+nano run_window_het_2.0.sh
+cd /mnt/Timina/lmorales/javelar/heterozygosity_Nov2024
+bash run_window_het_2.0.sh SACEstrains_jun2025/Tamaulipas.txt
